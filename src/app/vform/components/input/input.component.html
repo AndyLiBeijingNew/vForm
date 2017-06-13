@@ -1,5 +1,6 @@
-<property-editor #propertyEditor [properties]="properties" (deleted)="remove()"></property-editor>
-  <label [hidden]="!properties.showLabel">{{properties.label}}</label>
-  <input [type]="properties.type" [maxLength]="properties.maxlength" [size]="properties.size" [autocomplete]="properties.autocomplete" [class]="properties.inputClass"
-         [required]="properties.required" [placeholder]="properties.placeholder" >
+<property-editor #propertyEditor [properties]="metadata.properties" (deleted)="remove()"></property-editor>
+  <label [hidden]="!metadata.properties.showLabel">{{metadata.properties.label}}</label>
+  <input [type]="metadata.properties.type" [maxLength]="metadata.properties.maxlength" [size]="metadata.properties.size"
+         [autocomplete]="metadata.properties.autocomplete" [class]="metadata.properties.inputClass"
+         [required]="metadata.properties.required" [placeholder]="metadata.properties.placeholder" >
 

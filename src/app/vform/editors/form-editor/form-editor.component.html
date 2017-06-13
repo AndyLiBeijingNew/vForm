@@ -2,10 +2,33 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
 <div id="componentList">
   <div class="header">Components</div>
-  <input type="checkbox" class="form-control" [ngModel]="toggleEditorService.visible" (ngModelChange)="toggleEditor()">
+  <div class="form-check form-check-inline">
+   <button class="btn btn-secondary" (click)="jsonModal.show()">JSON</button>
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" [ngModel]="!toggleEditorService.visible" (ngModelChange)="toggleEditor()">
+      Preview
+    </label>
+  </div>
   <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}</div>
 </div>
 <div id="formEditor" (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)">
-  <form [formGroup]="form" id="fromArea" #container>
+  <form id="fromArea" #container>
   </form>
 </div>
+<div id="jsonModal" class="modal fade" bsModal #jsonModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title pull-left">Form Representation</h2>
+        <button type="button" class="close pull-right material-icons" aria-label="Close" (click)="jsonModal.hide()">
+          close
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre>{{getJson() | json}}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+

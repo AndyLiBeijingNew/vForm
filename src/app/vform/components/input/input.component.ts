@@ -1,17 +1,22 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {IRemovable} from '../../services/IRemovable';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {IVFormComponent} from '../../services/IRemovable';
+import {VFormComponent} from '../../services/VFormComponent';
 
 @Component({
   selector: 'vform-input',
   templateUrl: './input.component.html',
   host: {
-    '[class]': 'properties.containerClass', '[style.padding]': 'properties.containerPadding', '[style.width]': 'properties.containerWidth',
-    '[style.height]': 'properties.containerHeight'
+    '[class]': 'metadata.properties.containerClass', '[style.padding]': 'metadata.properties.containerPadding',
+    '[style.width]': 'metadata.properties.containerWidth',
+    '[style.height]': 'metadata.properties.containerHeight'
   }
 })
-export class InputComponent implements OnInit, IRemovable {
+export class InputComponent implements OnInit, IVFormComponent {
   @Output()
-  removed: EventEmitter<any> = new EventEmitter<any>();
+  removed: EventEmitter<VFormComponent> = new EventEmitter<VFormComponent>();
+
+  @Input()
+  public metadata: VFormComponent;
 
   properties: any = {};
   constructor() { }
@@ -20,6 +25,6 @@ export class InputComponent implements OnInit, IRemovable {
   }
 
   remove(): void {
-    this.removed.next(this.properties);
+    this.removed.next(this.metadata);
   }
 }

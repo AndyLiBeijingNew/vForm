@@ -7,29 +7,30 @@ import {MetadataService} from '../../services/metadata.service';
 import {VFormComponent} from '../../services/VFormComponent';
 import {PropertyEditorComponent} from '../../editors/property-editor/property-editor.component';
 import {VFormComponentInstance} from '../../services/VFormComponentInstance';
-import {IRemovable} from '../../services/IRemovable';
+import {IVFormComponent} from '../../services/IRemovable';
 
 @Component({
     selector: 'layout',
     templateUrl: './layout.component.html',
     host: {
-      '[style.width]': 'properties.width', '[style.height]': 'properties.height',
-      '[style.border]': 'properties.border', '[class]': 'properties.class', '[style.padding]': 'properties.padding',
-      '[style.alignItems]': 'properties.alignItems', '[style.justifyContent]': 'properties.justifyContent',
-      '[style.borderCollapse]': 'collapse', '[style.flexFlow]': 'properties.flexFlow'
+      '[style.width]': 'metadata.properties.width', '[style.height]': 'metadata.properties.height',
+      '[style.border]': 'metadata.properties.border', '[class]': 'metadata.properties.class',
+      '[style.padding]': 'metadata.properties.padding',
+      '[style.alignItems]': 'metadata.properties.alignItems', '[style.justifyContent]': 'metadata.properties.justifyContent',
+      '[style.borderCollapse]': 'metadata.properties.collapse', '[style.flexFlow]': 'metadata.properties.flexFlow',
+      '[style.flexGrow]': 'metadata.properties.flexGrow'
     },
   })
-export class LayoutComponent implements OnInit, IRemovable {
+export class LayoutComponent implements IVFormComponent {
   @ViewChild ('container', { read: ViewContainerRef }) container: any;
-  @ViewChild ('propertyEditor') propertyEditor: PropertyEditorComponent;
 
   children: VFormComponentInstance[] = [];
 
   @Output()
-  public removed: EventEmitter<any> = new EventEmitter<any>();
+  public removed: EventEmitter<VFormComponent> = new EventEmitter<VFormComponent>();
 
   @Input()
-  properties = {};
+  public metadata: VFormComponent;
 
   @HostListener('dragover', ['$event'])
   dragOver($event): void {
@@ -43,17 +44,13 @@ export class LayoutComponent implements OnInit, IRemovable {
 
   @HostListener('drop', ['$event'])
   drop($event): void {
-    DragHelper.drop($event, [], this.children, this.metadata, this.resolver, this.container);
+    DragHelper.drop(this.metadata, $event, [], this.children, this.metadataService, this.resolver, this.container);
   }
 
-  constructor(private metadata: MetadataService, private resolver: ComponentFactoryResolver) {
-  }
-
-  ngOnInit() {
-    this.propertyEditor.propertiesChange.subscribe(p => this.properties = p);
+  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver) {
   }
 
   remove(): void {
-    this.removed.next(this.properties);
+    this.removed.next(this.metadata);
   }
 }

@@ -91,3 +91,11 @@ property-editor {
   }
 }
 
+#jsonModal {
+  pre {
+    user-select: all;
+    overflow: auto;
+    max-height: 500px;
+  }
+}
+

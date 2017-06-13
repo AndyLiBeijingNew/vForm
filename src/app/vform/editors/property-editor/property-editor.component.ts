@@ -8,7 +8,8 @@ import {ToggleEditorService} from './toggle-editor.service';
 
 @Component({
   selector: 'property-editor',
-  templateUrl: './property-editor.component.html'
+  templateUrl: './property-editor.component.html',
+  host: {'[hidden]': '!visible'}
 })
 export class PropertyEditorComponent {
   @Output()

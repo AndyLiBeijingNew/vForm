@@ -1,2 +1,2 @@
 <property-editor #propertyEditor [properties]="metadata.properties" (deleted)="remove()"></property-editor>
-<ng-template #container></ng-template>
+<div [innerHtml]="metadata.properties.html"></div>

@@ -3,7 +3,7 @@ import {MetadataService} from '../services/metadata.service';
 import * as _ from 'lodash';
 import {ComponentFactoryResolver, ComponentRef, Type} from '@angular/core';
 import {VFormComponentInstance} from '../services/VFormComponentInstance';
-import {IRemovable} from '../services/IRemovable';
+import {IVFormComponent} from '../services/IRemovable';
 
 export class DragHelper {
   private static DataComponent = 'data-component';
@@ -12,7 +12,7 @@ export class DragHelper {
     $event.dataTransfer.setData(this.DataComponent, component.name);
   }
 
-  public static drop($event: any, allowOnly: string[] = [], children: VFormComponentInstance[], metadata: MetadataService,
+  public static drop(target: VFormComponent, $event: any, allowOnly: string[] = [], children: VFormComponentInstance[], metadata: MetadataService,
                      resolver: ComponentFactoryResolver, container: any) {
     (<any>event.target).classList.remove('drag-over');
 
@@ -28,18 +28,17 @@ export class DragHelper {
         const factoryClass = <Type<any>>factories.find((x: any) => x.name === component.type);
         const factory = resolver.resolveComponentFactory(factoryClass);
         const componentRef: ComponentRef<any> = container.createComponent(factory);
-        componentRef.instance.properties = component.properties;
+        (<IVFormComponent>componentRef.instance).metadata = component;
         children.push(new VFormComponentInstance(component, componentRef));
+        target.children.push(component);
 
-        (<IRemovable>componentRef.instance).removed.subscribe(p => {
-          const found = _.findIndex(children, i => {
-            return i.metadata.properties === p;
+        (<IVFormComponent>componentRef.instance).removed.subscribe(p => {
+          const found = _.remove(children, i => i.metadata === p);
+          _.forEach(found, i => {
+            (<IVFormComponent>i.componentRef.instance).removed.unsubscribe();
+           i.componentRef.destroy();
           });
-          if (found >= 0) {
-            (<IRemovable>children[found].componentRef.instance).removed.unsubscribe();
-            children[found].componentRef.destroy();
-            children.splice(found, 1);
-          }
+          _.remove(target.children, i => i === p);
         });
       }
     }

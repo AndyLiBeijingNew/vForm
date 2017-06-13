@@ -9,6 +9,7 @@ import {MetadataService} from '../../services/metadata.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ToggleEditorService} from '../property-editor/toggle-editor.service';
 import {VFormComponentInstance} from '../../services/VFormComponentInstance';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'form-editor',
@@ -17,17 +18,19 @@ import {VFormComponentInstance} from '../../services/VFormComponentInstance';
 export class FormEditorComponent implements AfterViewInit {
 
   components: VFormComponent[];
+  metadata: VFormComponent = new VFormComponent('Form', '', 'FormComponent');
   children: VFormComponentInstance[] = [];
 
   @ViewChild('container', { read: ViewContainerRef }) container: any;
   private isViewInitialized = false;
   private form: FormGroup;
 
-  constructor(private metadata: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
+  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
               public toggleEditorService: ToggleEditorService) {
-    this.components = metadata.components();
+    this.components = metadataService.components();
     this.form = this.fb.group({});
   }
+
 
   ngAfterViewInit() {
     this.isViewInitialized = true;
@@ -46,10 +49,14 @@ export class FormEditorComponent implements AfterViewInit {
   }
 
   drop($event): void {
-    DragHelper.drop($event, [], this.children, this.metadata, this.resolver, this.container);
+    DragHelper.drop(this.metadata, $event, [], this.children, this.metadataService, this.resolver, this.container);
   }
 
   toggleEditor() {
     this.toggleEditorService.toggle();
+  }
+
+  getJson() {
+    return _.map(this.children, i => i.metadata);
   }
 }
