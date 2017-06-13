@@ -1,0 +1,93 @@
+.drag-over {
+  background-color: lightyellow;
+}
+
+form-editor {
+  display: flex;
+  flex-direction: row;
+
+  .editor-button {
+    float: right;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+}
+
+#componentList {
+  display: flex;
+  flex-direction: column;
+  flex: 10%;
+  min-width: 100px;
+  min-height: 600px;
+  border: 1px solid lightgrey;
+  padding: 0 5px 5px 5px;
+  box-shadow: 5px 5px 5px #f0f0f0;
+  border-radius: 5px;
+  margin-right: 10px;
+
+  .header {
+    font-size: 1.2em;
+    color: cadetblue;
+    text-align: center;
+    background-color: lightgrey;
+    margin-left: -5px;
+    margin-right: -5px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+
+  .component {
+    border-radius: 2px;
+    padding: 2px;
+    background-color: lightsteelblue;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .component:hover {
+    background-color: steelblue;
+    color: lightgrey;
+  }
+}
+
+#formEditor {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  min-width: 400px;
+  padding: 5px 5px 5px 5px;
+
+  #formArea, #formAreaForm {
+    display: flex;
+    flex: 100%;
+    padding: 10px 10px 10px 10px;
+    min-height: 100%;
+  }
+}
+
+layout {
+  display: flex;
+  // opacity: 1;
+  background-color: white;
+}
+
+property-editor {
+  align-self: flex-start;
+  justify-self: flex-start;
+  cursor: pointer;
+  margin-right: auto;
+  margin-right: auto;
+}
+
+#propertEditorModal {
+  .modal-body {
+    display: flex;
+    flex-wrap: wrap;
+
+    .form-group {
+      padding-right: 5px;
+    }
+  }
+}
+

@@ -1,0 +1,20 @@
+<div class="material-icons editor" (click)="show()" *ngIf="visible">settings</div><div class="material-icons editor" (click)="delete()" *ngIf="visible">delete</div>
+<div id="propertEditorModal" class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title pull-left">Properties</h2>
+        <button type="button" class="close pull-right material-icons" aria-label="Close" (click)="staticModal.hide()">
+          close
+        </button>
+      </div>
+        <form class="modal-body" #form="ngForm">
+            <div *ngFor="let kv of model" class="form-group">
+              <label>{{kv.k}}:</label>
+              <input name="{{kv.k}}" type="text" class="form-control" [ngModel]="kv.v" (ngModelChange)="setProperty(kv.k, $event)">
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
