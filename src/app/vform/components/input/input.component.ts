@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {VFormComponent} from '../../services/VFormComponent';
 import {FormArray, FormControl, FormControlName, FormGroup, Validator, Validators} from '@angular/forms';
+import {Kv} from '../../services/Kv';
 
 @Component({
   selector: 'vform-input',
@@ -23,16 +24,30 @@ export class InputComponent implements OnInit, IVFormComponent {
   public metadata: VFormComponent;
 
   properties: any = {};
-  private formControl: FormControl;
+  private oldName;
   constructor() { }
 
   ngOnInit() {
-    this.formControl = new FormControl('');
-    this.form.addControl(this.metadata.properties.name, this.formControl);
+    this.oldName = this.metadata.properties.name;
+    this.form.addControl(this.oldName, this.createControl());
   }
 
   remove(): void {
-    this.form.removeControl(this.properties.name);
+    if (this.form.contains(this.oldName)) {
+      this.form.removeControl(this.oldName);
+    }
     this.removed.next(this.metadata);
+  }
+
+  nameChanged(kv: Kv) {
+    if (kv && kv.k === 'name') {
+      this.form.removeControl(this.oldName);
+      this.oldName = kv.v;
+      this.form.addControl(kv.v, this.createControl());
+    }
+  }
+
+  createControl() {
+    return new FormControl();
   }
 }

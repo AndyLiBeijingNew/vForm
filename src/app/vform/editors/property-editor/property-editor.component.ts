@@ -22,7 +22,7 @@ export class PropertyEditorComponent {
   properties: any;
 
   @Output()
-  propertiesChange: EventEmitter<any> = new EventEmitter<any>();
+  propertiesChanged: EventEmitter<Kv> = new EventEmitter<Kv>();
 
   @ViewChild('staticModal')
   staticModal: ModalDirective;
@@ -33,10 +33,6 @@ export class PropertyEditorComponent {
     this.toggleEditor.visibilityChanged.subscribe(v => this.visible = v);
   }
 
-  save(): void {
-    this.propertiesChange.emit(this.properties);
-  }
-
   show() {
     this.model = Kv.from(this.properties);
     this.staticModal.show();
@@ -44,6 +40,7 @@ export class PropertyEditorComponent {
 
   setProperty(key, value) {
     this.properties[key] = value;
+    this.propertiesChanged.emit(new Kv(key, value));
   }
 
   delete() {
