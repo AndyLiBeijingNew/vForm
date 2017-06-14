@@ -10,10 +10,13 @@
     </label>
   </div>
   <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}</div>
+  isValid: {{form.valid}}<br />
+  form: {{form.value | json}}
 </div>
 <div id="formEditor" (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)">
-  <form id="fromArea" #container>
-  </form>
+    <form id="fromArea" [formGroup]="form" style="display: flex; height: 100%; width: 100%">
+      <ng-container  #container></ng-container>
+    </form>
 </div>
 <div id="jsonModal" class="modal fade" bsModal #jsonModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">

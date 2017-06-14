@@ -14,11 +14,11 @@ export class MetadataService {
     new VFormComponent('Text Field', 'Text input.', 'InputComponent',
       {type: 'text', maxlength: 20, autocomplete: true, inputClass: 'form-control', lineHeight: '1.2em', size: '25', required: false,
         containerClass: 'form-group', placeholder: 'Placeholder text.', showLabel: 'true', label: 'Label text',
-        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%' }),
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Text'}),
     new VFormComponent('Password Field', 'Password input.', 'InputComponent',
       {type: 'password', maxlength: 20, autocomplete: true, inputClass: 'form-control', lineHeight: '1.2em', size: '25', required: false,
         containerClass: 'form-group', placeholder: 'Password', showLabel: 'true', label: 'Label text',
-        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%' }),
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'password' }),
     new VFormComponent('HTML', 'Custom HTML.', 'HtmlComponent', {html: ''})
   ];
   constructor() { }

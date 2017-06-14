@@ -3,7 +3,8 @@ import {MetadataService} from '../services/metadata.service';
 import * as _ from 'lodash';
 import {ComponentFactoryResolver, ComponentRef, Type} from '@angular/core';
 import {VFormComponentInstance} from '../services/VFormComponentInstance';
-import {IVFormComponent} from '../services/IRemovable';
+import {IVFormComponent} from '../services/IVFormComponent';
+import {FormGroup} from '@angular/forms';
 
 export class DragHelper {
   private static DataComponent = 'data-component';
@@ -12,7 +13,7 @@ export class DragHelper {
     $event.dataTransfer.setData(this.DataComponent, component.name);
   }
 
-  public static drop(target: VFormComponent, $event: any, allowOnly: string[] = [], children: VFormComponentInstance[], metadata: MetadataService,
+  public static drop(form: FormGroup, target: VFormComponent, $event: any, allowOnly: string[] = [], children: VFormComponentInstance[], metadata: MetadataService,
                      resolver: ComponentFactoryResolver, container: any) {
     (<any>event.target).classList.remove('drag-over');
 
@@ -29,6 +30,7 @@ export class DragHelper {
         const factory = resolver.resolveComponentFactory(factoryClass);
         const componentRef: ComponentRef<any> = container.createComponent(factory);
         (<IVFormComponent>componentRef.instance).metadata = component;
+        (<IVFormComponent>componentRef.instance).form = form;
         children.push(new VFormComponentInstance(component, componentRef));
         target.children.push(component);
 

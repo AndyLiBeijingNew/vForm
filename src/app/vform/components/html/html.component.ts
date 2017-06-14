@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
-import {IVFormComponent} from '../../services/IRemovable';
+import {IVFormComponent} from '../../services/IVFormComponent';
 import {VFormComponent} from '../../services/VFormComponent';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'vform-html',
@@ -13,6 +14,8 @@ export class HtmlComponent implements IVFormComponent {
   @Output()
   removed: EventEmitter<VFormComponent> = new EventEmitter<VFormComponent>();
 
+  @Input()
+  form: FormGroup;
 
   @Input()
   public metadata: VFormComponent;

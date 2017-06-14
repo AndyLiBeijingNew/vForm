@@ -59,10 +59,11 @@ form-editor {
   padding: 5px 5px 5px 5px;
 
   #formArea, #formAreaForm {
-    display: flex;
-    flex: 100%;
+    display: flex !important;
+    height: 100%;
+    width: 600px;
     padding: 10px 10px 10px 10px;
-    min-height: 100%;
+
   }
 }
 

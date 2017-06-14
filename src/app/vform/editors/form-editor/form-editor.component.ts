@@ -6,7 +6,7 @@ import {
 import {DragHelper} from '../Helper';
 import {VFormComponent} from '../../services/VFormComponent';
 import {MetadataService} from '../../services/metadata.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {ToggleEditorService} from '../property-editor/toggle-editor.service';
 import {VFormComponentInstance} from '../../services/VFormComponentInstance';
 import * as _ from 'lodash';
@@ -49,7 +49,7 @@ export class FormEditorComponent implements AfterViewInit {
   }
 
   drop($event): void {
-    DragHelper.drop(this.metadata, $event, [], this.children, this.metadataService, this.resolver, this.container);
+    DragHelper.drop(this.form, this.metadata, $event, [], this.children, this.metadataService, this.resolver, this.container);
   }
 
   toggleEditor() {

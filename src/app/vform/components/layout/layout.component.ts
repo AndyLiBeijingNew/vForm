@@ -7,7 +7,8 @@ import {MetadataService} from '../../services/metadata.service';
 import {VFormComponent} from '../../services/VFormComponent';
 import {PropertyEditorComponent} from '../../editors/property-editor/property-editor.component';
 import {VFormComponentInstance} from '../../services/VFormComponentInstance';
-import {IVFormComponent} from '../../services/IRemovable';
+import {IVFormComponent} from '../../services/IVFormComponent';
+import {FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'layout',
@@ -25,6 +26,8 @@ export class LayoutComponent implements IVFormComponent {
   @ViewChild ('container', { read: ViewContainerRef }) container: any;
 
   children: VFormComponentInstance[] = [];
+  @Input()
+  form: FormGroup;
 
   @Output()
   public removed: EventEmitter<VFormComponent> = new EventEmitter<VFormComponent>();
@@ -44,7 +47,7 @@ export class LayoutComponent implements IVFormComponent {
 
   @HostListener('drop', ['$event'])
   drop($event): void {
-    DragHelper.drop(this.metadata, $event, [], this.children, this.metadataService, this.resolver, this.container);
+    DragHelper.drop(this.form, this.metadata, $event, [], this.children, this.metadataService, this.resolver, this.container);
   }
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver) {
