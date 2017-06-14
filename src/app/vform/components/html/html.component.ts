@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainer
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {VFormComponent} from '../../services/VFormComponent';
 import {FormGroup} from '@angular/forms';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'vform-html',
@@ -24,5 +25,5 @@ export class HtmlComponent implements IVFormComponent {
     this.removed.next(this.metadata);
   }
 
-  constructor() { }
+  constructor(private sanitizer: DomSanitizer) { }
 }

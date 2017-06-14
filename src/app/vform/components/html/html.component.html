@@ -1,2 +1,2 @@
 <property-editor #propertyEditor [properties]="metadata.properties" (deleted)="remove()"></property-editor>
-<div [innerHtml]="metadata.properties.html"></div>
+<div [innerHtml]="sanitizer.bypassSecurityTrustHtml(metadata.properties.html)"></div>
