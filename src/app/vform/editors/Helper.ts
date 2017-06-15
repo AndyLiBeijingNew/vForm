@@ -1,4 +1,4 @@
-import {VFormComponent} from '../services/VFormMetadata';
+import {VFormMetadata} from '../services/VFormMetadata';
 import {MetadataService} from '../services/metadata.service';
 import * as _ from 'lodash';
 import {ComponentFactoryResolver, ComponentRef, Type} from '@angular/core';
@@ -9,11 +9,11 @@ import {IVFormContainerComponent} from '../services/IVFormContainerComponent';
 export class DragHelper {
   private static DataComponent = 'data-component';
 
-  public static dragStart($event: any, component: VFormComponent) {
+  public static dragStart($event: any, component: VFormMetadata) {
     $event.dataTransfer.setData(this.DataComponent, component.name);
   }
 
-  public static drop(target: IVFormContainerComponent, $event: any, componentMetadata: VFormComponent, metadata: MetadataService,
+  public static drop(target: IVFormContainerComponent, $event: any, componentMetadata: VFormMetadata, metadata: MetadataService,
                      resolver: ComponentFactoryResolver) {
     (<any>event.target).classList.remove('drag-over');
 
@@ -26,20 +26,24 @@ export class DragHelper {
         $event.dataTransfer.setData(this.DataComponent, null);
       }
 
-      const factories = Array.from(resolver['_factories'].keys());
-      const factoryClass = <Type<any>>factories.find((x: any) => x.name === component.type);
-      const factory = resolver.resolveComponentFactory(factoryClass);
-      const componentRef: ComponentRef<any> = target.container.createComponent(factory);
-      (<IVFormComponent>componentRef.instance).metadata = component;
-      (<IVFormComponent>componentRef.instance).form = target.form;
-      (<IVFormComponent>componentRef.instance).componentRef = componentRef;
-      target.children.push(<IVFormComponent>componentRef.instance);
+      DragHelper.createComponent(target, component, resolver);
+    }
+  }
 
-      if (component.children && component.children.length) {
-        _.forEach(component.children, c => {
-          this.drop(<IVFormContainerComponent>componentRef.instance, null, c, metadata, resolver);
-        });
-      }
+  public static createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {
+    const factories = Array.from(resolver['_factories'].keys());
+    const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
+    const factory = resolver.resolveComponentFactory(factoryClass);
+    const componentRef: ComponentRef<any> = target.container.createComponent(factory);
+    (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
+    (<IVFormComponent>componentRef.instance).form = target.form;
+    (<IVFormComponent>componentRef.instance).componentRef = componentRef;
+    target.children.push(<IVFormComponent>componentRef.instance);
+
+    if (componentMetadata.children && componentMetadata.children.length) {
+      _.forEach(componentMetadata.children, c => {
+        this.createComponent(<IVFormContainerComponent>componentRef.instance, c, resolver);
+      });
     }
   }
 

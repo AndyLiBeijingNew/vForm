@@ -9,8 +9,8 @@ export class StateService {
   visibilityChanged = new EventEmitter<Boolean>();
   componentDeleted: EventEmitter<IVFormComponent> = new EventEmitter<IVFormComponent>();
 
-  toggle() {
-    this.editorHandleIsVisible = !this.editorHandleIsVisible;
+  setEditorHandleVisibility(value: boolean) {
+    this.editorHandleIsVisible = value;
     this.visibilityChanged.emit(this.editorHandleIsVisible);
   }
 

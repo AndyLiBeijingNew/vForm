@@ -1,4 +1,4 @@
-<div *ngIf="stateService.editorHandleIsVisible" class="editor-handle"></div>
+<div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
 <div [formGroup]="form">
   <label [hidden]="!metadata.properties.showLabel">{{metadata.properties.label}}</label> &nbsp;
   <input [formControl]="form.controls[metadata.properties.name]" [type]="metadata.properties.type" [maxLength]="metadata.properties.maxlength" [size]="metadata.properties.size"

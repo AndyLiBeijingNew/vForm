@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import {DragHelper} from '../../editors/Helper';
 import {MetadataService} from '../../services/metadata.service';
-import {VFormComponent} from '../../services/VFormMetadata';
+import {VFormMetadata} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
@@ -29,11 +29,8 @@ export class LayoutComponent implements IVFormContainerComponent {
   @Input()
   form: FormGroup;
 
-  @Output()
-  public removed: EventEmitter<VFormComponent> = new EventEmitter<VFormComponent>();
-
   @Input()
-  public metadata: VFormComponent;
+  public metadata: VFormMetadata;
 
   componentRef: ComponentRef<any>;
 
@@ -53,9 +50,5 @@ export class LayoutComponent implements IVFormContainerComponent {
   }
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private stateService: StateService) {
-  }
-
-  remove(): void {
-    this.removed.next(this.metadata);
   }
 }

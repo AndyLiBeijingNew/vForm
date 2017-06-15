@@ -3,18 +3,20 @@
 <div id="componentList">
   <div class="header">Components</div>
   <div class="form-check form-check-inline">
-   <button class="btn btn-secondary" (click)="jsonModal.show()">JSON</button>
+   <button class="btn btn-link" (click)="jsonModal.show()">JSON</button>
+   <button class="btn btn-link" (click)="showPreview()">PREVIEW</button>
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" [ngModel]="!stateService.editorHandleIsVisible" (ngModelChange)="toggleEditor()">
-      Preview
+      <input type="checkbox" class="form-check-input" [ngModel]="stateService.editorHandleIsVisible" (ngModelChange)="showEditorHandle($event)">
+      Edit
     </label>
   </div>
   <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}</div>
   isValid: {{form.valid}}
   form: {{form.value | json}}
 </div>
-<div id="formEditor" (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)">
-    <form id="formArea" [formGroup]="form">
+<div id="formEditor">
+    <div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
+    <form (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)" id="formArea" [formGroup]="form" [style.width]="metadata.properties.width" [style.height]="metadata.properties.height">
       <ng-container  #container></ng-container>
     </form>
 </div>
@@ -30,6 +32,22 @@
       </div>
       <div class="modal-body">
         <pre>{{getJson() | json}}</pre>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="previewModal" class="modal fade" bsModal #previewModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title pull-left">Preview</h2>
+        <button type="button" class="close pull-right material-icons" aria-label="Close" (click)="previewModal.hide()">
+          close
+        </button>
+      </div>
+      <div class="modal-body">
+        <vform-form #preview></vform-form>
       </div>
     </div>
   </div>

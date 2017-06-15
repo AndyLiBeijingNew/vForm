@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {VFormComponent} from '../../services/VFormMetadata';
+import {VFormMetadata} from '../../services/VFormMetadata';
 import {FormArray, FormControl, FormControlName, FormGroup, Validator, Validators} from '@angular/forms';
 import {Kv} from '../../services/Kv';
 import {StateService} from '../../editors/property-editor/state.service';
@@ -15,14 +15,11 @@ import {StateService} from '../../editors/property-editor/state.service';
   }
 })
 export class InputComponent implements OnInit, IVFormComponent {
-  @Output()
-  removed: EventEmitter<VFormComponent> = new EventEmitter<VFormComponent>();
-
   @Input()
   form: FormGroup;
 
   @Input()
-  public metadata: VFormComponent;
+  public metadata: VFormMetadata;
 
   properties: any = {};
   private oldName;
@@ -43,7 +40,6 @@ export class InputComponent implements OnInit, IVFormComponent {
     if (this.form.contains(this.oldName)) {
       this.form.removeControl(this.oldName);
     }
-    this.removed.next(this.metadata);
   }
 
   nameChanged(value: any) {

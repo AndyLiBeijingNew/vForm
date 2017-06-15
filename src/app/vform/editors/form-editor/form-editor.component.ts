@@ -4,7 +4,7 @@ import {
   ViewContainerRef, ViewRef
 } from '@angular/core';
 import {DragHelper} from '../Helper';
-import {VFormComponent} from '../../services/VFormMetadata';
+import {VFormMetadata} from '../../services/VFormMetadata';
 import {MetadataService} from '../../services/metadata.service';
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {StateService} from '../property-editor/state.service';
@@ -12,21 +12,24 @@ import * as _ from 'lodash';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 import {PropertyEditorComponent} from '../property-editor/property-editor.component';
+import {FormComponent} from '../../components/form/form.component';
+import {ModalDirective} from 'ngx-bootstrap';
 
 @Component({
   selector: 'form-editor',
   templateUrl: './form-editor.component.html'
 })
 export class FormEditorComponent implements AfterViewInit, IVFormContainerComponent {
-  removed: EventEmitter<VFormComponent>;
   editedComponent: IVFormComponent;
 
-  components: VFormComponent[];
-  metadata: VFormComponent = new VFormComponent('Form', '', 'FormComponent');
+  components: VFormMetadata[];
+  metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent', { width: '100%', height: '100%', flexWrap: 'wrap'});
   children: IVFormComponent[] = [];
 
   @ViewChild('container', { read: ViewContainerRef }) container: any;
   @ViewChild('pe') propertyEditor: PropertyEditorComponent;
+  @ViewChild('previewModal') previewModal: ModalDirective;
+  @ViewChild('preview') preview: FormComponent;
   private isViewInitialized = false;
   form: FormGroup;
 
@@ -46,15 +49,11 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
     this.propertyEditor.show();
   }
 
-  remove(): void {
-  }
-
-
   ngAfterViewInit() {
     this.isViewInitialized = true;
   }
 
-  dragStart($event, component: VFormComponent): void {
+  dragStart($event, component: VFormMetadata): void {
     DragHelper.dragStart($event, component);
   }
 
@@ -70,14 +69,17 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
     DragHelper.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
-  toggleEditor() {
-    this.stateService.toggle();
+  showEditorHandle(value: any) {
+    this.stateService.setEditorHandleVisibility(value);
   }
 
   getJson() {
     const getMetadata = (c: IVFormComponent) => {
       const m = _.cloneDeep(c.metadata);
-      _.forEach(c.children, child => m.children.push(getMetadata(child)));
+      m.children = [];
+      _.forEach(c.children, child => {
+        m.children.push(getMetadata(child));
+      });
       return m;
     };
     const formRepresentation = getMetadata(this);
@@ -94,5 +96,10 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
       }
     }
     return null;
+  }
+
+  showPreview() {
+    this.previewModal.show();
+    this.preview.metadata = this.getJson();
   }
 }
