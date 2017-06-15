@@ -53,35 +53,43 @@ form-editor {
 
 #formEditor {
   display: flex;
-  width: 100%;
   flex-wrap: wrap;
-  min-width: 400px;
+  width: 100%;
+  min-width: 800px;
+  min-height: 600px;
   padding: 5px 5px 5px 5px;
+  flex-grow: 1;
 
-  #formArea, #formAreaForm {
+  #formArea {
     display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100%;
     height: 100%;
-    width: 600px;
-    padding: 10px 10px 10px 10px;
-
+    min-height: 600px;
+    flex-grow: 1;
+    padding: 5px 5px 5px 5px;
   }
 }
 
-layout {
-  display: flex;
-  // opacity: 1;
-  background-color: white;
-}
-
-property-editor {
+div.editor-handle {
+  width: 10px;
+  height: 10px;
+  background-color: gray;
+  margin-right: auto;
   align-self: flex-start;
-  justify-self: flex-start;
-  cursor: pointer;
-  margin-right: auto;
-  margin-right: auto;
+  border-radius: 10px;
 }
 
-#propertEditorModal {
+div.editor-handle:hover {
+  background-color: greenyellow;
+}
+
+vform-input > div.editor-handle {
+  margin-right: 5px;
+  margin-top: 2px;
+}
+
+#propertyEditorModal {
   .modal-body {
     display: flex;
     flex-wrap: wrap;

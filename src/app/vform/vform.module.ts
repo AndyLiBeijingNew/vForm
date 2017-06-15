@@ -6,7 +6,7 @@ import {MetadataService} from './services/metadata.service';
 import { PropertyEditorComponent } from './editors/property-editor/property-editor.component';
 import {ModalModule} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ToggleEditorService} from './editors/property-editor/toggle-editor.service';
+import {StateService} from './editors/property-editor/state.service';
 import { InputComponent } from './components/input/input.component';
 import { HtmlComponent } from './components/html/html.component';
 
@@ -19,7 +19,7 @@ import { HtmlComponent } from './components/html/html.component';
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent],
   exports: [FormEditorComponent],
-  providers: [MetadataService, ToggleEditorService],
+  providers: [MetadataService, StateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent]
 })
 export class VformModule { }

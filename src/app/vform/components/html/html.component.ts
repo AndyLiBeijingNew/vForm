@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {VFormComponent} from '../../services/VFormComponent';
+import {VFormComponent} from '../../services/VFormMetadata';
 import {FormGroup} from '@angular/forms';
 import {DomSanitizer} from '@angular/platform-browser';
+import {StateService} from '../../editors/property-editor/state.service';
 
 @Component({
   selector: 'vform-html',
@@ -25,5 +26,6 @@ export class HtmlComponent implements IVFormComponent {
     this.removed.next(this.metadata);
   }
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private stateService: StateService) {
+  }
 }

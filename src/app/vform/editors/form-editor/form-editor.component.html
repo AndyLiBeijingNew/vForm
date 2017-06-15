@@ -5,16 +5,16 @@
   <div class="form-check form-check-inline">
    <button class="btn btn-secondary" (click)="jsonModal.show()">JSON</button>
     <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" [ngModel]="!toggleEditorService.visible" (ngModelChange)="toggleEditor()">
+      <input type="checkbox" class="form-check-input" [ngModel]="!stateService.editorHandleIsVisible" (ngModelChange)="toggleEditor()">
       Preview
     </label>
   </div>
   <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}</div>
-  isValid: {{form.valid}}<br />
+  isValid: {{form.valid}}
   form: {{form.value | json}}
 </div>
 <div id="formEditor" (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)">
-    <form id="fromArea" [formGroup]="form" style="display: flex; height: 100%; width: 100%">
+    <form id="formArea" [formGroup]="form">
       <ng-container  #container></ng-container>
     </form>
 </div>
@@ -34,4 +34,6 @@
     </div>
   </div>
 </div>
+<property-editor #pe></property-editor>
+
 

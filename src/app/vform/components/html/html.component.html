@@ -1,2 +1,2 @@
-<property-editor #propertyEditor [properties]="metadata.properties" (deleted)="remove()"></property-editor>
+<div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
 <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(metadata.properties.html)"></div>

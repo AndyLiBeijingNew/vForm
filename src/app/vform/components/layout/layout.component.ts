@@ -4,11 +4,11 @@ import {
 } from '@angular/core';
 import {DragHelper} from '../../editors/Helper';
 import {MetadataService} from '../../services/metadata.service';
-import {VFormComponent} from '../../services/VFormComponent';
-import {PropertyEditorComponent} from '../../editors/property-editor/property-editor.component';
-import {VFormComponentInstance} from '../../services/VFormComponentInstance';
+import {VFormComponent} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
+import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
+import {StateService} from '../../editors/property-editor/state.service';
 
 @Component({
     selector: 'layout',
@@ -19,13 +19,13 @@ import {FormGroup} from '@angular/forms';
       '[style.padding]': 'metadata.properties.padding',
       '[style.alignItems]': 'metadata.properties.alignItems', '[style.justifyContent]': 'metadata.properties.justifyContent',
       '[style.borderCollapse]': 'metadata.properties.collapse', '[style.flexFlow]': 'metadata.properties.flexFlow',
-      '[style.flexGrow]': 'metadata.properties.flexGrow'
+      '[style.flexGrow]': 'metadata.properties.flexGrow', '[style.display]': '"flex"'
     },
   })
-export class LayoutComponent implements IVFormComponent {
+export class LayoutComponent implements IVFormContainerComponent {
   @ViewChild ('container', { read: ViewContainerRef }) container: any;
 
-  children: VFormComponentInstance[] = [];
+  children: IVFormComponent[] = [];
   @Input()
   form: FormGroup;
 
@@ -34,6 +34,8 @@ export class LayoutComponent implements IVFormComponent {
 
   @Input()
   public metadata: VFormComponent;
+
+  componentRef: ComponentRef<any>;
 
   @HostListener('dragover', ['$event'])
   dragOver($event): void {
@@ -47,10 +49,10 @@ export class LayoutComponent implements IVFormComponent {
 
   @HostListener('drop', ['$event'])
   drop($event): void {
-    DragHelper.drop(this.form, this.metadata, $event, [], this.children, this.metadataService, this.resolver, this.container);
+    DragHelper.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
-  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver) {
+  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private stateService: StateService) {
   }
 
   remove(): void {

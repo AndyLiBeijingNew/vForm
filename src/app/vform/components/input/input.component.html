@@ -1,8 +1,8 @@
-<property-editor #propertyEditor [properties]="metadata.properties" (deleted)="remove()" (propertiesChanged)="nameChanged($event)"></property-editor>
-  <div [formGroup]="form">
-  <label [hidden]="!metadata.properties.showLabel">{{metadata.properties.label}}</label>
+<div *ngIf="stateService.editorHandleIsVisible" class="editor-handle"></div>
+<div [formGroup]="form">
+  <label [hidden]="!metadata.properties.showLabel">{{metadata.properties.label}}</label> &nbsp;
   <input [formControl]="form.controls[metadata.properties.name]" [type]="metadata.properties.type" [maxLength]="metadata.properties.maxlength" [size]="metadata.properties.size"
          [autocomplete]="metadata.properties.autocomplete" [class]="metadata.properties.inputClass"
          [required]="metadata.properties.required" [placeholder]="metadata.properties.placeholder" >
-  </div>
+</div>
 

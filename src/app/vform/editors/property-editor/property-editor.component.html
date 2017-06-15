@@ -1,13 +1,13 @@
-<div class="material-icons editor" (click)="show()">settings</div><div class="material-icons editor" (click)="delete()">delete</div>
-<div id="propertEditorModal" class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+<div id="propertyEditorModal" class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
      tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title pull-left">Properties</h2>
-        <button type="button" class="close pull-right material-icons" aria-label="Close" (click)="staticModal.hide()">
+        <div class="material-icons" (click)="$event.preventDefault(); $event.stopPropagation(); staticModal.hide();">
           close
-        </button>
+        </div>
+        <div class="material-icons" (click)="$event.preventDefault(); $event.stopPropagation(); staticModal.hide(); delete();">delete</div>
       </div>
         <form class="modal-body" #form="ngForm">
             <div *ngFor="let kv of model" class="form-group">
