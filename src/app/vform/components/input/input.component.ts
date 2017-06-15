@@ -21,6 +21,12 @@ export class InputComponent implements OnInit, IVFormComponent {
   @Input()
   public metadata: VFormMetadata;
 
+  @Input()
+  set value(value: string) {
+    this.formControl.patchValue(value);
+  }
+  private formControl: FormControl;
+
   properties: any = {};
   private oldName;
   constructor(private stateService: StateService) {
@@ -48,7 +54,8 @@ export class InputComponent implements OnInit, IVFormComponent {
       this.form.addControl(value, this.createControl());
   }
 
-  createControl() {
-    return new FormControl('', Validators.required);
+  createControl(value: string = '') {
+    this.formControl = new FormControl(value);
+    return this.formControl;
   }
 }

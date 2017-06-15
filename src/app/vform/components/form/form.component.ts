@@ -1,5 +1,6 @@
 import {
-  Component, ComponentFactoryResolver, ComponentRef, EventEmitter, Input, OnInit, ViewChild,
+  ChangeDetectorRef,
+  Component, ComponentFactoryResolver, ComponentRef, EventEmitter, Input, OnInit, Output, ViewChild,
   ViewContainerRef
 } from '@angular/core';
 import {StateService} from '../../editors/property-editor/state.service';
@@ -19,8 +20,16 @@ export class FormComponent implements IVFormContainerComponent {
   componentRef: ComponentRef<any>;
 
   children: IVFormComponent[] = [];
+
+  @Output()
+  valueChanged: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  statusChanged: EventEmitter<any> = new EventEmitter<any>();
+
   form: FormGroup;
-  private _metadata: VFormMetadata;
+
+  private _metadata: VFormMetadata = new VFormMetadata('', '', '');
 
   @Input()
   set metadata(value: VFormMetadata) {
@@ -33,8 +42,10 @@ export class FormComponent implements IVFormContainerComponent {
     return this._metadata;
   }
 
-  constructor(private stateService: StateService, private fb: FormBuilder, private resolver: ComponentFactoryResolver) {
+  constructor(private stateService: StateService, private fb: FormBuilder, private resolver: ComponentFactoryResolver, cdRef: ChangeDetectorRef) {
     stateService.setEditorHandleVisibility(false);
     this.form = fb.group({});
+    this.form.valueChanges.subscribe(v => this.valueChanged.emit(v));
+    this.form.statusChanges.subscribe(v => this.statusChanged.emit(v));
   }
 }

@@ -14,6 +14,8 @@ import {IVFormContainerComponent} from '../../services/IVFormContainerComponent'
 import {PropertyEditorComponent} from '../property-editor/property-editor.component';
 import {FormComponent} from '../../components/form/form.component';
 import {ModalDirective} from 'ngx-bootstrap';
+import {JsonPipe} from '@angular/common';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'form-editor',
@@ -21,30 +23,35 @@ import {ModalDirective} from 'ngx-bootstrap';
 })
 export class FormEditorComponent implements AfterViewInit, IVFormContainerComponent {
   editedComponent: IVFormComponent;
+  view = 'editor';
 
   components: VFormMetadata[];
-  metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent', { width: '100%', height: '100%', flexWrap: 'wrap'});
+  metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent', { width: '800px', height: '600px', flexWrap: 'wrap'});
   children: IVFormComponent[] = [];
 
   @ViewChild('container', { read: ViewContainerRef }) container: any;
   @ViewChild('pe') propertyEditor: PropertyEditorComponent;
+  @ViewChild('jsonModal') jsonModal: ModalDirective;
+  previewJson: VFormMetadata;
   @ViewChild('previewModal') previewModal: ModalDirective;
   @ViewChild('preview') preview: FormComponent;
   private isViewInitialized = false;
   form: FormGroup;
+  private previewFormInstanceValue: any = {};
+  private previewFormInstanceStatus: any = {};
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
-              public stateService: StateService, private self: ChangeDetectorRef) {
+              public stateService: StateService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer) {
     this.components = metadataService.components();
     this.form = this.fb.group({});
     stateService.editorLaunched.subscribe(instance => {
       this.editedComponent = instance;
-      this.showEditor(instance);
+      this.showPropertyEditor(instance);
     });
     stateService.componentDeleted.subscribe(instance => this.deleteMatching(<IVFormComponent> this, instance));
   }
 
-  private showEditor(instance: IVFormComponent) {
+  private showPropertyEditor(instance: IVFormComponent) {
     this.propertyEditor.componentInstance = instance;
     this.propertyEditor.show();
   }
@@ -98,8 +105,25 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
     return null;
   }
 
+  showEditor() {
+    this.view = 'editor';
+  }
+
   showPreview() {
-    this.previewModal.show();
     this.preview.metadata = this.getJson();
+    this.view = 'preview';
+  }
+
+  showJson() {
+    this.view = 'json';
+    this.previewJson = this.getJson();
+  }
+
+  previewFormValueChanged(e: any) {
+    this.previewFormInstanceValue = e;
+  }
+
+  previewFormStatusChanged(e: any) {
+    this.previewFormInstanceStatus = e;
   }
 }

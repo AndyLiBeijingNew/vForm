@@ -1,0 +1,6 @@
+<div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
+<img #image [style.height]="metadata.properties.height" [style.width]="metadata.properties.width"
+     [style.backgroundColor]="metadata.properties.backgroundColor" (click)="clickImage()">
+<input #imageInput type="file" [style.width]="0" [style.height]="0" (change)="imageChanged($event)">
+<vform-input #imageData [form]="form" [metadata]="imageDataMetadata"></vform-input>
+

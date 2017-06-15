@@ -3,55 +3,36 @@
 <div id="componentList">
   <div class="header">Components</div>
   <div class="form-check form-check-inline">
-   <button class="btn btn-link" (click)="jsonModal.show()">JSON</button>
-   <button class="btn btn-link" (click)="showPreview()">PREVIEW</button>
-    <label class="form-check-label">
-      <input type="checkbox" class="form-check-input" [ngModel]="stateService.editorHandleIsVisible" (ngModelChange)="showEditorHandle($event)">
-      Edit
-    </label>
+    <div id="formEditorMode">
+      <label class="toggle"><input type="radio" name="showEditor" (change)="showEditor()" [checked]="true"><span>Editor</span></label>
+      <label class="toggle"><input type="radio" name="showEditor" (change)="showJson()"><span>JSON</span></label>
+      <label class="toggle"><input type="radio" name="showEditor" (change)="showPreview()"><span>Preview</span></label>
+    </div>
   </div>
   <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}</div>
-  isValid: {{form.valid}}
-  form: {{form.value | json}}
 </div>
-<div id="formEditor">
+<div [hidden]="view !== 'editor'" id="formEditor">
+    <div class="editor-handle" [ngClass]="{'on': stateService.editorHandleIsVisible, 'off': !stateService.editorHandleIsVisible}" (click)="stateService.setEditorHandleVisibility(!stateService.editorHandleIsVisible)"></div>
     <div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
     <form (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)" id="formArea" [formGroup]="form" [style.width]="metadata.properties.width" [style.height]="metadata.properties.height">
       <ng-container  #container></ng-container>
     </form>
 </div>
-<div id="jsonModal" class="modal fade" bsModal #jsonModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title pull-left">Form Representation</h2>
-        <button type="button" class="close pull-right material-icons" aria-label="Close" (click)="jsonModal.hide()">
-          close
-        </button>
-      </div>
-      <div class="modal-body">
-        <pre>{{getJson() | json}}</pre>
-      </div>
-    </div>
+<div [hidden]="view !== 'json'" id="formEditor">
+  <pre>{{previewJson | json}}</pre>
+</div>
+<div [hidden]="view !== 'preview'" id="formEditor">
+  <vform-form #preview (valueChanged)="previewFormValueChanged($event)" (statusChanged)="previewFormStatusChanged($event)"></vform-form>
+  <div>
+    <p>
+      <b>Form status:</b> {{previewFormInstanceStatus | json}}
+    </p>
+
+      <b>Form data:</b> <pre>{{previewFormInstanceValue| json}}</pre>
+
   </div>
 </div>
-<div id="previewModal" class="modal fade" bsModal #previewModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title pull-left">Preview</h2>
-        <button type="button" class="close pull-right material-icons" aria-label="Close" (click)="previewModal.hide()">
-          close
-        </button>
-      </div>
-      <div class="modal-body">
-        <vform-form #preview></vform-form>
-      </div>
-    </div>
-  </div>
-</div>
+
 <property-editor #pe></property-editor>
 
 

@@ -43,7 +43,8 @@ export class MetadataService {
       {type: 'number', inputClass: 'form-control', lineHeight: '1.2em', size: '20', required: false,
         containerClass: 'form-group', placeholder: '#', showLabel: 'true', label: 'Label text',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'number' }),
-    new VFormMetadata('HTML', 'Custom HTML.', 'HtmlComponent', {html: ''})
+    new VFormMetadata('HTML', 'Custom HTML.', 'HtmlComponent', {html: ''}),
+    new VFormMetadata('Image', 'Image.', 'ImagePreviewComponent', {width: '206px', height: '265px', backgroundColor: 'lightgray', name: 'Image'}),
   ];
   constructor() { }
 
