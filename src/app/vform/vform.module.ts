@@ -11,6 +11,7 @@ import { InputComponent } from './components/input/input.component';
 import { HtmlComponent } from './components/html/html.component';
 import { FormComponent } from './components/form/form.component';
 import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
+import { BreastBoardComponent } from './components/breast-board/breast-board.component';
 
 @NgModule({
   imports: [
@@ -19,9 +20,9 @@ import { ImagePreviewComponent } from './components/image-preview/image-preview.
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent],
+  declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent, BreastBoardComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
-  entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent]
+  entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent, BreastBoardComponent]
 })
 export class VformModule { }

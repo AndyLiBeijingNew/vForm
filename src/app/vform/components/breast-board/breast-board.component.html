@@ -1,0 +1,11 @@
+<div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
+<div class="breast-board-label">{{angle}}&deg;</div>
+<div class="breast-board-image" [ngClass]="getOverlayClass()" [style.border]="metadata.properties.border"></div>
+<div class="breast-board-overlay">
+  <div (click)="angle = 5;" class="label-50">5&deg;</div>
+  <div (click)="angle = 7.5;" class="label-75">7.5&deg;</div>
+  <div (click)="angle = 10;" class="label-100">10&deg;</div>
+  <div (click)="angle = 12.5;" class="label-125">12.5&deg;</div>
+  <div (click)="angle = 15;" class="label-150">15&deg;</div>
+</div>
+
