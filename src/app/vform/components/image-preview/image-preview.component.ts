@@ -5,6 +5,7 @@ import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import * as _ from 'lodash';
 import {InputComponent} from '../input/input.component';
+import {InputFieldComponent} from '../input-field/input-field.component';
 
 @Component({
   selector: 'vform-image-preview',
@@ -23,7 +24,7 @@ export class ImagePreviewComponent implements IVFormComponent, OnInit {
 
   @ViewChild('image') image: HTMLImageElement;
   @ViewChild('imageInput') imageInput: HTMLInputElement;
-  @ViewChild('imageData') imageData: InputComponent;
+  @ViewChild('imageData') imageData: InputFieldComponent;
   private imageDataMetadata: VFormMetadata;
 
   constructor(private stateService: StateService) {
@@ -48,7 +49,7 @@ export class ImagePreviewComponent implements IVFormComponent, OnInit {
       fr.onload = (e: Event) => {
         const data = (<any>e.target).result;
         (<any> this.image).nativeElement.src = data;
-        this.imageData.value = data;
+        this.imageData.inValue = data;
       };
       fr.readAsDataURL(f);
     }

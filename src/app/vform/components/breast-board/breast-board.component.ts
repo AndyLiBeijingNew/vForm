@@ -1,19 +1,33 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {StateService} from '../../editors/property-editor/state.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
+import {InputFieldComponent} from '../input-field/input-field.component';
 
 @Component({
-  selector: 'app-breast-board',
+  selector: 'vform-breast-board',
   templateUrl: './breast-board.component.html'
 })
-export class BreastBoardComponent implements IVFormComponent {
+export class BreastBoardComponent implements AfterViewInit, IVFormComponent {
   form: FormGroup;
   metadata: VFormMetadata;
-
-  @Input()
   angle = 5;
+
+  @ViewChild('field')
+  field: InputFieldComponent;
+
+  setAngle(value: number) {
+    this.field.inValue = value.toString();
+    this.angle = value;
+  }
+
+  getAngle(value) {
+    if (value) {
+      const v = parseFloat(value);
+      this.angle = v;
+    }
+  }
 
   getOverlayClass (): string {
     let c = 'breast-board-150-image';
@@ -41,6 +55,11 @@ export class BreastBoardComponent implements IVFormComponent {
     return c;
   }
 
-  constructor(private stateService: StateService) {
+  constructor(private stateService: StateService, private cdRef: ChangeDetectorRef) {
+  }
+
+  ngAfterViewInit(): void {
+    this.field.inValue = '5';
+    this.cdRef.detectChanges();
   }
 }

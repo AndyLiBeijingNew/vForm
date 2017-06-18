@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {FormArray, FormControl, FormControlName, FormGroup, Validator, Validators} from '@angular/forms';
 import {Kv} from '../../services/Kv';
 import {StateService} from '../../editors/property-editor/state.service';
+import {InputFieldComponent} from '../input-field/input-field.component';
 
 @Component({
   selector: 'vform-input',
@@ -14,7 +15,10 @@ import {StateService} from '../../editors/property-editor/state.service';
     '[style.height]': 'metadata.properties.containerHeight', '[style.display]': '"flex"', '[style.flexWrap]': '"wrap"'
   }
 })
-export class InputComponent implements OnInit, IVFormComponent {
+export class InputComponent implements IVFormComponent {
+  @ViewChild('field')
+  field: InputFieldComponent;
+
   @Input()
   form: FormGroup;
 
@@ -23,39 +27,17 @@ export class InputComponent implements OnInit, IVFormComponent {
 
   @Input()
   set value(value: string) {
-    this.formControl.patchValue(value);
+    this.field.inValue = value;
   }
-  private formControl: FormControl;
 
   properties: any = {};
   private oldName;
   constructor(private stateService: StateService) {
-    stateService.propertyChanged.subscribe(tuple => {
-      if (tuple[0] === this && tuple[1] === 'name') {
-        this.nameChanged(tuple[2]);
-      }
-    });
-  }
-
-  ngOnInit() {
-    this.oldName = this.metadata.properties.name;
-    this.form.addControl(this.oldName, this.createControl());
   }
 
   remove(): void {
     if (this.form.contains(this.oldName)) {
       this.form.removeControl(this.oldName);
     }
-  }
-
-  nameChanged(value: any) {
-      this.form.removeControl(this.oldName);
-      this.oldName = value;
-      this.form.addControl(value, this.createControl());
-  }
-
-  createControl(value: string = '') {
-    this.formControl = new FormControl(value);
-    return this.formControl;
   }
 }
