@@ -110,6 +110,7 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   }
 
   showPreview() {
+    this.preview.form.reset();
     this.preview.metadata = this.getJson();
     this.view = 'preview';
   }
@@ -125,5 +126,9 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
 
   previewFormStatusChanged(e: any) {
     this.previewFormInstanceStatus = e;
+  }
+
+  setPreviewFormData(dataStr: string) {
+    this.preview.setData(JSON.parse(dataStr));
   }
 }

@@ -38,6 +38,11 @@ export class FormComponent implements IVFormContainerComponent {
     _.forEach(this.metadata.children, c =>  DragHelper.createComponent(this, c, this.resolver));
   }
 
+  @Input()
+  setData(value: any) {
+    this.form.patchValue(value);
+  }
+
   get metadata(): VFormMetadata {
     return this._metadata;
   }

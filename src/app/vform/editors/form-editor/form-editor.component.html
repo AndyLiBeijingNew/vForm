@@ -27,8 +27,10 @@
     <p>
       <b>Form status:</b> {{previewFormInstanceStatus | json}}
     </p>
-
     <b>Form data:</b> <pre>{{previewFormInstanceValue| json}}</pre>
+
+    <textarea id="loadFormDataTextArea" #formDataToLoad></textarea> <input id="loadFormDataButton" type="button" (click)="setPreviewFormData(formDataToLoad.value)" value="Load">
+
   </div>
 </div>
 

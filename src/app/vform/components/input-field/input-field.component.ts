@@ -59,5 +59,4 @@ export class InputFieldComponent implements OnInit, IVFormComponent {
     this.formControl.valueChanges.subscribe(v => this.outValue.emit(v));
     return this.formControl;
   }
-
 }

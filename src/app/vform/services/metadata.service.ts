@@ -45,7 +45,7 @@ export class MetadataService {
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'number' }),
     new VFormMetadata('HTML', 'Custom HTML.', 'HtmlComponent', {html: ''}),
     new VFormMetadata('Image', 'Image.', 'ImagePreviewComponent', {width: '206px', height: '265px', backgroundColor: 'lightgray', name: 'Image'}),
-    new VFormMetadata('Breast Board', '.', 'BreastBoardComponent', {border: '1px dashed lightgray', name: 'BreastBoard', type: 'hidden'})
+    new VFormMetadata('Breast Board', '.', 'BreastBoardComponent', {border: '1px dashed lightgray', name: 'BreastBoard', type: 'hidden', required: 'false'})
   ];
   constructor() { }
 
