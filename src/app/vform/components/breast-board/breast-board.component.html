@@ -9,5 +9,5 @@
     <div (click)="setAngle(15)" class="label-150">15&deg;</div>
   </div>
 </div>
-<vform-input-field #field [metadata]="metadata" [form]="form" (outValue)="getAngle($event)"></vform-input-field>
+<vform-input-field #field [metadata]="metadata" [form]="form" (valueChanged)="getAngle($event)"></vform-input-field>
 

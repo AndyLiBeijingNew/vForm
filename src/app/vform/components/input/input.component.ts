@@ -27,17 +27,11 @@ export class InputComponent implements IVFormComponent {
 
   @Input()
   set value(value: string) {
-    this.field.inValue = value;
+    this.field.value = value;
   }
 
   properties: any = {};
   private oldName;
   constructor(private stateService: StateService) {
-  }
-
-  remove(): void {
-    if (this.form.contains(this.oldName)) {
-      this.form.removeControl(this.oldName);
-    }
   }
 }

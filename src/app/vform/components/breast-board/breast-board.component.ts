@@ -18,7 +18,7 @@ export class BreastBoardComponent implements AfterViewInit, IVFormComponent {
   field: InputFieldComponent;
 
   setAngle(value: number) {
-    this.field.inValue = value.toString();
+    this.field.value = value.toString();
     this.angle = value;
   }
 
@@ -59,7 +59,7 @@ export class BreastBoardComponent implements AfterViewInit, IVFormComponent {
   }
 
   ngAfterViewInit(): void {
-    this.field.inValue = '5';
+    this.field.value = '5';
     this.cdRef.detectChanges();
   }
 }

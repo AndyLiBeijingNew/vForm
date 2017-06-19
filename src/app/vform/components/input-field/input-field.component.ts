@@ -16,14 +16,14 @@ export class InputFieldComponent implements OnInit, IVFormComponent {
   public metadata: VFormMetadata;
 
   @Input()
-  set inValue(value: string) {
+  set value(value: string) {
     if (this.formControl) {
       this.formControl.patchValue(value);
     }
   }
 
   @Output()
-  outValue: EventEmitter<string> = new EventEmitter();
+  valueChanged: EventEmitter<string> = new EventEmitter();
 
   private formControl: FormControl;
 
@@ -56,7 +56,7 @@ export class InputFieldComponent implements OnInit, IVFormComponent {
 
   createControl(value: string = '') {
     this.formControl = new FormControl(value);
-    this.formControl.valueChanges.subscribe(v => this.outValue.emit(v));
+    this.formControl.valueChanges.subscribe(v => this.valueChanged.emit(v));
     return this.formControl;
   }
 }

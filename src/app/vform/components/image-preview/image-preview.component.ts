@@ -32,13 +32,17 @@ export class ImagePreviewComponent implements IVFormComponent, OnInit {
   }
 
   ngOnInit(): void {
-    this.imageDataMetadata = new VFormMetadata('HiddenInput', 'Text input.', 'InputComponent',
+    this.imageDataMetadata = new VFormMetadata('Text', 'Text input.', 'InputComponent',
       {type: 'hidden', required: this.metadata.properties.required,
         showLabel: 'false', containerHeight: '0px', containerWidth: '0px', name: this.metadata.properties.name, size: 1 });
   }
 
   clickImage() {
     (<any>this.imageInput).nativeElement.click();
+  }
+
+  setImage(data: any) {
+    (<any> this.image).nativeElement.src = data;
   }
 
   imageChanged(event: Event) {
@@ -49,7 +53,7 @@ export class ImagePreviewComponent implements IVFormComponent, OnInit {
       fr.onload = (e: Event) => {
         const data = (<any>e.target).result;
         (<any> this.image).nativeElement.src = data;
-        this.imageData.inValue = data;
+        this.imageData.value = data;
       };
       fr.readAsDataURL(f);
     }
