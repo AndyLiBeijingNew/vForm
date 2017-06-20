@@ -3,6 +3,7 @@ import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormControl, FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {StateService} from '../../editors/property-editor/state.service';
+import {expressionValidator} from '../../validators/ExpressionValidator';
 
 @Component({
   selector: 'vform-input-field',
@@ -18,7 +19,7 @@ export class InputFieldComponent implements OnInit, IVFormComponent {
   @Input()
   set value(value: string) {
     if (this.formControl) {
-      this.formControl.patchValue(value);
+      this.formControl.patchValue(value, {emitModelToViewChange: true, emitViewToModelChange: true, emitEvent: true});
     }
   }
 
@@ -56,6 +57,9 @@ export class InputFieldComponent implements OnInit, IVFormComponent {
 
   createControl(value: string = '') {
     this.formControl = new FormControl(value);
+    if (this.metadata.properties.vformValidatorExpression && this.metadata.properties.vformValidatorMessage) {
+      this.formControl.setValidators(expressionValidator(this.form, this.metadata.properties.vformValidatorExpression, this.metadata.properties.vformValidatorMessage));
+    }
     this.formControl.valueChanges.subscribe(v => this.valueChanged.emit(v));
     return this.formControl;
   }
