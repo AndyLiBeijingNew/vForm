@@ -1,13 +1,10 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
 <div id="componentList">
   <div class="header">Components</div>
-  <div class="form-check form-check-inline">
-    <div id="formEditorMode">
-      <label class="toggle"><input type="radio" name="showEditor" (change)="showEditor()" [checked]="true"><span>Editor</span></label>
-      <label class="toggle"><input type="radio" name="showEditor" (change)="showJson()"><span>JSON</span></label>
-      <label class="toggle"><input type="radio" name="showEditor" (change)="showPreview()"><span>Preview</span></label>
-    </div>
+  <div id="formEditorMode">
+    <label class="toggle"><input type="radio" name="showEditor" (change)="showEditor()" [checked]="true"><span>Editor</span></label>
+    <label class="toggle"><input type="radio" name="showEditor" (change)="showJson()"><span>JSON</span></label>
+    <label class="toggle"><input type="radio" name="showEditor" (change)="showPreview()"><span>Preview</span></label>
   </div>
   <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}</div>
 </div>
@@ -23,17 +20,18 @@
 </div>
 <div [hidden]="view !== 'preview'" id="formEditor">
   <vform-form #preview (valueChanged)="previewFormValueChanged($event)" (statusChanged)="previewFormStatusChanged($event)"></vform-form>
-  <div>
+  <div class="formData">
     <p>
-      <b>Form status:</b> {{previewFormInstanceStatus | json}}
+      <b><h4>Form status:</h4></b> {{previewFormInstanceStatus | json}}
     </p>
-    <b>Form data:</b> <pre>{{previewFormInstanceValue| json}}</pre>
+    <b><h4>Form data:</h4></b> <pre>{{previewFormInstanceValue| json}}</pre>
 
-    <textarea id="loadFormDataTextArea" #formDataToLoad></textarea> <input id="loadFormDataButton" type="button" (click)="setPreviewFormData(formDataToLoad.value)" value="Load">
+    <md-input-container>
+      <textarea mdInput #formDataToLoad></textarea>
+    </md-input-container><br />
+    <button md-raised-button type="button" (click)="setPreviewFormData(formDataToLoad.value)">Load data</button>
 
   </div>
 </div>
-
-<property-editor #pe></property-editor>
 
 

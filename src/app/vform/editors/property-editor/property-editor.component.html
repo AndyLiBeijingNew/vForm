@@ -1,20 +1,9 @@
-<div id="propertyEditorModal" class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
-     tabindex="-1" role="dialog"  aria-hidden="true" style="padding-top: 200px">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title pull-left">Properties</h2>
-        <div class="material-icons" (click)="$event.preventDefault(); $event.stopPropagation(); staticModal.hide();">
-          close
-        </div>
-        <div class="material-icons" (click)="$event.preventDefault(); $event.stopPropagation(); staticModal.hide(); delete();">delete</div>
-      </div>
-        <form class="modal-body" #form="ngForm">
-            <div *ngFor="let kv of model" class="form-group">
-              <label>{{kv.k}}:</label>
-              <input name="{{kv.k}}" type="text" class="form-control" [ngModel]="kv.v" (ngModelChange)="setProperty(kv.k, $event)">
-            </div>
-        </form>
-    </div>
-  </div>
-</div>
+<h2>{{componentInstance.metadata.name}} Properties</h2>
+<form #form="ngForm">
+    <md-input-container *ngFor="let kv of model">
+      <label>{{kv.k}}</label>
+      <input mdInput name="{{kv.k}}" type="text" class="form-control" [ngModel]="kv.v" (ngModelChange)="setProperty(kv.k, $event)">
+    </md-input-container>
+</form>
+<button md-raised-button (click)="$event.preventDefault(); $event.stopPropagation(); delete();">Delete component</button>
+

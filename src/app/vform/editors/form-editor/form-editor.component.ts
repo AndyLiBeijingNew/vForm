@@ -13,9 +13,9 @@ import {IVFormComponent} from '../../services/IVFormComponent';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 import {PropertyEditorComponent} from '../property-editor/property-editor.component';
 import {FormComponent} from '../../components/form/form.component';
-import {ModalDirective} from 'ngx-bootstrap';
 import {JsonPipe} from '@angular/common';
 import {DomSanitizer} from '@angular/platform-browser';
+import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'form-editor',
@@ -30,10 +30,7 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   children: IVFormComponent[] = [];
 
   @ViewChild('container', { read: ViewContainerRef }) container: any;
-  @ViewChild('pe') propertyEditor: PropertyEditorComponent;
-  @ViewChild('jsonModal') jsonModal: ModalDirective;
   previewJson: VFormMetadata;
-  @ViewChild('previewModal') previewModal: ModalDirective;
   @ViewChild('preview') preview: FormComponent;
   private isViewInitialized = false;
   form: FormGroup;
@@ -41,7 +38,8 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   private previewFormInstanceStatus: any = {};
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
-              public stateService: StateService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer) {
+              public stateService: StateService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
+              private dialog: MdDialog) {
     this.components = metadataService.components();
     this.form = this.fb.group({});
     stateService.editorLaunched.subscribe(instance => {
@@ -52,8 +50,7 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   }
 
   private showPropertyEditor(instance: IVFormComponent) {
-    this.propertyEditor.componentInstance = instance;
-    this.propertyEditor.show();
+    this.dialog.open(PropertyEditorComponent, {data: instance});
   }
 
   ngAfterViewInit() {

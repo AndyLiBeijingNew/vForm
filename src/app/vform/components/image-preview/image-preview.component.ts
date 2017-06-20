@@ -47,13 +47,15 @@ export class ImagePreviewComponent implements IVFormComponent, OnInit {
 
   imageChanged(event: Event) {
     const files: FileList  = (<any> event.target).files;
-    if (files) {
+    if (files && files.length > 0) {
       const f = files[0];
       const fr = new FileReader();
       fr.onload = (e: Event) => {
         const data = (<any>e.target).result;
-        (<any> this.image).nativeElement.src = data;
-        this.imageData.value = data;
+        if (data) {
+          (<any> this.image).nativeElement.src = data;
+          this.imageData.value = data;
+        }
       };
       fr.readAsDataURL(f);
     }

@@ -4,7 +4,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { FormEditorComponent } from './editors/form-editor/form-editor.component';
 import {MetadataService} from './services/metadata.service';
 import { PropertyEditorComponent } from './editors/property-editor/property-editor.component';
-import {ModalModule} from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {StateService} from './editors/property-editor/state.service';
 import { InputComponent } from './components/input/input.component';
@@ -13,17 +12,27 @@ import { FormComponent } from './components/form/form.component';
 import { ImagePreviewComponent } from './components/image-preview/image-preview.component';
 import { BreastBoardComponent } from './components/breast-board/breast-board.component';
 import { InputFieldComponent } from './components/input-field/input-field.component';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {PLATFORM_BROWSER_ID} from '@angular/common/src/platform_id';
+import {BrowserModule} from '@angular/platform-browser';
+import {MaterialModule, MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
-    ModalModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule,
+    NoopAnimationsModule,
+    MdInputModule,
+    MdButtonModule,
+    MdDialogModule
   ],
-  declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent],
+  declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
+    BreastBoardComponent, InputFieldComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
-  entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent]
+  entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent]
 })
 export class VformModule { }
