@@ -1,11 +1,12 @@
 <div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
 <div [formGroup]="form">
-  <md-select [placeholder]="metadata.properties.placeholder" [formControl]="form.controls[metadata.properties.name]"
+  <md-radio-group [formControl]="form.controls[metadata.properties.name]"
              [class]="metadata.properties.inputClass"
              [required]="metadata.properties.required">
-    <md-option *ngFor="let o of options" [value]="o.value">
+    <label>{{metadata.properties?.labelText}}</label>
+    <md-radio-button *ngFor="let o of options" [value]="o.value">
       {{o.name}}
-    </md-option>
-  </md-select>
+    </md-radio-button>
+  </md-radio-group>
 </div>
 

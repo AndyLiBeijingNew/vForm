@@ -113,7 +113,12 @@ export class MetadataService {
       frontHeight: '305', frontWidth: '150', sideHeight: '305', sideWidth: '60', regionColor: 'red'
     }),
     new VFormMetadata('Select', 'Select from a list of options', 'SelectComponent', {
-      name: 'select', placeholder: 'Select an option', containerClass: '',
+      name: 'select', placeholder: 'Select an option', required: false, containerClass: '',
+      containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
+      options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
+    }),
+    new VFormMetadata('Radio', 'Select one option from a list of options', 'RadioComponent', {
+      name: 'radio', labelText: 'Select an option', required: false, containerClass: '',
       containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
       options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
     })
