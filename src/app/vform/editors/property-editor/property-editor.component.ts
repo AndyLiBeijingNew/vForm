@@ -6,7 +6,8 @@ import {
 import {Kv} from '../../services/Kv';
 import {StateService} from './state.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {MD_DIALOG_DATA, MdDialog, MdDialogRef} from '@angular/material';
+import {MD_DIALOG_DATA, MdDialog, MdDialogRef, MdInputDirective} from '@angular/material';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'vform-property-editor',
@@ -15,6 +16,9 @@ import {MD_DIALOG_DATA, MdDialog, MdDialogRef} from '@angular/material';
 export class PropertyEditorComponent {
   @Input()
   componentInstance: IVFormComponent;
+
+  @ViewChild('newPropertyName') newPropertyName: MdInputDirective;
+  @ViewChild('newPropertyValue') newPropertyValue: MdInputDirective;
 
   model: Kv[] = [];
 
@@ -28,8 +32,16 @@ export class PropertyEditorComponent {
     this.dialog.closeAll();
   }
 
+  addProperty() {
+    const name = (<any>this.newPropertyName).nativeElement.value.trim();
+    const value = ((<any>this.newPropertyValue).nativeElement.value || '').trim();
+    this.model.push(new Kv(name, value));
+    this.componentInstance.metadata.properties[name] = value;
+    this.stateService.changeProperty(this.componentInstance, name, value);
+  }
+
   constructor(private stateService: StateService, private dialog: MdDialog, @Optional() @Inject(MD_DIALOG_DATA) data) {
     this.componentInstance = data;
-    this.model = Kv.from(this.componentInstance.metadata.properties);
+    this.model = _.sortBy(Kv.from(this.componentInstance.metadata.properties), i => i.k);
   }
 }

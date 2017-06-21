@@ -9,7 +9,8 @@ import {InputFieldComponent} from '../input-field/input-field.component';
 
 @Component({
   selector: 'vform-image-preview',
-  templateUrl: './image-preview.component.html'
+  templateUrl: './image-preview.component.html',
+  host: {'[style.height]': 'metadata.properties.height', '[style.width]': 'metadata.properties.width'}
 })
 export class ImagePreviewComponent implements IVFormComponent, OnInit {
 

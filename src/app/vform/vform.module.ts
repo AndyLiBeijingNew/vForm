@@ -15,7 +15,10 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {PLATFORM_BROWSER_ID} from '@angular/common/src/platform_id';
 import {BrowserModule} from '@angular/platform-browser';
-import {MaterialModule, MdButtonModule, MdCardModule, MdDialogModule, MdInputModule} from '@angular/material';
+import {
+  MaterialModule, MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdMiniFab,
+  MdTabsModule
+} from '@angular/material';
 import { CtRegionComponent } from './components/ct-region/ct-region.component';
 
 @NgModule({
@@ -28,7 +31,8 @@ import { CtRegionComponent } from './components/ct-region/ct-region.component';
     MdInputModule,
     MdButtonModule,
     MdDialogModule,
-    MdCardModule
+    MdTabsModule,
+    MdIconModule
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, CtRegionComponent],

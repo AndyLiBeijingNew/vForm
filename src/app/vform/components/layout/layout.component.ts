@@ -16,11 +16,18 @@ import {StateService} from '../../editors/property-editor/state.service';
     host: {
       '[hidden]': 'metadata.properties.hidden',
       '[style.width]': 'metadata.properties.width', '[style.height]': 'metadata.properties.height',
-      '[style.border]': 'metadata.properties.border', '[class]': 'metadata.properties.class',
+      '[style.borderTop]': 'metadata.properties.borderTop',
+      '[style.borderRight]': 'metadata.properties.borderRight',
+      '[style.borderBottom]': 'metadata.properties.borderBottom',
+      '[style.borderLeft]': 'metadata.properties.borderLeft',
+      '[class]': 'metadata.properties.class',
       '[style.padding]': 'metadata.properties.padding',
-      '[style.alignItems]': 'metadata.properties.alignItems', '[style.justifyContent]': 'metadata.properties.justifyContent',
+      '[style.alignItems]': 'metadata.properties.alignItems',
+      '[style.alignSelf]': 'metadata.properties.alignSelf',
+      '[style.justifyContent]': 'metadata.properties.justifyContent',
       '[style.flexFlow]': 'metadata.properties.flexFlow',
-      '[style.flexGrow]': 'metadata.properties.flexGrow', '[style.display]': '"flex"'
+      '[style.flexGrow]': 'metadata.properties.flexGrow',
+      '[style.display]': 'metadata.properties.display'
     },
   })
 export class LayoutComponent implements IVFormContainerComponent {

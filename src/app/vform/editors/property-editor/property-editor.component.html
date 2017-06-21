@@ -2,8 +2,20 @@
 <form #form="ngForm">
     <md-input-container *ngFor="let kv of model">
       <label>{{kv.k}}</label>
-      <input mdInput name="{{kv.k}}" type="text" class="form-control" [ngModel]="kv.v" (ngModelChange)="setProperty(kv.k, $event)">
+      <input mdInput name="{{kv.k}}" type="text" [ngModel]="kv.v" (ngModelChange)="setProperty(kv.k, $event)">
     </md-input-container>
 </form>
-<button md-raised-button (click)="$event.preventDefault(); $event.stopPropagation(); delete();">Delete component</button>
+<hr />
+<div>
+  <span style="font-size: 18px; padding-right: 10px; font-weight: bold">Add property</span>
+  <md-input-container>
+    <input mdInput #newPropertyName type="text" placeholder="Name" [required]="true">
+  </md-input-container>
+  <md-input-container>
+    <input mdInput #newPropertyValue type="text" placeholder="Value">
+  </md-input-container>
+  <a [hidden]="!newPropertyName.value" (click)="addProperty()"><md-icon style="cursor: pointer; color: green; vertical-align: middle">add</md-icon></a>
+</div>
+
+<button md-raised-button (click)="$event.preventDefault(); $event.stopPropagation(); delete();" style="background-color: lightcoral">Delete control from Form</button>
 

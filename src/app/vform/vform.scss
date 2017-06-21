@@ -130,7 +130,7 @@ div.editor-handle {
   width: 10px;
   height: 10px;
   background-color: gray;
-  margin-right: auto;
+  margin-right: calc(100% - 10px);
   align-self: flex-start;
   border-radius: 10px;
 }
