@@ -19,7 +19,6 @@ import {StateService} from '../../editors/property-editor/state.service';
   selector: 'vform-layout',
   templateUrl: './layout.component.html',
   host: {
-    '[hidden]': 'metadata.properties.hidden',
     '[style.width]': 'metadata.properties.width', '[style.height]': 'metadata.properties.height',
     '[style.borderTop]': 'metadata.properties.borderTop',
     '[style.borderRight]': 'metadata.properties.borderRight',
