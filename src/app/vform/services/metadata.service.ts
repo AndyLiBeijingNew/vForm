@@ -111,6 +111,11 @@ export class MetadataService {
     new VFormMetadata('CT Region', '.', 'CtRegionComponent', {
       border: '1px dashed lightgray', name: 'CtRegion', type: 'hidden',
       frontHeight: '305', frontWidth: '150', sideHeight: '305', sideWidth: '60', regionColor: 'red'
+    }),
+    new VFormMetadata('Select', 'Select from a list of options', 'SelectComponent', {
+      name: 'select', placeholder: 'Select an option', containerClass: '',
+      containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
+      options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
     })
   ];
 

@@ -14,8 +14,12 @@ import {BreastBoardComponent} from './components/breast-board/breast-board.compo
 import {InputFieldComponent} from './components/input-field/input-field.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
-import {MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdTabsModule} from '@angular/material';
+import {
+  MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdSelectModule,
+  MdTabsModule
+} from '@angular/material';
 import {CtRegionComponent} from './components/ct-region/ct-region.component';
+import { SelectComponent } from './components/select/select.component';
 
 @NgModule({
   imports: [
@@ -28,14 +32,15 @@ import {CtRegionComponent} from './components/ct-region/ct-region.component';
     MdButtonModule,
     MdDialogModule,
     MdTabsModule,
-    MdIconModule
+    MdIconModule,
+    MdSelectModule
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, CtRegionComponent],
+    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent]
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent]
 })
 export class VformModule {
 }
