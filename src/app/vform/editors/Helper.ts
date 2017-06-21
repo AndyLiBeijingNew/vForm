@@ -14,15 +14,13 @@ export class DragHelper {
 
   public static drop(target: IVFormContainerComponent, $event: any, componentMetadata: VFormMetadata, metadata: MetadataService,
                      resolver: ComponentFactoryResolver) {
-    (<any>event.target).classList.remove('drag-over');
-
     const component = componentMetadata || metadata.getComponent($event.dataTransfer.getData(this.DataComponent));
     if (component) {
 
       if ($event) {
+        (<any>$event.target).classList.remove('drag-over');
         $event.preventDefault();
         $event.stopPropagation();
-        $event.dataTransfer.setData(this.DataComponent, null);
       }
 
       DragHelper.createComponent(target, component, resolver);
@@ -48,11 +46,11 @@ export class DragHelper {
 
   public static dragOver($event: DragEvent) {
     $event.preventDefault();
-    (<any>event.target).classList.add('drag-over');
+    (<any>$event.target).classList.add('drag-over');
   }
 
   public static dragLeave($event: DragEvent) {
     $event.preventDefault();
-    (<any>event.target).classList.remove('drag-over');
+    (<any>$event.target).classList.remove('drag-over');
   }
 }

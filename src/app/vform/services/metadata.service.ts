@@ -75,7 +75,7 @@ export class MetadataService {
       {
         type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
         containerClass: '', placeholder: 'Placeholder text.',
-        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Text',
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'text',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
       }),
     new VFormMetadata('Password Field', 'Password input.', 'InputComponent',
@@ -89,6 +89,12 @@ export class MetadataService {
         type: 'number', size: '20', required: false,
         containerClass: ' ', placeholder: 'Number',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'number'
+      }),
+    new VFormMetadata('Date Field', 'Date input.', 'InputComponent',
+      {
+        type: 'date', size: '20', required: false,
+        containerClass: ' ', placeholder: 'Number',
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'date'
       }),
     new VFormMetadata('HTML', 'Custom HTML.', 'HtmlComponent', {html: ''}),
     new VFormMetadata('Image', 'Image.', 'ImagePreviewComponent', {
