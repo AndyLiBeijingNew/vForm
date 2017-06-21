@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BreastBoardComponent } from './breast-board.component';
+import {BreastBoardComponent} from './breast-board.component';
 
 describe('BreastBoardComponent', () => {
   let component: BreastBoardComponent;
@@ -8,9 +8,9 @@ describe('BreastBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BreastBoardComponent ]
+      declarations: [BreastBoardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

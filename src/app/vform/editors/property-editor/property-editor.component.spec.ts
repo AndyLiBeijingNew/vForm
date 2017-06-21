@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PropertyEditorComponent } from './property-editor.component';
+import {PropertyEditorComponent} from './property-editor.component';
 
 describe('PropertyEditorComponent', () => {
   let component: PropertyEditorComponent;
@@ -8,9 +8,9 @@ describe('PropertyEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PropertyEditorComponent ]
+      declarations: [PropertyEditorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

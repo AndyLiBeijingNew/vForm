@@ -1,6 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {Kv} from '../../services/Kv';
 @Injectable()
 export class StateService {
   editorHandleIsVisible = true;

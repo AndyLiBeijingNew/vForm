@@ -2,6 +2,7 @@ export class Kv {
   public static of(k: string, v: any = ''): Kv {
     return new Kv(k, v);
   }
+
   public static from(obj: any = {}): Kv[] {
     const arr: Kv[] = [];
     for (const p in obj) {
@@ -11,6 +12,7 @@ export class Kv {
     }
     return arr;
   }
+
   public static to(arr: Kv[]): any {
     const o: any = {};
     if (arr) {
@@ -22,5 +24,7 @@ export class Kv {
     }
     return o;
   }
-  constructor (public k: string, public v: any = '') {}
+
+  constructor(public k: string, public v: any = '') {
+  }
 }

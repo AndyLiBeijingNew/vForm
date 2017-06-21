@@ -1,6 +1,12 @@
 import {
   ChangeDetectorRef,
-  Component, ComponentFactoryResolver, ComponentRef, EventEmitter, Input, OnInit, Output, ViewChild,
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
   ViewContainerRef
 } from '@angular/core';
 import {StateService} from '../../editors/property-editor/state.service';
@@ -16,7 +22,7 @@ import {DragHelper} from '../../editors/Helper';
   templateUrl: './form.component.html'
 })
 export class FormComponent implements IVFormContainerComponent {
-  @ViewChild('container',  { read: ViewContainerRef }) container: ViewContainerRef;
+  @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
   componentRef: ComponentRef<any>;
 
   children: IVFormComponent[] = [];
@@ -35,7 +41,7 @@ export class FormComponent implements IVFormContainerComponent {
   set metadata(value: VFormMetadata) {
     this.container.clear();
     this._metadata = value;
-    _.forEach(this.metadata.children, c =>  DragHelper.createComponent(this, c, this.resolver));
+    _.forEach(this.metadata.children, c => DragHelper.createComponent(this, c, this.resolver));
   }
 
   @Input()

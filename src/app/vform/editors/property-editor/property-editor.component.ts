@@ -1,12 +1,8 @@
-import {
-  AfterViewInit, Component, ComponentRef, EventEmitter, Inject, Input, OnChanges, OnInit, Optional, Output,
-  SimpleChanges,
-  ViewChild
-} from '@angular/core';
+import {Component, Inject, Input, Optional, ViewChild} from '@angular/core';
 import {Kv} from '../../services/Kv';
 import {StateService} from './state.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {MD_DIALOG_DATA, MdDialog, MdDialogRef, MdInputDirective} from '@angular/material';
+import {MD_DIALOG_DATA, MdDialog, MdInputDirective} from '@angular/material';
 import * as _ from 'lodash';
 
 @Component({

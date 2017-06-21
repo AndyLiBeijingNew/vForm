@@ -2,33 +2,41 @@
 <div id="componentList">
   <div class="header">Components</div>
   <div id="formEditorMode">
-    <label class="toggle"><input type="radio" name="showEditor" (change)="showEditor()" [checked]="true"><span>Editor</span></label>
+    <label class="toggle"><input type="radio" name="showEditor" (change)="showEditor()"
+                                 [checked]="true"><span>Editor</span></label>
     <label class="toggle"><input type="radio" name="showEditor" (change)="showJson()"><span>JSON</span></label>
     <label class="toggle"><input type="radio" name="showEditor" (change)="showPreview()"><span>Preview</span></label>
   </div>
-  <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}</div>
+  <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}
+  </div>
 </div>
 <div [hidden]="view !== 'editor'" id="formEditor">
-    <div class="editor-handle" [ngClass]="{'on': stateService.editorHandleIsVisible, 'off': !stateService.editorHandleIsVisible}" (click)="stateService.setEditorHandleVisibility(!stateService.editorHandleIsVisible)"></div>
-    <div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
-    <form (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)" id="formArea" [formGroup]="form" [style.width]="metadata.properties.width" [style.height]="metadata.properties.height">
-      <ng-container  #container></ng-container>
-    </form>
+  <div class="editor-handle"
+       [ngClass]="{'on': stateService.editorHandleIsVisible, 'off': !stateService.editorHandleIsVisible}"
+       (click)="stateService.setEditorHandleVisibility(!stateService.editorHandleIsVisible)"></div>
+  <div *ngIf="stateService.editorHandleIsVisible" class="editor-handle" (click)="stateService.edit(this)"></div>
+  <form (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)" id="formArea"
+        [formGroup]="form" [style.width]="metadata.properties.width" [style.height]="metadata.properties.height">
+    <ng-container #container></ng-container>
+  </form>
 </div>
 <div [hidden]="view !== 'json'" id="formEditor">
   <pre>{{previewJson | json}}</pre>
 </div>
 <div [hidden]="view !== 'preview'" id="formEditor">
-  <vform-form #preview (valueChanged)="previewFormValueChanged($event)" (statusChanged)="previewFormStatusChanged($event)"></vform-form>
+  <vform-form #preview (valueChanged)="previewFormValueChanged($event)"
+              (statusChanged)="previewFormStatusChanged($event)"></vform-form>
   <div class="formData">
     <p>
       <b><h4>Form status:</h4></b> {{previewFormInstanceStatus | json}}
     </p>
-    <b><h4>Form data:</h4></b> <pre>{{previewFormInstanceValue| json}}</pre>
+    <b><h4>Form data:</h4></b>
+    <pre>{{previewFormInstanceValue| json}}</pre>
 
     <md-input-container>
       <textarea mdInput #formDataToLoad></textarea>
-    </md-input-container><br />
+    </md-input-container>
+    <br/>
     <button md-raised-button type="button" (click)="setPreviewFormData(formDataToLoad.value)">Load data</button>
 
   </div>

@@ -1,9 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {FormControl, FormGroup} from '@angular/forms';
-import {VFormMetadata} from '../../services/VFormMetadata';
 import {StateService} from '../../editors/property-editor/state.service';
-import {expressionValidator} from '../../validators/ExpressionValidator';
 import {InputFieldBase} from './InputFieldBase';
 
 @Component({

@@ -63,7 +63,7 @@ export class CtRegionComponent implements OnInit, IVFormComponent {
   }
 
   drawRegions(value: string) {
-  const tmp = JSON.parse(value);
+    const tmp = JSON.parse(value);
     if (tmp.front) {
       this.drawRegion(this.front, tmp.front);
     }
@@ -76,7 +76,7 @@ export class CtRegionComponent implements OnInit, IVFormComponent {
     const nativeElement = (<any>canvas).nativeElement;
     const c = <CanvasRenderingContext2D> nativeElement.getContext('2d');
     c.clearRect(0, 0, nativeElement.width, nativeElement.height);
-    if (region.start && region.end &&  region.start.x >= 0 && region.start.y >= 0 && region.end.x >= 0  && region.end.y >= 0) {
+    if (region.start && region.end && region.start.x >= 0 && region.start.y >= 0 && region.end.x >= 0 && region.end.y >= 0) {
       c.strokeStyle = this.metadata.properties.regionColor;
       c.strokeRect(region.start.x, region.start.y, region.end.x - region.start.x, region.end.y - region.start.y);
     }
@@ -84,8 +84,10 @@ export class CtRegionComponent implements OnInit, IVFormComponent {
 
   ngOnInit(): void {
     this.selectionDataMetadata = new VFormMetadata('Hidden', 'Text input.', 'InputComponent',
-      {type: 'hidden', required: this.metadata.properties.required,
-        showLabel: 'false', containerHeight: '0px', containerWidth: '0px', name: this.metadata.properties.name, size: 1 });
+      {
+        type: 'hidden', required: this.metadata.properties.required,
+        showLabel: 'false', containerHeight: '0px', containerWidth: '0px', name: this.metadata.properties.name, size: 1
+      });
     this.setCanvasSize();
   }
 

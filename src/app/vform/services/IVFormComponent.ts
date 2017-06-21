@@ -1,4 +1,4 @@
-import {ComponentRef, EventEmitter} from '@angular/core';
+import {ComponentRef} from '@angular/core';
 import {VFormMetadata} from './VFormMetadata';
 import {FormGroup} from '@angular/forms';
 export interface IVFormComponent {

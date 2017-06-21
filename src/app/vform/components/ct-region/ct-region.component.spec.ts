@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CtRegionComponent } from './ct-region.component';
+import {CtRegionComponent} from './ct-region.component';
 
 describe('CtRegionComponent', () => {
   let component: CtRegionComponent;
@@ -8,9 +8,9 @@ describe('CtRegionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CtRegionComponent ]
+      declarations: [CtRegionComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

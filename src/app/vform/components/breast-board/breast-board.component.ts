@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import {StateService} from '../../editors/property-editor/state.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
@@ -29,7 +29,7 @@ export class BreastBoardComponent implements AfterViewInit, IVFormComponent {
     }
   }
 
-  getOverlayClass (): string {
+  getOverlayClass(): string {
     let c = 'breast-board-150-image';
     switch (this.angle) {
       case 7.5: {
@@ -51,7 +51,8 @@ export class BreastBoardComponent implements AfterViewInit, IVFormComponent {
       default: {
         c = 'breast-board-50-image';
       }
-    };
+    }
+    ;
     return c;
   }
 

@@ -1,5 +1,4 @@
 import {FormControl, FormGroup} from '@angular/forms';
-import {Compiler} from '@angular/core';
 export function expressionValidator(formInstance: FormGroup, expression: string, message: string) {
   return (c: FormControl) => {
     let errorObj: any = null;
@@ -11,7 +10,7 @@ export function expressionValidator(formInstance: FormGroup, expression: string,
         } catch (e) {
           console.log('Invalid ExpressionValidator for control.' + e);
         }
-        if (! result) {
+        if (!result) {
           return {'vform-error': message};
         }
         return null;

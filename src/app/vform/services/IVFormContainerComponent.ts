@@ -1,4 +1,4 @@
-import {ComponentRef, ViewContainerRef} from '@angular/core';
+import {ViewContainerRef} from '@angular/core';
 import {IVFormComponent} from './IVFormComponent';
 export interface IVFormContainerComponent extends IVFormComponent {
   container: ViewContainerRef;

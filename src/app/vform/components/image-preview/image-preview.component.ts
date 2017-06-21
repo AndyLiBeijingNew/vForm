@@ -1,9 +1,8 @@
-import {ChangeDetectorRef, Component, ComponentRef, Input, OnInit, Renderer, ViewChild} from '@angular/core';
+import {Component, ComponentRef, Input, OnInit, ViewChild} from '@angular/core';
 import {StateService} from '../../editors/property-editor/state.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
-import * as _ from 'lodash';
 import {InputComponent} from '../input/input.component';
 import {InputFieldComponent} from '../input-field/input-field.component';
 
@@ -34,8 +33,10 @@ export class ImagePreviewComponent implements IVFormComponent, OnInit {
 
   ngOnInit(): void {
     this.imageDataMetadata = new VFormMetadata('Text', 'Text input.', 'InputComponent',
-      {type: 'hidden', required: this.metadata.properties.required,
-        showLabel: 'false', containerHeight: '0px', containerWidth: '0px', name: this.metadata.properties.name, size: 1 });
+      {
+        type: 'hidden', required: this.metadata.properties.required,
+        showLabel: 'false', containerHeight: '0px', containerWidth: '0px', name: this.metadata.properties.name, size: 1
+      });
   }
 
   clickImage() {
@@ -47,7 +48,7 @@ export class ImagePreviewComponent implements IVFormComponent, OnInit {
   }
 
   imageChanged(event: Event) {
-    const files: FileList  = (<any> event.target).files;
+    const files: FileList = (<any> event.target).files;
     if (files && files.length > 0) {
       const f = files[0];
       const fr = new FileReader();

@@ -3,7 +3,6 @@ import {MetadataService} from '../services/metadata.service';
 import * as _ from 'lodash';
 import {ComponentFactoryResolver, ComponentRef, Type} from '@angular/core';
 import {IVFormComponent} from '../services/IVFormComponent';
-import {FormGroup} from '@angular/forms';
 import {IVFormContainerComponent} from '../services/IVFormContainerComponent';
 
 export class DragHelper {

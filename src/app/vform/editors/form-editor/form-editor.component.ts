@@ -1,19 +1,21 @@
 import {
-  AfterViewInit, ChangeDetectorRef,
-  Compiler, Component, ComponentFactoryResolver, ComponentRef, EventEmitter, OnInit, Type, ViewChild,
-  ViewContainerRef, ViewRef
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ComponentFactoryResolver,
+  ViewChild,
+  ViewContainerRef
 } from '@angular/core';
 import {DragHelper} from '../Helper';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {MetadataService} from '../../services/metadata.service';
-import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {StateService} from '../property-editor/state.service';
 import * as _ from 'lodash';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 import {PropertyEditorComponent} from '../property-editor/property-editor.component';
 import {FormComponent} from '../../components/form/form.component';
-import {JsonPipe} from '@angular/common';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MdDialog} from '@angular/material';
 
@@ -26,10 +28,14 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   view = 'editor';
 
   components: VFormMetadata[];
-  metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent', { width: '800px', height: '600px', flexWrap: 'wrap'});
+  metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent', {
+    width: '800px',
+    height: '600px',
+    flexWrap: 'wrap'
+  });
   children: IVFormComponent[] = [];
 
-  @ViewChild('container', { read: ViewContainerRef }) container: any;
+  @ViewChild('container', {read: ViewContainerRef}) container: any;
   previewJson: VFormMetadata;
   @ViewChild('preview') preview: FormComponent;
   private isViewInitialized = false;

@@ -31,8 +31,17 @@ export class MetadataService {
       ]),
     new VFormMetadata('2 Row layout', 'Divides the form into 2 rows.', 'LayoutComponent',
       {
-        width: '100%', height: '100%', class: 'vform-default', padding: '0 0 0 0',
-        alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'column', flexGrow: 1, hidden: false, display: 'flex'
+        width: '100%',
+        height: '100%',
+        class: 'vform-default',
+        padding: '0 0 0 0',
+        alignItems: '',
+        justifyContent: '',
+        alignSelf: '',
+        flexFlow: 'column',
+        flexGrow: 1,
+        hidden: false,
+        display: 'flex'
       }, [
         new VFormMetadata('Layout', '', 'LayoutComponent',
           {

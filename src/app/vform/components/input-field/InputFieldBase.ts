@@ -29,6 +29,7 @@ export abstract class InputFieldBase implements OnInit, IVFormComponent {
 
   properties: any = {};
   private oldName;
+
   constructor(private stateService: StateService) {
     stateService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[1] === 'name') {
