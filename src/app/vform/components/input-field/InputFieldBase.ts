@@ -18,6 +18,10 @@ export abstract class InputFieldBase implements OnInit, IVFormComponent {
     }
   }
 
+  get value() {
+    return this.formControl ? this.formControl.value : null;
+  }
+
   @Output()
   valueChanged: EventEmitter<string> = new EventEmitter();
 

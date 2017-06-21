@@ -9,35 +9,35 @@ export class MetadataService {
 
   _components: VFormMetadata[] = [
     new VFormMetadata('2 Column layout', 'Divides the form into 2 columns.', 'LayoutComponent',
-      { width: '100%', height: '100%', border: '0px', class: '', padding: '0 0 0 0',
-        alignItems: 'center', justifyContent: 'center', borderCollapse: '', flexFlow: 'row', flexGrow: 1 }, [
+      { width: '100%', height: '100%', border: '0px', class: 'vform-default', padding: '0 0 0 0',
+        alignItems: 'center', justifyContent: 'center', flexFlow: 'row', flexGrow: 1, hidden: false }, [
         new VFormMetadata('Layout', '', 'LayoutComponent',
           { width: '50%', height: '100%', border: '1px solid lightgray', class: '', padding: '0 0 0 0',
-            alignItems: 'center', justifyContent: 'center', borderCollapse: '', flexFlow: 'row wrap', flexGrow: 1 }),
+            alignItems: 'center', justifyContent: 'center', flexFlow: 'row wrap', flexGrow: 1 }),
         new VFormMetadata('Layout', '', 'LayoutComponent',
           { width: '50%', height: '100%', border: '1px solid lightgray', class: '', padding: '0 0 0 0',
-            alignItems: 'center', justifyContent: 'center', borderCollapse: '', flexFlow: 'row wrap', flexGrow: 1 })
+            alignItems: 'center', justifyContent: 'center',  flexFlow: 'row wrap', flexGrow: 1 })
       ]),
     new VFormMetadata('2 Row layout', 'Divides the form into 2 rows.', 'LayoutComponent',
-      { width: '100%', height: '100%', border: '0px', class: '', padding: '0 0 0 0',
-        alignItems: 'center', justifyContent: 'center', borderCollapse: '', flexFlow: 'column', flexGrow: 1 }, [
+      { width: '100%', height: '100%', border: '0px', class: 'vform-default', padding: '0 0 0 0',
+        alignItems: 'center', justifyContent: 'center', flexFlow: 'column', flexGrow: 1, hidden: false }, [
         new VFormMetadata('Layout', '', 'LayoutComponent',
           { width: '100%', height: '50%', border: '1px solid lightgray', class: '', padding: '0 0 0 0',
-            alignItems: 'center', justifyContent: 'center', borderCollapse: '', flexFlow: 'row wrap', flexGrow: 1 }),
+            alignItems: 'center', justifyContent: 'center', flexFlow: 'row wrap', flexGrow: 1 }),
         new VFormMetadata('Layout', '', 'LayoutComponent',
           { width: '100%', height: '50%', border: '1px solid lightgray', class: '', padding: '0 0 0 0',
-            alignItems: 'center', justifyContent: 'center', borderCollapse: '', flexFlow: 'row wrap', flexGrow: 1 })
+            alignItems: 'center', justifyContent: 'center', flexFlow: 'row wrap', flexGrow: 1 })
       ]),
     new VFormMetadata('Layout', 'Divides the form into rows and columns.', 'LayoutComponent',
-      { width: '50%', height: '50%', border: '1px solid lightgray', class: '', padding: '0 0 0 0',
-        alignItems: 'center', justifyContent: 'center', borderCollapse: '', flexFlow: 'row wrap', flexGrow: 1 }),
+      { width: '50%', height: '50%', border: '1px solid lightgray', class: 'vform-default', padding: '0 0 0 0',
+        alignItems: 'center', justifyContent: 'center', flexFlow: 'row wrap', flexGrow: 1, hidden: false }),
     new VFormMetadata('Text Field', 'Text input.', 'InputComponent',
       {type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
         containerClass: '', placeholder: 'Placeholder text.',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Text',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''}),
     new VFormMetadata('Password Field', 'Password input.', 'InputComponent',
-      {type: 'password', maxlength: 20, autocomplete: false,size: '25', required: false,
+      {type: 'password', maxlength: 20, autocomplete: false, size: '25', required: false,
         containerClass: '', placeholder: 'Password',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'password' }),
     new VFormMetadata('Number Field', 'Number input.', 'InputComponent',
@@ -46,7 +46,9 @@ export class MetadataService {
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'number' }),
     new VFormMetadata('HTML', 'Custom HTML.', 'HtmlComponent', {html: ''}),
     new VFormMetadata('Image', 'Image.', 'ImagePreviewComponent', {width: '206px', height: '265px', backgroundColor: 'lightgray', name: 'Image'}),
-    new VFormMetadata('Breast Board', '.', 'BreastBoardComponent', {border: '1px dashed lightgray', name: 'BreastBoard', type: 'hidden'})
+    new VFormMetadata('Breast Board', '.', 'BreastBoardComponent', {border: '1px dashed lightgray', name: 'BreastBoard', type: 'hidden'}),
+    new VFormMetadata('CT Region', '.', 'CtRegionComponent', {border: '1px dashed lightgray', name: 'CtRegion', type: 'hidden',
+      frontHeight: '305', frontWidth: '150', sideHeight: '305', sideWidth: '60', regionColor: 'red'})
   ];
   constructor() { }
 

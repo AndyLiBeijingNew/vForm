@@ -15,7 +15,8 @@ import { InputFieldComponent } from './components/input-field/input-field.compon
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {PLATFORM_BROWSER_ID} from '@angular/common/src/platform_id';
 import {BrowserModule} from '@angular/platform-browser';
-import {MaterialModule, MdButtonModule, MdDialogModule, MdInputModule} from '@angular/material';
+import {MaterialModule, MdButtonModule, MdCardModule, MdDialogModule, MdInputModule} from '@angular/material';
+import { CtRegionComponent } from './components/ct-region/ct-region.component';
 
 @NgModule({
   imports: [
@@ -26,13 +27,14 @@ import {MaterialModule, MdButtonModule, MdDialogModule, MdInputModule} from '@an
     NoopAnimationsModule,
     MdInputModule,
     MdButtonModule,
-    MdDialogModule
+    MdDialogModule,
+    MdCardModule
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent],
+    BreastBoardComponent, InputFieldComponent, CtRegionComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent]
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent]
 })
 export class VformModule { }

@@ -1,0 +1,4 @@
+<canvas #front [style.height]="metadata.properties.frontHeight" [style.width]="metadata.properties.frontWidth" class="front" (click)="clickCanvas($event, front, regions.front)" (mouseleave)="mouseLeaveCanvas($event, front, regions.front)" (mousemove)="mouseMoveOnCanvas($event, front, regions.front)" ></canvas>
+<canvas #side class="side" [style.width]="metadata.properties.sideWidth" [style.height]="metadata.properties.sideHeight" (click)="clickCanvas($event, side, regions.side)" (mouseleave)="mouseLeaveCanvas($event, side, regions.side)" (mousemove)="mouseMoveOnCanvas($event, side, regions.side)"></canvas>
+<vform-input-field #selectionData [form]="form" [metadata]="selectionDataMetadata" (valueChanged)="drawRegions($event)"></vform-input-field>
+

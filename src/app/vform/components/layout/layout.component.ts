@@ -11,14 +11,15 @@ import {IVFormContainerComponent} from '../../services/IVFormContainerComponent'
 import {StateService} from '../../editors/property-editor/state.service';
 
 @Component({
-    selector: 'layout',
+    selector: 'vform-layout',
     templateUrl: './layout.component.html',
     host: {
+      '[hidden]': 'metadata.properties.hidden',
       '[style.width]': 'metadata.properties.width', '[style.height]': 'metadata.properties.height',
       '[style.border]': 'metadata.properties.border', '[class]': 'metadata.properties.class',
       '[style.padding]': 'metadata.properties.padding',
       '[style.alignItems]': 'metadata.properties.alignItems', '[style.justifyContent]': 'metadata.properties.justifyContent',
-      '[style.borderCollapse]': 'metadata.properties.collapse', '[style.flexFlow]': 'metadata.properties.flexFlow',
+      '[style.flexFlow]': 'metadata.properties.flexFlow',
       '[style.flexGrow]': 'metadata.properties.flexGrow', '[style.display]': '"flex"'
     },
   })
