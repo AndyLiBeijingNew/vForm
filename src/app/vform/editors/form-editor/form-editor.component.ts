@@ -108,10 +108,12 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   }
 
   showEditor() {
+    this.stateService.editorHandleIsVisible = false;
     this.view = 'editor';
   }
 
   showPreview() {
+    this.stateService.editorHandleIsVisible = false;
     this.preview.form.reset();
     this.preview.metadata = this.getJson();
     this.view = 'preview';
