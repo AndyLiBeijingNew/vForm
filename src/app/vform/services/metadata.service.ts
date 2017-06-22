@@ -105,11 +105,10 @@ export class MetadataService {
     }),
     new VFormMetadata('Breast Board', '.', 'BreastBoardComponent', {
       border: '1px dashed lightgray',
-      name: 'BreastBoard',
-      type: 'hidden'
+      name: 'BreastBoard'
     }),
     new VFormMetadata('CT Region', '.', 'CtRegionComponent', {
-      border: '1px dashed lightgray', name: 'CtRegion', type: 'hidden',
+      border: '1px dashed lightgray', name: 'CtRegion',
       frontHeight: '305', frontWidth: '150', sideHeight: '305', sideWidth: '60', regionColor: 'red'
     }),
     new VFormMetadata('Select', 'Select from a list of options', 'SelectComponent', {

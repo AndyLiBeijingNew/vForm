@@ -6,7 +6,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {DragHelper} from '../Helper';
+import {Helper} from '../../helpers/Helper';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {MetadataService} from '../../services/metadata.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
@@ -64,19 +64,19 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   }
 
   dragStart($event, component: VFormMetadata): void {
-    DragHelper.dragStart($event, component);
+    Helper.dragStart($event, component);
   }
 
   dragOver($event): void {
-    DragHelper.dragOver($event);
+    Helper.dragOver($event);
   }
 
   dragLeave($event): void {
-    DragHelper.dragLeave($event);
+    Helper.dragLeave($event);
   }
 
   drop($event): void {
-    DragHelper.drop(this, $event, null, this.metadataService, this.resolver);
+    Helper.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
   showEditorHandle(value: any) {

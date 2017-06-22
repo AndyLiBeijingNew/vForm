@@ -5,30 +5,23 @@ import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {InputComponent} from '../input/input.component';
 import {InputFieldComponent} from '../input-field/input-field.component';
+import {VFormComponentBase} from '../VFormComponentBase';
 
 @Component({
   selector: 'vform-image-preview',
   templateUrl: './image-preview.component.html',
-  host: {'[style.height]': 'metadata.properties.height', '[style.width]': 'metadata.properties.width'}
+  host: {'[style.height]': 'metadata.properties.height', '[style.width]': 'metadata.properties.width',
+    '[hidden]': 'isHidden()'
+  }
 })
-export class ImagePreviewComponent implements IVFormComponent, OnInit {
-
-  children: IVFormComponent[];
-  componentRef: ComponentRef<any>;
-
-  @Input()
-  form: FormGroup;
-
-  @Input()
-  metadata: VFormMetadata;
-
+export class ImagePreviewComponent extends VFormComponentBase implements IVFormComponent, OnInit {
   @ViewChild('image') image: HTMLImageElement;
   @ViewChild('imageInput') imageInput: HTMLInputElement;
   @ViewChild('imageData') imageData: InputFieldComponent;
   private imageDataMetadata: VFormMetadata;
 
-  constructor(private stateService: StateService) {
-
+  constructor(stateService: StateService) {
+    super(stateService);
   }
 
   ngOnInit(): void {

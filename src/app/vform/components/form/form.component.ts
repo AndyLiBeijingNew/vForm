@@ -15,18 +15,15 @@ import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 import * as _ from 'lodash';
-import {DragHelper} from '../../editors/Helper';
+import {Helper} from '../../helpers/Helper';
+import {VFormComponentBase} from '../VFormComponentBase';
 
 @Component({
   selector: 'vform-form',
   templateUrl: './form.component.html'
 })
-export class FormComponent implements IVFormContainerComponent {
+export class FormComponent extends VFormComponentBase implements IVFormContainerComponent {
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
-  componentRef: ComponentRef<any>;
-
-  children: IVFormComponent[] = [];
-
   @Output()
   valueChanged: EventEmitter<any> = new EventEmitter<any>();
 
@@ -35,13 +32,13 @@ export class FormComponent implements IVFormContainerComponent {
 
   form: FormGroup;
 
-  private _metadata: VFormMetadata = new VFormMetadata('', '', '');
+  private _metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent');
 
   @Input()
   set metadata(value: VFormMetadata) {
     this.container.clear();
     this._metadata = value;
-    _.forEach(this.metadata.children, c => DragHelper.createComponent(this, c, this.resolver));
+    _.forEach(this.metadata.children, c => Helper.createComponent(this, c, this.resolver));
   }
 
   @Input()
@@ -53,7 +50,9 @@ export class FormComponent implements IVFormContainerComponent {
     return this._metadata;
   }
 
-  constructor(private stateService: StateService, private fb: FormBuilder, private resolver: ComponentFactoryResolver, cdRef: ChangeDetectorRef) {
+  constructor(stateService: StateService, private fb: FormBuilder, private resolver: ComponentFactoryResolver, cdRef: ChangeDetectorRef) {
+    super(stateService);
+
     stateService.setEditorHandleVisibility(false);
     this.form = fb.group({});
     this.form.valueChanges.subscribe(v => this.valueChanged.emit(v));

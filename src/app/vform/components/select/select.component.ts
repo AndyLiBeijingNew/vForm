@@ -12,15 +12,11 @@ import * as _ from 'lodash';
   host: {
     '[class]': 'metadata.properties.containerClass', '[style.padding]': 'metadata.properties.containerPadding',
     '[style.width]': 'metadata.properties.containerWidth',
-    '[style.height]': 'metadata.properties.containerHeight'
+    '[style.height]': 'metadata.properties.containerHeight',
+    '[hidden]': 'isHidden()'
   }
 })
 export class SelectComponent extends InputFieldBase implements IVFormComponent, OnInit {
-  children: IVFormComponent[];
-  componentRef: ComponentRef<any>;
-  form: FormGroup;
-  metadata: VFormMetadata;
-
   options: any[];
 
   constructor(stateService: StateService) {

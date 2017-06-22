@@ -5,17 +5,14 @@ import {VFormMetadata} from '../../services/VFormMetadata';
 import {InputFieldComponent} from '../input-field/input-field.component';
 import {StateService} from '../../editors/property-editor/state.service';
 import * as _ from 'lodash';
+import {VFormComponentBase} from '../VFormComponentBase';
 
 @Component({
   selector: 'vform-ct-region',
-  templateUrl: './ct-region.component.html'
+  templateUrl: './ct-region.component.html',
+  host: { '[hidden]': 'isHidden()' }
 })
-export class CtRegionComponent implements OnInit, IVFormComponent {
-  children: IVFormComponent[];
-  componentRef: ComponentRef<any>;
-  form: FormGroup;
-  metadata: VFormMetadata;
-
+export class CtRegionComponent extends VFormComponentBase implements OnInit, IVFormComponent {
   @ViewChild('selectionData') selectionData: InputFieldComponent;
   @ViewChild('front') front: HTMLCanvasElement;
   @ViewChild('side') side: HTMLCanvasElement;
@@ -25,7 +22,8 @@ export class CtRegionComponent implements OnInit, IVFormComponent {
 
   private selectionDataMetadata: VFormMetadata;
 
-  constructor(private stateService: StateService) {
+  constructor(stateService: StateService) {
+    super(stateService);
     this.stateService.propertyChanged.subscribe(p => {
       stateService.propertyChanged.subscribe(tuple => {
         if (tuple[0] === this && _.includes(['frontHeight, frontWidth', 'sideHeight', 'sideWidth'], tuple[1])) {

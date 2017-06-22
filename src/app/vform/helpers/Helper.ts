@@ -4,8 +4,9 @@ import * as _ from 'lodash';
 import {ComponentFactoryResolver, ComponentRef, Type} from '@angular/core';
 import {IVFormComponent} from '../services/IVFormComponent';
 import {IVFormContainerComponent} from '../services/IVFormContainerComponent';
+import {FormGroup} from '@angular/forms';
 
-export class DragHelper {
+export class Helper {
   private static DataComponent = 'data-component';
 
   public static dragStart($event: any, component: VFormMetadata) {
@@ -23,7 +24,7 @@ export class DragHelper {
         $event.stopPropagation();
       }
 
-      DragHelper.createComponent(target, component, resolver);
+      Helper.createComponent(target, component, resolver);
     }
   }
 
@@ -52,5 +53,16 @@ export class DragHelper {
   public static dragLeave($event: DragEvent) {
     $event.preventDefault();
     (<any>$event.target).classList.remove('drag-over');
+  }
+
+  public static formExpression(form: FormGroup, expression: string): boolean {
+    if (expression) {
+      try {
+        return eval(expression);
+      } catch (e) {
+        console.log('Invalid Expression. "' + expression + '". ' + e);
+      }
+      return false;
+    }
   }
 }

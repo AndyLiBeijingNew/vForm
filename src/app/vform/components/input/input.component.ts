@@ -9,7 +9,8 @@ import {InputFieldBase} from '../input-field/InputFieldBase';
   host: {
     '[class]': 'metadata.properties.containerClass', '[style.padding]': 'metadata.properties.containerPadding',
     '[style.width]': 'metadata.properties.containerWidth',
-    '[style.height]': 'metadata.properties.containerHeight'
+    '[style.height]': 'metadata.properties.containerHeight',
+    '[hidden]': 'isHidden()'
   }
 })
 export class InputComponent extends InputFieldBase implements IVFormComponent {

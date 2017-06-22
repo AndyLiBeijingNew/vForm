@@ -7,13 +7,14 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {DragHelper} from '../../editors/Helper';
+import {Helper} from '../../helpers/Helper';
 import {MetadataService} from '../../services/metadata.service';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 import {StateService} from '../../editors/property-editor/state.service';
+import {VFormComponentBase} from '../VFormComponentBase';
 
 @Component({
   selector: 'vform-layout',
@@ -31,36 +32,29 @@ import {StateService} from '../../editors/property-editor/state.service';
     '[style.justifyContent]': 'metadata.properties.justifyContent',
     '[style.flexFlow]': 'metadata.properties.flexFlow',
     '[style.flexGrow]': 'metadata.properties.flexGrow',
-    '[style.display]': 'metadata.properties.display'
+    '[style.display]': 'metadata.properties.display',
+    '[hidden]': 'isHidden()'
   },
 })
-export class LayoutComponent implements IVFormContainerComponent {
+export class LayoutComponent extends VFormComponentBase implements IVFormContainerComponent {
   @ViewChild('container', {read: ViewContainerRef}) container: any;
-
-  children: IVFormComponent[] = [];
-  @Input()
-  form: FormGroup;
-
-  @Input()
-  public metadata: VFormMetadata;
-
-  componentRef: ComponentRef<any>;
 
   @HostListener('dragover', ['$event'])
   dragOver($event): void {
-    DragHelper.dragOver($event);
+    Helper.dragOver($event);
   }
 
   @HostListener('dragleave', ['$event'])
   dragLeave($event): void {
-    DragHelper.dragLeave($event);
+    Helper.dragLeave($event);
   }
 
   @HostListener('drop', ['$event'])
   drop($event): void {
-    DragHelper.drop(this, $event, null, this.metadataService, this.resolver);
+    Helper.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
-  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private stateService: StateService) {
+  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, stateService: StateService) {
+    super(stateService);
   }
 }

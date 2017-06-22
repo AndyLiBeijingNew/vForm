@@ -1,24 +1,16 @@
 import {Component, Input} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {VFormMetadata} from '../../services/VFormMetadata';
-import {FormGroup} from '@angular/forms';
 import {DomSanitizer} from '@angular/platform-browser';
 import {StateService} from '../../editors/property-editor/state.service';
+import {VFormComponentBase} from '../VFormComponentBase';
 
 @Component({
   selector: 'vform-html',
-  templateUrl: './html.component.html'
+  templateUrl: './html.component.html',
+  host: { '[hidden]': 'isHidden()' }
 })
-export class HtmlComponent implements IVFormComponent {
-  @Input()
-  properties = {};
-
-  @Input()
-  form: FormGroup;
-
-  @Input()
-  public metadata: VFormMetadata;
-
-  constructor(private sanitizer: DomSanitizer, private stateService: StateService) {
+export class HtmlComponent extends VFormComponentBase implements IVFormComponent {
+  constructor(private sanitizer: DomSanitizer, stateService: StateService) {
+    super(stateService);
   }
 }

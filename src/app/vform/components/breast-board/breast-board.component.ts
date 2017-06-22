@@ -1,17 +1,19 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {StateService} from '../../editors/property-editor/state.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {InputFieldComponent} from '../input-field/input-field.component';
+import {VFormComponentBase} from '../VFormComponentBase';
 
 @Component({
   selector: 'vform-breast-board',
-  templateUrl: './breast-board.component.html'
+  templateUrl: './breast-board.component.html',
+  host: { '[hidden]': 'isHidden()' }
 })
-export class BreastBoardComponent implements AfterViewInit, IVFormComponent {
-  form: FormGroup;
-  metadata: VFormMetadata;
+export class BreastBoardComponent extends VFormComponentBase implements OnInit, IVFormComponent {
+  angleDataMetadata: VFormMetadata;
+
   angle = 5;
 
   @ViewChild('field')
@@ -56,10 +58,16 @@ export class BreastBoardComponent implements AfterViewInit, IVFormComponent {
     return c;
   }
 
-  constructor(private stateService: StateService, private cdRef: ChangeDetectorRef) {
+  constructor(stateService: StateService, private cdRef: ChangeDetectorRef) {
+    super(stateService);
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
+    this.angleDataMetadata = new VFormMetadata('Hidden', 'Text input.', 'InputComponent',
+      {
+        type: 'hidden',
+        showLabel: 'false', containerHeight: '0px', containerWidth: '0px', name: this.metadata.properties.name, size: 1
+      });
     this.field.value = '5';
     this.cdRef.detectChanges();
   }

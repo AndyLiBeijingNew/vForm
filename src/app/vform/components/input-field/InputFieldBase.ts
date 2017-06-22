@@ -4,13 +4,8 @@ import {expressionValidator} from '../../validators/ExpressionValidator';
 import {EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
-export abstract class InputFieldBase implements OnInit, IVFormComponent {
-  @Input()
-  form: FormGroup;
-
-  @Input()
-  public metadata: VFormMetadata;
-
+import {VFormComponentBase} from '../VFormComponentBase';
+export abstract class InputFieldBase extends VFormComponentBase implements OnInit, IVFormComponent {
   @Input()
   set value(value: string) {
     if (this.formControl) {
@@ -26,11 +21,10 @@ export abstract class InputFieldBase implements OnInit, IVFormComponent {
   valueChanged: EventEmitter<string> = new EventEmitter();
 
   private formControl: FormControl;
-
-  properties: any = {};
   private oldName;
 
-  constructor(private stateService: StateService) {
+  constructor(stateService: StateService) {
+    super(stateService);
     stateService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[1] === 'name') {
         this.nameChanged(tuple[2]);
