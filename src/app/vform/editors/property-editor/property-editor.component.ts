@@ -29,8 +29,12 @@ export class PropertyEditorComponent {
   }
 
   addProperty() {
-    const name = (<any>this.newPropertyName).nativeElement.value.trim();
-    const value = ((<any>this.newPropertyValue).nativeElement.value || '').trim();
+    const nameNe = (<any>this.newPropertyName).nativeElement;
+    const valueNe = (<any>this.newPropertyValue).nativeElement;
+    const name = nameNe.value.trim();
+    const value = (valueNe.value || '').trim();
+    nameNe.value = null;
+    valueNe.value = null;
     this.model.push(new Kv(name, value));
     this.componentInstance.metadata.properties[name] = value;
     this.stateService.changeProperty(this.componentInstance, name, value);
