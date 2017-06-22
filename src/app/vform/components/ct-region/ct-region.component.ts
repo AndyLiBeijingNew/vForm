@@ -83,7 +83,7 @@ export class CtRegionComponent extends VFormComponentBase implements OnInit, IVF
   ngOnInit(): void {
     this.selectionDataMetadata = new VFormMetadata('Hidden', 'Text input.', 'InputComponent',
       {
-        type: 'hidden', required: this.metadata.properties.required,
+        type: 'hidden',
         showLabel: 'false', containerHeight: '0px', containerWidth: '0px', name: this.metadata.properties.name, size: 1
       });
     this.setCanvasSize();
