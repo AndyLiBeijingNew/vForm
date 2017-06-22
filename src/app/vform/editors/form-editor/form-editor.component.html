@@ -9,6 +9,10 @@
   </div>
   <div class="component" *ngFor="let c of components" [draggable]="true" (dragstart)="dragStart($event, c)">{{c.name}}
   </div>
+  <input #loadFormFileInput type="file" style="height: 0px; width: 0px" (change)="loadFormFileInputChanged($event)">
+  <button #loadFormFileInputButton md-mini-fab style="align-self: flex-end; margin-top: auto" (click)="loadFormFileInput.click()">
+    <md-icon>file_upload</md-icon>
+  </button>
 </div>
 <div [hidden]="view !== 'editor'" id="formEditor">
   <div class="editor-handle"

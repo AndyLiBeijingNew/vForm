@@ -134,4 +134,30 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   setPreviewFormData(dataStr: string) {
     this.preview.setData(JSON.parse(dataStr));
   }
+
+  loadFormFileInputChanged(event: Event) {
+    const files: FileList = (<any> event.target).files;
+    if (files && files.length > 0) {
+      const f = files[0];
+      const fr = new FileReader();
+      fr.onload = (e: Event) => {
+        const data = (<any>e.target).result;
+        if (data) {
+          try {
+            const tmp = JSON.parse(data);
+            this.loadFormEditor(tmp);
+          } catch (e) {
+            console.log('Invalid JSON for form. ' + e);
+          }
+        }
+      };
+      fr.readAsText(f);
+    }
+  }
+
+  loadFormEditor(value: VFormMetadata) {
+    this.container.clear();
+    this.metadata = value;
+    _.forEach(this.metadata.children, c => Helper.createComponent(this, c, this.resolver));
+  }
 }
