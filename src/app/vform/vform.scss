@@ -149,31 +149,30 @@ vform-input > div.editor-handle {
 #formEditorMode {
   margin: 4px;
   float: left;
-}
 
-#formEditorMode label {
-  float: left;
-  width: 50px;
-  background-color: #EFEFEF;
-  border: 1px solid #D0D0D0;
-  overflow: auto;
-}
+  label {
+    float: left;
+    width: 79px;
+    background-color: #EFEFEF;
+    border: 1px solid #D0D0D0;
+    overflow: auto;
+    span {
+      text-align: center;
+      font-size: 16px;
+      padding: 3px;
+      display: block;
+    }
 
-#formEditorMode label span {
-  text-align: center;
-  font-size: 10px;
-  padding: 3px;
-  display: block;
-}
+    input {
+      position: absolute;
+      top: -100px;
+    }
 
-#formEditorMode label input {
-  position: absolute;
-  top: -100px;
-}
-
-#formEditorMode input:checked + span {
-  background-color: #404040;
-  color: #F7F7F7;
+    input:checked + span {
+      background-color: #404040;
+      color: #F7F7F7;
+    }
+  }
 }
 
 .breast-board-label {

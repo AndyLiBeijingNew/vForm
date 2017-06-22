@@ -36,7 +36,6 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   children: IVFormComponent[] = [];
 
   @ViewChild('container', {read: ViewContainerRef}) container: any;
-  previewJson: VFormMetadata;
   @ViewChild('preview') preview: FormComponent;
   private isViewInitialized = false;
   form: FormGroup;
@@ -118,11 +117,6 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
     this.view = 'preview';
   }
 
-  showJson() {
-    this.view = 'json';
-    this.previewJson = this.getJson();
-  }
-
   previewFormValueChanged(e: any) {
     this.previewFormInstanceValue = e;
   }
@@ -159,5 +153,11 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
     this.container.clear();
     this.metadata = value;
     _.forEach(this.metadata.children, c => Helper.createComponent(this, c, this.resolver));
+  }
+
+  downloadFormFile() {
+      const blob = new Blob([JSON.stringify(this.getJson())], { type: 'text/json' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
   }
 }
