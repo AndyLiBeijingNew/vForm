@@ -21,6 +21,8 @@ import {
 import {CtRegionComponent} from './components/ct-region/ct-region.component';
 import { SelectComponent } from './components/select/select.component';
 import {RadioComponent} from './components/radio/radio.component';
+import {TableComponent} from './components/table/table.component';
+import { DynamicComponent } from './components/dynamic/dynamic.component';
 
 @NgModule({
   imports: [
@@ -38,11 +40,11 @@ import {RadioComponent} from './components/radio/radio.component';
     MdRadioModule
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent],
+    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent, DynamicComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent]
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent]
 })
 export class VformModule {
 }
