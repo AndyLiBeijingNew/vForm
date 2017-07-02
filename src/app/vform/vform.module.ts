@@ -23,6 +23,8 @@ import { SelectComponent } from './components/select/select.component';
 import {RadioComponent} from './components/radio/radio.component';
 import {TableComponent} from './components/table/table.component';
 import { DynamicComponent } from './components/dynamic/dynamic.component';
+import { ESignComponent } from './components/esign/esign.component';
+import { ESignModalComponent } from './components/esign/esign-modal/esign-modal.component';
 
 @NgModule({
   imports: [
@@ -40,11 +42,11 @@ import { DynamicComponent } from './components/dynamic/dynamic.component';
     MdRadioModule
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent, DynamicComponent],
+    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent, DynamicComponent, ESignComponent, ESignModalComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent]
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent, ESignComponent, ESignModalComponent]
 })
 export class VformModule {
 }

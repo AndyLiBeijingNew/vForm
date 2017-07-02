@@ -137,7 +137,12 @@ export class MetadataService {
           containerClass: '', placeholder: 'Placeholder text.',
           containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column2'
         })}]
-    })
+    }),
+    new VFormMetadata('E-signature', '.', 'ESignComponent', {
+      border: '1px dashed lightgray', name: 'esignature',
+      heading: 'e-sign form', dialogClass: '',
+      dialogUsernameLabel: 'Username', dialogPasswordLabel: 'Password'
+    }),
   ];
 
   constructor() {
