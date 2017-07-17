@@ -121,6 +121,7 @@ export class MetadataService {
     new VFormMetadata('Submit Button', 'Submit the form', 'SubmitBtnComponent',
     {
       width: '150px', height: '60px', 'text': '提交'
+
     }),
     new VFormMetadata('Table', 'Insert a table', 'TableComponent', {
       name: 'table', containerClass: '',

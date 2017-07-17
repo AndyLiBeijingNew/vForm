@@ -23,7 +23,6 @@ import {CtRegionComponent} from './components/ct-region/ct-region.component';
 import { SelectComponent } from './components/select/select.component';
 import {RadioComponent} from './components/radio/radio.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
-
 import {TableComponent} from './components/table/table.component';
 import { DynamicComponent } from './components/dynamic/dynamic.component';
 import { ESignComponent } from './components/esign/esign.component';
