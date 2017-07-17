@@ -5,7 +5,7 @@ import {EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {VFormComponentBase} from '../VFormComponentBase';
-export abstract class InputFieldBase extends VFormComponentBase implements OnInit, IVFormComponent {
+export abstract class InputFieldBase extends VFormComponentBase implements IVFormComponent {
   @Input()
   set value(value: string) {
     if (this.formControl) {
@@ -32,7 +32,7 @@ export abstract class InputFieldBase extends VFormComponentBase implements OnIni
     });
   }
 
-  ngOnInit() {
+  initModel() {
     this.oldName = this.metadata.properties.name;
     this.form.addControl(this.oldName, this.createControl());
   }

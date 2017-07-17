@@ -13,6 +13,7 @@ import {ImagePreviewComponent} from './components/image-preview/image-preview.co
 import {BreastBoardComponent} from './components/breast-board/breast-board.component';
 import {InputFieldComponent} from './components/input-field/input-field.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { SubmitBtnComponent } from "./components/button/button.component";
 import {BrowserModule} from '@angular/platform-browser';
 import {
   MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdRadioModule, MdSelectModule,
@@ -21,7 +22,7 @@ import {
 import {CtRegionComponent} from './components/ct-region/ct-region.component';
 import { SelectComponent } from './components/select/select.component';
 import {RadioComponent} from './components/radio/radio.component';
-
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -38,11 +39,11 @@ import {RadioComponent} from './components/radio/radio.component';
     MdRadioModule
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent],
+    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent]
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent]
 })
 export class VformModule {
 }

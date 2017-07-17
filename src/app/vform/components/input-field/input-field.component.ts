@@ -7,7 +7,7 @@ import {InputFieldBase} from './InputFieldBase';
   selector: 'vform-input-field',
   templateUrl: './input-field.component.html'
 })
-export class InputFieldComponent extends InputFieldBase implements OnInit, IVFormComponent {
+export class InputFieldComponent extends InputFieldBase implements IVFormComponent {
   constructor(stateService: StateService) {
     super(stateService);
   }

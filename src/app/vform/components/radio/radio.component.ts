@@ -30,6 +30,5 @@ export class RadioComponent extends InputFieldBase implements IVFormComponent, O
 
   ngOnInit() {
     this.options = <any[]> _.attempt(JSON.parse.bind(null, this.metadata.properties.options));
-    super.ngOnInit();
   }
 }

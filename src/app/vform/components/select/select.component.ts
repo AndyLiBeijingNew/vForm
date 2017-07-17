@@ -30,6 +30,6 @@ export class SelectComponent extends InputFieldBase implements IVFormComponent, 
 
   ngOnInit() {
     this.options = <any[]> _.attempt(JSON.parse.bind(null, this.metadata.properties.options));
-    super.ngOnInit();
   }
+
 }
