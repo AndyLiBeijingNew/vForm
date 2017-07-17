@@ -113,6 +113,10 @@ export class MetadataService {
       containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
       options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
     }),
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e937f5b2efe04605729fbcfcfc4f9d87fa98dcc5
     new VFormMetadata('Checkbox', 'Check box', 'CheckboxComponent',
     {
       height: '60px', 'text': '复选框', name: '请输入唯一标识'
@@ -121,7 +125,12 @@ export class MetadataService {
     new VFormMetadata('Submit Button', 'Submit the form', 'SubmitBtnComponent',
     {
       width: '150px', height: '60px', 'text': '提交'
+<<<<<<< HEAD
     }),
+=======
+    })
+=======
+>>>>>>> e937f5b2efe04605729fbcfcfc4f9d87fa98dcc5
     new VFormMetadata('Table', 'Insert a table', 'TableComponent', {
       name: 'table', containerClass: '',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
@@ -144,6 +153,10 @@ export class MetadataService {
       heading: 'e-sign form', dialogClass: '',
       dialogUsernameLabel: 'Username', dialogPasswordLabel: 'Password'
     }),
+<<<<<<< HEAD
+=======
+>>>>>>> 30dcff9e3aa78c70bc3f01ac20942febe2c07e5e
+>>>>>>> e937f5b2efe04605729fbcfcfc4f9d87fa98dcc5
   ];
 
   constructor() {
