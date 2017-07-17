@@ -1,7 +1,7 @@
 import {VFormMetadata} from '../services/VFormMetadata';
 import {MetadataService} from '../services/metadata.service';
 import * as _ from 'lodash';
-import {ComponentFactoryResolver, ComponentRef, Type} from '@angular/core';
+import {ComponentFactoryResolver, ComponentRef, Type, ViewContainerRef} from '@angular/core';
 import {IVFormComponent} from '../services/IVFormComponent';
 import {IVFormContainerComponent} from '../services/IVFormContainerComponent';
 import {FormGroup} from '@angular/forms';
@@ -49,6 +49,16 @@ export class Helper {
         this.createComponent(<IVFormContainerComponent>componentRef.instance, c, resolver);
       });
     }
+  }
+
+  public static createComponentInViewContainerRef(fg: FormGroup, vcr: ViewContainerRef, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {
+    const factories = Array.from(resolver['_factories'].keys());
+    const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
+    const factory = resolver.resolveComponentFactory(factoryClass);
+    const componentRef: ComponentRef<any> = vcr.createComponent(factory);
+    (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
+    (<IVFormComponent>componentRef.instance).form = fg;
+    (<IVFormComponent>componentRef.instance).componentRef = componentRef;
   }
 
   public static dragOver($event: DragEvent) {

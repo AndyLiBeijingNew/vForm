@@ -10,7 +10,7 @@ export class MetadataService {
      new VFormMetadata('2 Column layout', 'Divides the form into 2 columns.', 'LayoutComponent', 
       {
         width: '100%', height: '100%', class: 'vform-default', padding: '0 0 0 0',
-        alignItems: '', justifyContent: '', flexFlow: 'row', flexGrow: 1, hidden: false, display: 'flex'
+        alignItems: '', justifyContent: '', flexFlow: 'rows', flexGrow: 1, hidden: false, display: 'flex'
       }, [
         new VFormMetadata('Layout', '', 'LayoutComponent', 
           {
@@ -18,7 +18,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '0px solid lightgray',
             borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', flexFlow: 'row wrap', flexGrow: 1, display: 'flex'
+            alignItems: '', justifyContent: '', flexFlow: 'rows wrap', flexGrow: 1, display: 'flex'
           }),
         new VFormMetadata('Layout', '', 'LayoutComponent', 
           {
@@ -26,7 +26,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
             borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', flexFlow: 'row wrap', flexGrow: 1, display: 'flex'
+            alignItems: '', justifyContent: '', flexFlow: 'rows wrap', flexGrow: 1, display: 'flex'
           })
       ]),
     new VFormMetadata('2 Row layout', 'Divides the form into 2 rows.', 'LayoutComponent', 
@@ -49,7 +49,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
             borderBottom: '0px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'row wrap', flexGrow: 1, hidden: false,
+            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'rows wrap', flexGrow: 1, hidden: false,
             display: 'flex'
           }),
         new VFormMetadata('Layout', '', 'LayoutComponent', 
@@ -58,7 +58,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
             borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'row wrap', flexGrow: 1, hidden: false,
+            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'rows wrap', flexGrow: 1, hidden: false,
             display: 'flex'
           })
       ]),
@@ -68,7 +68,7 @@ export class MetadataService {
         borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
         borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
         class: 'vform-default', padding: '0 0 0 0',
-        alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'row wrap', flexGrow: 1, hidden: false,
+        alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'rows wrap', flexGrow: 1, hidden: false,
         display: 'flex'
       }),
     new VFormMetadata('Text Field', 'Text input.', 'InputComponent', 
@@ -113,6 +113,7 @@ export class MetadataService {
       containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
       options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
     }),
+<<<<<<< HEAD
     new VFormMetadata('Checkbox', 'Check box', 'CheckboxComponent',
     {
       height: '60px', 'text': '复选框', name: '请输入唯一标识'
@@ -122,6 +123,30 @@ export class MetadataService {
     {
       width: '150px', height: '60px', 'text': '提交'
     })
+=======
+    new VFormMetadata('Table', 'Insert a table', 'TableComponent', {
+      name: 'table', containerClass: '',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      columns: [{
+        label: 'Column 1', class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+            containerClass: '', placeholder: 'Placeholder text.',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column1'
+          })
+      }, {label: 'Column 2',  class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Placeholder text.',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column2'
+        })}]
+    }),
+    new VFormMetadata('E-signature', '.', 'ESignComponent', {
+      border: '1px dashed lightgray', name: 'esignature',
+      heading: 'e-sign form', dialogClass: '',
+      dialogUsernameLabel: 'Username', dialogPasswordLabel: 'Password'
+    }),
+>>>>>>> 30dcff9e3aa78c70bc3f01ac20942febe2c07e5e
   ];
 
   constructor() {

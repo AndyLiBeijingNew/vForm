@@ -22,7 +22,15 @@ import {
 import {CtRegionComponent} from './components/ct-region/ct-region.component';
 import { SelectComponent } from './components/select/select.component';
 import {RadioComponent} from './components/radio/radio.component';
+<<<<<<< HEAD
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+=======
+import {TableComponent} from './components/table/table.component';
+import { DynamicComponent } from './components/dynamic/dynamic.component';
+import { ESignComponent } from './components/esign/esign.component';
+import { ESignModalComponent } from './components/esign/esign-modal/esign-modal.component';
+
+>>>>>>> 30dcff9e3aa78c70bc3f01ac20942febe2c07e5e
 @NgModule({
   imports: [
     CommonModule,
@@ -39,11 +47,19 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
     MdRadioModule
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
+<<<<<<< HEAD
     BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, StateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent]
+=======
+    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent, DynamicComponent, ESignComponent, ESignModalComponent],
+  exports: [FormEditorComponent, FormComponent],
+  providers: [MetadataService, StateService],
+  entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, TableComponent, ESignComponent, ESignModalComponent]
+>>>>>>> 30dcff9e3aa78c70bc3f01ac20942febe2c07e5e
 })
 export class VformModule {
 }
