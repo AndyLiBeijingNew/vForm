@@ -281,3 +281,25 @@ vform-radio {
     }
   }
 }
+
+vform-table {
+  th {
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  th:last-child {
+    background-color: transparent;
+  }
+
+  th[data-action=insert], td[data-action=remove] {
+    cursor: pointer;
+    text-align: center;
+  }
+  th[data-action=insert] {
+    color: gray;
+  }
+  td[data-action=remove] {
+    color: lightcoral;
+  }
+}

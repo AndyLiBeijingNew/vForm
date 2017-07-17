@@ -1,0 +1,13 @@
+<h2>{{heading}}</h2>
+<form #form="ngForm">
+  <md-input-container>
+    <label>{{dialogUsernameLabel}}</label>
+    <input mdInput name="username" type="text" [(ngModel)]="username" [required]="true">
+  </md-input-container>
+  <md-input-container>
+    <label>{{dialogPasswordLabel}}</label>
+    <input mdInput name="password" type="text" [(ngModel)]="password" [required]="true">
+  </md-input-container>
+</form>
+<md-icon (click)="$event.preventDefault(); cancel();" data-action="cancel">clear</md-icon>
+<md-icon *ngIf="form.valid" (click)="$event.preventDefault(); sign();" data-action="ok">done</md-icon>
