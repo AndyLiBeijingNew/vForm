@@ -1,0 +1,6 @@
+<div *ngIf="isSigned()">
+  <p>Signed by {{value.user.username}} on {{value.signedOn}}</p>
+</div>
+<div *ngIf="!isSigned()">
+  <button md-raised-button (click)="showESignatureDialog()">Sign</button>
+</div>

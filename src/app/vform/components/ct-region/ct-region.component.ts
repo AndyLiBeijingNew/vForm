@@ -42,26 +42,26 @@ export class CtRegionComponent extends VFormComponentBase implements OnInit, IVF
       region.end = {x: e.pageX - canvas.offsetLeft, y: e.pageY - canvas.offsetTop};
       this.isDrawing = false;
     }
-    this.selectionData.value = JSON.stringify(this.regions);
+    this.selectionData.value = _.cloneDeep(this.regions);
   }
 
   mouseLeaveCanvas(e: MouseEvent, canvas: HTMLCanvasElement, region: any) {
     if (this.isDrawing) {
       this.isDrawing = false;
       region.end = {x: e.pageX - canvas.offsetLeft, y: e.pageY - canvas.offsetTop};
-      this.selectionData.value = JSON.stringify(this.regions);
+      this.selectionData.value = _.cloneDeep(this.regions);
     }
   }
 
   mouseMoveOnCanvas(e: MouseEvent, canvas: HTMLCanvasElement, region: any) {
     if (this.isDrawing) {
       region.end = {x: e.pageX - canvas.offsetLeft, y: e.pageY - canvas.offsetTop};
-      this.selectionData.value = JSON.stringify(this.regions);
+      this.selectionData.value = _.cloneDeep(this.regions);
     }
   }
 
-  drawRegions(value: string) {
-    const tmp = JSON.parse(value);
+  drawRegions(value: any) {
+    const tmp = value;
     if (tmp.front) {
       this.drawRegion(this.front, tmp.front);
     }
