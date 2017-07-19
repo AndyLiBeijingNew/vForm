@@ -1,0 +1,4 @@
+{
+  "esign-message-signed-by": "签署 {{username}},  {{signedOn}}",
+  "esign-modal-title": "签名"
+}

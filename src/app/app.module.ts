@@ -5,6 +5,11 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {VformModule} from './vform/vform.module';
+import {IAuthenticationResult} from './vform/interfaces/IAuthenticationResult';
+import {Observable} from 'rxjs/Observable';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {AuthenticationServiceInjectionToken} from './vform/interfaces/AuthenticationServiceInjectionToken';
+import {FakeAuthenticationService} from './fakes/FakeAuthenticationService';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,9 @@ import {VformModule} from './vform/vform.module';
     HttpModule,
     VformModule
   ],
-  providers: [],
+  providers: [{provide: AuthenticationServiceInjectionToken, useClass: FakeAuthenticationService}],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
+

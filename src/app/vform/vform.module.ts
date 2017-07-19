@@ -27,6 +27,7 @@ import {TableComponent} from './components/table/table.component';
 import { DynamicComponent } from './components/dynamic/dynamic.component';
 import { ESignComponent } from './components/esign/esign.component';
 import { ESignModalComponent } from './components/esign/esign-modal/esign-modal.component';
+import {TranslateModule, TranslateService} from 'ng2-translate';
 
 @NgModule({
   imports: [
@@ -41,14 +42,19 @@ import { ESignModalComponent } from './components/esign/esign-modal/esign-modal.
     MdTabsModule,
     MdIconModule,
     MdSelectModule,
-    MdRadioModule
+    MdRadioModule,
+    TranslateModule.forRoot()
   ],
   declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent, ESignModalComponent],
   exports: [FormEditorComponent, FormComponent],
-  providers: [MetadataService, StateService],
+  providers: [MetadataService, StateService, TranslateService],
   entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, ESignComponent, ESignModalComponent]
 })
 export class VformModule {
+  constructor(private translateService: TranslateService) {
+    translateService.setDefaultLang('zh');
+    translateService.use('zh');
+  }
 }

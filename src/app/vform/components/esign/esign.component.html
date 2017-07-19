@@ -1,5 +1,5 @@
 <div *ngIf="isSigned()">
-  <p>Signed by {{value.user.username}} on {{value.signedOn}}</p>
+  <p>{{'esign-message-signed-by' | translate:{username: value.user.username, signedOn: value.signedOn | date:'y-MM-dd' } }}</p>
 </div>
 <div *ngIf="!isSigned()">
   <button md-raised-button (click)="showESignatureDialog()">Sign</button>
