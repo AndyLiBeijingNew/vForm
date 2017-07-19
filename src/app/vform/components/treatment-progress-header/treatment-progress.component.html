@@ -1,0 +1,26 @@
+<div *ngIf="treatmentProgressSummary" class="treatment-progress">
+  <div class="left">
+    <div class="planRow" *ngFor="let p of treatmentProgressSummary.plans">
+      <div class="planSummary">
+        <span class="small">{{p.planSetupName}}</span>
+        <span class="big">{{p.deliveredFractions}}/{{p.plannedFractions}}</span>
+      </div>
+      <div class="planProgress">
+        <div><span class="big">{{p.deliveredDose}}</span> <span class="small">Gy</span></div>
+        <div class="planProgressBar">
+          <div class="planProgressBarCompleted" [ngStyle]="{'width': (p.deliveredDose/p.plannedDose*100) + '%' }"></div>
+        </div>
+        <div><span class="big">{{p.plannedDose}}</span> <span class="small">Gy</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div>
+      <span class="big">{{treatmentProgressSummary.lastTreatmentDate | date:'y-MM-dd'}}</span><span class="small">最后治疗日期</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="emptyTreatmentChartMessage" class="centered-message">
+  <div>{{emptyTreatmentChartMessage}}</div>
+</div>
+

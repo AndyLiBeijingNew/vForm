@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
@@ -58,7 +58,7 @@ export class BreastBoardComponent extends VFormComponentBase implements OnInit, 
     return c;
   }
 
-  constructor(stateService: StateService, private cdRef: ChangeDetectorRef) {
+  constructor(stateService: HelperService, private cdRef: ChangeDetectorRef) {
     super(stateService);
   }
 

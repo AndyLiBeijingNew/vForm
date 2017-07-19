@@ -1,11 +1,11 @@
 import {FormControl, FormGroup} from '@angular/forms';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {expressionValidator} from '../../validators/ExpressionValidator';
 import {EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {VFormComponentBase} from '../VFormComponentBase';
-export abstract class InputFieldBase extends VFormComponentBase implements IVFormComponent {
+export abstract class InputFieldBase extends VFormComponentBase implements IVFormComponent, OnInit {
   @Input()
   set value(value: string) {
     if (this.formControl) {
@@ -23,7 +23,7 @@ export abstract class InputFieldBase extends VFormComponentBase implements IVFor
   private formControl: FormControl;
   private oldName;
 
-  constructor(stateService: StateService) {
+  constructor(stateService: HelperService) {
     super(stateService);
     stateService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[1] === 'name') {
@@ -32,7 +32,7 @@ export abstract class InputFieldBase extends VFormComponentBase implements IVFor
     });
   }
 
-  initModel() {
+  ngOnInit() {
     this.oldName = this.metadata.properties.name;
     this.form.addControl(this.oldName, this.createControl());
   }

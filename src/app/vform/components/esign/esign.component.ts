@@ -4,8 +4,9 @@ import {IVFormComponent} from '../../services/IVFormComponent';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {IESignature} from '../../interfaces/IESignature';
 import {MdDialog} from '@angular/material';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {ESignModalComponent} from './esign-modal/esign-modal.component';
+import {FormComponent} from '../form/form.component';
 
 @Component({
   selector: 'vform-esign',
@@ -15,11 +16,11 @@ export class ESignComponent extends FormControl implements IVFormComponent, OnIn
 
   children: IVFormComponent[];
   componentRef: ComponentRef<any>;
-  form: FormGroup;
+  form: FormComponent;
   metadata: VFormMetadata;
   oldName: string;
 
-  constructor(private stateService: StateService, private dialog: MdDialog) {
+  constructor(private stateService: HelperService, private dialog: MdDialog) {
     super();
     stateService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[1] === 'name') {

@@ -1,6 +1,6 @@
 import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {VFormComponentBase} from '../VFormComponentBase';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {Helper} from '../../helpers/Helper';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 
@@ -13,7 +13,7 @@ export class DynamicComponent extends VFormComponentBase implements OnInit, IVFo
 
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
 
-  constructor(stateService: StateService, private resolver: ComponentFactoryResolver) {
+  constructor(stateService: HelperService, private resolver: ComponentFactoryResolver) {
     super(stateService);
   }
 

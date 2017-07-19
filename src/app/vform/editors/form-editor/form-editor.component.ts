@@ -10,7 +10,7 @@ import {Helper} from '../../helpers/Helper';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {MetadataService} from '../../services/metadata.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {StateService} from '../property-editor/state.service';
+import {HelperService} from '../property-editor/helper.service';
 import * as _ from 'lodash';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
@@ -38,15 +38,15 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   @ViewChild('container', {read: ViewContainerRef}) container: any;
   @ViewChild('preview') preview: FormComponent;
   private isViewInitialized = false;
-  form: FormGroup;
+  form: FormComponent;
   private previewFormInstanceValue: any = {};
   private previewFormInstanceStatus: any = {};
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
-              public stateService: StateService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
+              public stateService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
               private dialog: MdDialog) {
     this.components = metadataService.components();
-    this.form = this.fb.group({});
+    this.form = new FormComponent(stateService, fb, resolver);
     stateService.editorLaunched.subscribe(instance => {
       this.editedComponent = instance;
       this.showPropertyEditor(instance);

@@ -1,5 +1,5 @@
 import {Component, ComponentRef, Input, OnInit, ViewChild} from '@angular/core';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
@@ -20,7 +20,7 @@ export class ImagePreviewComponent extends VFormComponentBase implements IVFormC
   @ViewChild('imageData') imageData: InputFieldComponent;
   private imageDataMetadata: VFormMetadata;
 
-  constructor(stateService: StateService) {
+  constructor(stateService: HelperService) {
     super(stateService);
   }
 

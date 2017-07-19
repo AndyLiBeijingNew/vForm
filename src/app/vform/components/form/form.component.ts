@@ -9,7 +9,7 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormBuilder, FormGroup} from '@angular/forms';
@@ -17,20 +17,26 @@ import {IVFormContainerComponent} from '../../services/IVFormContainerComponent'
 import * as _ from 'lodash';
 import {Helper} from '../../helpers/Helper';
 import {VFormComponentBase} from '../VFormComponentBase';
+import {IVFormContext} from "app/vform/interfaces/IVFormContext";
 
 @Component({
   selector: 'vform-form',
   templateUrl: './form.component.html'
 })
-export class FormComponent extends VFormComponentBase implements IVFormContainerComponent {
+export class FormComponent extends FormGroup implements IVFormContainerComponent {
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
+
+  form: FormComponent;
+  children?: IVFormComponent[] = [];
+
+  @Input()
+  context: IVFormContext = {patient: {}};
+
   @Output()
   valueChanged: EventEmitter<any> = new EventEmitter<any>();
 
   @Output()
   statusChanged: EventEmitter<any> = new EventEmitter<any>();
-
-  form: FormGroup;
 
   private _metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent');
 
@@ -50,11 +56,10 @@ export class FormComponent extends VFormComponentBase implements IVFormContainer
     return this._metadata;
   }
 
-  constructor(stateService: StateService, private fb: FormBuilder, private resolver: ComponentFactoryResolver, cdRef: ChangeDetectorRef) {
-    super(stateService);
-
+  constructor(private stateService: HelperService, private fb: FormBuilder, private resolver: ComponentFactoryResolver) {
+    super({});
     stateService.setEditorHandleVisibility(false);
-    this.form = fb.group({});
+    this.form = this;
     this.form.valueChanges.subscribe(v => this.valueChanged.emit(v));
     this.form.statusChanges.subscribe(v => this.statusChanged.emit(v));
   }

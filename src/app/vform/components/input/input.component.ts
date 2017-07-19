@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {InputFieldBase} from '../input-field/InputFieldBase';
 
 @Component({
@@ -14,7 +14,7 @@ import {InputFieldBase} from '../input-field/InputFieldBase';
   }
 })
 export class InputComponent extends InputFieldBase implements IVFormComponent {
-  constructor(stateService: StateService) {
+  constructor(stateService: HelperService) {
     super(stateService);
   }
 }

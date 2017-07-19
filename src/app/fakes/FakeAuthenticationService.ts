@@ -5,6 +5,4 @@ export class FakeAuthenticationService implements IAuthenticationService{
   authenticate(username: string, password: string): Observable<IAuthenticationResult> {
     return Observable.of({successful: true});
   }
-
-
 }

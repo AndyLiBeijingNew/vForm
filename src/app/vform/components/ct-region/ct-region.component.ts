@@ -3,7 +3,7 @@ import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import {InputFieldComponent} from '../input-field/input-field.component';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import * as _ from 'lodash';
 import {VFormComponentBase} from '../VFormComponentBase';
 
@@ -22,7 +22,7 @@ export class CtRegionComponent extends VFormComponentBase implements OnInit, IVF
 
   private selectionDataMetadata: VFormMetadata;
 
-  constructor(stateService: StateService) {
+  constructor(stateService: HelperService) {
     super(stateService);
     this.stateService.propertyChanged.subscribe(p => {
       stateService.propertyChanged.subscribe(tuple => {

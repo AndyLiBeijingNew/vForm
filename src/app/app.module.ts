@@ -10,6 +10,9 @@ import {Observable} from 'rxjs/Observable';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AuthenticationServiceInjectionToken} from './vform/interfaces/AuthenticationServiceInjectionToken';
 import {FakeAuthenticationService} from './fakes/FakeAuthenticationService';
+import {VFormUrlsInjectionToken} from './vform/interfaces/VFormUrlsInjectionToken';
+import {RtDataServiceInjectionToken} from './vform/interfaces/RtDataServiceInjectionToken';
+import {FakeRtDataService} from './fakes/FakeRtDataService';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import {FakeAuthenticationService} from './fakes/FakeAuthenticationService';
     HttpModule,
     VformModule
   ],
-  providers: [{provide: AuthenticationServiceInjectionToken, useClass: FakeAuthenticationService}],
+  providers: [
+    {provide: AuthenticationServiceInjectionToken, useClass: FakeAuthenticationService},
+    {provide: RtDataServiceInjectionToken, useClass: FakeRtDataService},
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,6 +1,6 @@
 import {Component, Inject, Input, Optional, ViewChild} from '@angular/core';
 import {Kv} from '../../services/Kv';
-import {StateService} from './state.service';
+import {HelperService} from './helper.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {MD_DIALOG_DATA, MdDialog, MdInputDirective} from '@angular/material';
 import * as _ from 'lodash';
@@ -40,7 +40,7 @@ export class PropertyEditorComponent {
     this.stateService.changeProperty(this.componentInstance, name, value);
   }
 
-  constructor(private stateService: StateService, private dialog: MdDialog, @Optional() @Inject(MD_DIALOG_DATA) data) {
+  constructor(private stateService: HelperService, private dialog: MdDialog, @Optional() @Inject(MD_DIALOG_DATA) data) {
     this.componentInstance = data;
     this.model = _.sortBy(Kv.from(this.componentInstance.metadata.properties), i => i.k);
   }

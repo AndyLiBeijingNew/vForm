@@ -3,7 +3,7 @@ import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {VFormMetadata} from 'app/vform/services/VFormMetadata';
 import {InputFieldBase} from '../input-field/InputFieldBase';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import * as _ from 'lodash';
 
 @Component({
@@ -19,7 +19,7 @@ import * as _ from 'lodash';
 export class SelectComponent extends InputFieldBase implements IVFormComponent, OnInit {
   options: any[];
 
-  constructor(stateService: StateService) {
+  constructor(stateService: HelperService) {
     super(stateService);
     stateService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[2] === 'options') {

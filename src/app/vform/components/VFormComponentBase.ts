@@ -1,20 +1,21 @@
-import {StateService} from '../editors/property-editor/state.service';
+import {HelperService} from '../editors/property-editor/helper.service';
 import {FormGroup} from '@angular/forms';
 import {IVFormComponent} from '../services/IVFormComponent';
 import {ComponentRef, Input} from '@angular/core';
 import {VFormMetadata} from '../services/VFormMetadata';
 import {Helper} from '../helpers/Helper';
+import {FormComponent} from "./form/form.component";
 export abstract class VFormComponentBase implements IVFormComponent {
   children: IVFormComponent[] = [];
   componentRef: ComponentRef<any>;
 
   @Input()
-  form: FormGroup;
+  form: FormComponent;
 
   @Input()
   metadata: VFormMetadata;
 
-  constructor(protected stateService: StateService) {
+  constructor(protected stateService: HelperService) {
   }
 
   isHidden(): boolean {

@@ -9,12 +9,13 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {VFormComponentBase} from '../VFormComponentBase';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {Helper} from '../../helpers/Helper';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import * as _ from 'lodash';
 import {IVFormComponent} from '../../services/IVFormComponent';
+import {FormComponent} from "../form/form.component";
 
 @Component({
   selector: 'vform-table',
@@ -26,11 +27,11 @@ import {IVFormComponent} from '../../services/IVFormComponent';
 export class TableComponent extends FormArray implements IVFormComponent, OnInit {
   children: IVFormComponent[];
   componentRef: ComponentRef<any>;
-  form: FormGroup;
+  form: FormComponent;
   metadata: VFormMetadata;
   oldName: string;
 
-  constructor(private stateService: StateService) {
+  constructor(private stateService: HelperService) {
     super([]);
     stateService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[1] === 'name') {

@@ -5,7 +5,7 @@ import {FormEditorComponent} from './editors/form-editor/form-editor.component';
 import {MetadataService} from './services/metadata.service';
 import {PropertyEditorComponent} from './editors/property-editor/property-editor.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {StateService} from './editors/property-editor/state.service';
+import {HelperService} from './editors/property-editor/helper.service';
 import {InputComponent} from './components/input/input.component';
 import {HtmlComponent} from './components/html/html.component';
 import {FormComponent} from './components/form/form.component';
@@ -28,6 +28,8 @@ import { DynamicComponent } from './components/dynamic/dynamic.component';
 import { ESignComponent } from './components/esign/esign.component';
 import { ESignModalComponent } from './components/esign/esign-modal/esign-modal.component';
 import {TranslateModule, TranslateService} from 'ng2-translate';
+import { TreatmentProgressComponent } from './components/treatment-progress-header/treatment-progress.component';
+import {RtDataService} from './services/rtdata.service';
 
 @NgModule({
   imports: [
@@ -45,12 +47,20 @@ import {TranslateModule, TranslateService} from 'ng2-translate';
     MdRadioModule,
     TranslateModule.forRoot()
   ],
-  declarations: [LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent, ESignModalComponent],
+  declarations: [
+    LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent,
+    FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent,
+    RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent,
+    ESignModalComponent, TreatmentProgressComponent
+  ],
   exports: [FormEditorComponent, FormComponent],
-  providers: [MetadataService, StateService, TranslateService],
-  entryComponents: [FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
-    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, ESignComponent, ESignModalComponent]
+  providers: [MetadataService, HelperService, TranslateService],
+  entryComponents: [
+    FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
+    BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent,
+    SubmitBtnComponent, CheckboxComponent, TableComponent, ESignComponent, ESignModalComponent,
+    TreatmentProgressComponent
+  ]
 })
 export class VformModule {
   constructor(private translateService: TranslateService) {

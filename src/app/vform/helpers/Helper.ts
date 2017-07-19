@@ -6,6 +6,7 @@ import {IVFormComponent} from '../services/IVFormComponent';
 import {IVFormContainerComponent} from '../services/IVFormContainerComponent';
 import {FormGroup} from '@angular/forms';
 import { InputFieldBase } from "../components/input-field/InputFieldBase";
+import {FormComponent} from '../components/form/form.component';
 
 export class Helper {
   private static DataComponent = 'data-component';
@@ -25,11 +26,11 @@ export class Helper {
         $event.stopPropagation();
       }
 
-      Helper.createComponent(target, component, resolver, true);
+      Helper.createComponent(target, component, resolver);
     }
   }
 
-  public static createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver, isEditMode: boolean = false) {
+  public static createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {
     const factories = Array.from(resolver['_factories'].keys());
     const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
     const factory = resolver.resolveComponentFactory(factoryClass);
@@ -37,11 +38,6 @@ export class Helper {
     (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
     (<IVFormComponent>componentRef.instance).form = target.form;
     (<IVFormComponent>componentRef.instance).componentRef = componentRef;
-    if('createControl' in componentRef.instance)
-    {// Whether this component derives from InputFieldBase
-      (<InputFieldBase>componentRef.instance).initModel();
-      (<InputFieldBase>componentRef.instance).value = 'initialized value';
-    }
     target.children.push(<IVFormComponent>componentRef.instance);
 
     if (componentMetadata.children && componentMetadata.children.length) {
@@ -51,7 +47,7 @@ export class Helper {
     }
   }
 
-  public static createComponentInViewContainerRef(fg: FormGroup, vcr: ViewContainerRef, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {
+  public static createComponentInViewContainerRef(fg: FormComponent, vcr: ViewContainerRef, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {
     const factories = Array.from(resolver['_factories'].keys());
     const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
     const factory = resolver.resolveComponentFactory(factoryClass);

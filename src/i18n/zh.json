@@ -1,4 +1,5 @@
 {
   "esign-message-signed-by": "签署 {{username}},  {{signedOn}}",
-  "esign-modal-title": "签名"
+  "esign-modal-title": "签名",
+  "no_treatment_records": "没有找到治疗记录的病人"
 }

@@ -13,7 +13,7 @@ import {VFormMetadata} from '../../services/VFormMetadata';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {VFormComponentBase} from '../VFormComponentBase';
 
 @Component({
@@ -54,7 +54,7 @@ export class LayoutComponent extends VFormComponentBase implements IVFormContain
     Helper.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
-  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, stateService: StateService) {
+  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, stateService: HelperService) {
     super(stateService);
   }
 }

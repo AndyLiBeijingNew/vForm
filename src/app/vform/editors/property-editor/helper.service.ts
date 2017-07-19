@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
 @Injectable()
-export class StateService {
+export class HelperService {
   editorHandleIsVisible = true;
   editorLaunched: EventEmitter<IVFormComponent> = new EventEmitter<IVFormComponent>();
   propertyChanged: EventEmitter<[IVFormComponent, string, any]> = new EventEmitter<[IVFormComponent, string, any]>();

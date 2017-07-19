@@ -1,16 +1,15 @@
 import {Component} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {StateService} from '../../editors/property-editor/state.service';
+import {HelperService} from '../../editors/property-editor/helper.service';
 import {InputFieldBase} from '../input-field/InputFieldBase';
 import { VFormComponentBase } from "../VFormComponentBase";
 @Component({
-  selector: 'app-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  selector: 'vform-checkbox',
+  templateUrl: './checkbox.component.html'
 })
-export class CheckboxComponent extends InputFieldBase implements IVFormComponent{
+export class CheckboxComponent extends InputFieldBase implements IVFormComponent {
 
-  constructor(stateService: StateService) {
+  constructor(stateService: HelperService) {
     super(stateService);
   }
 
