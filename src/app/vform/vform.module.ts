@@ -30,6 +30,8 @@ import { ESignModalComponent } from './components/esign/esign-modal/esign-modal.
 import {TranslateModule, TranslateService} from 'ng2-translate';
 import { TreatmentProgressComponent } from './components/treatment-progress-header/treatment-progress.component';
 import {RtDataService} from './services/rtdata.service';
+import { LabelComponent } from './components/label/label.component';
+import { TableRowComponent } from './components/table-row/table-row.component';
 
 @NgModule({
   imports: [
@@ -51,7 +53,7 @@ import {RtDataService} from './services/rtdata.service';
     LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent,
     FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent,
     RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent,
-    ESignModalComponent, TreatmentProgressComponent
+    ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent
   ],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, HelperService, TranslateService],
@@ -59,7 +61,7 @@ import {RtDataService} from './services/rtdata.service';
     FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent,
     SubmitBtnComponent, CheckboxComponent, TableComponent, ESignComponent, ESignModalComponent,
-    TreatmentProgressComponent
+    TreatmentProgressComponent, LabelComponent
   ]
 })
 export class VformModule {

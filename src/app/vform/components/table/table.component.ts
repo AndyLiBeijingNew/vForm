@@ -82,6 +82,12 @@ export class TableComponent extends FormArray implements IVFormComponent, OnInit
     }
   }
 
+  automaticallyAddRow(changedRow: number) {
+    if (this.metadata.properties.automaticallyAddRow && changedRow + 1 >= this.length) {
+      this.insertRow();
+    }
+  }
+
   insertRow() {
     this.insert(this.length, new FormGroup({}));
   }

@@ -4,19 +4,12 @@
     <tr>
       <th [style.width]="c.width" *ngFor="let c of metadata.properties.columns">{{c.label}}</th>
       <th>
-        <div data-action="insert" (click)="insertRow()"><md-icon>add_circle_outline</md-icon></div>
+        <div *ngIf="metadata.properties.showAddRowControl" data-action="insert" (click)="insertRow()"><md-icon>add_circle_outline</md-icon></div>
       </th>
     </tr>
   </thead>
   <tbody>
-    <tr  *ngFor="let r of controls; let i = index; trackBy:trackByIndex;">
-      <td *ngFor="let c of metadata.properties.columns">
-        <vform-dynamic [metadata]="c.metadata" [form]="controls[i]">
-        </vform-dynamic>
-      </td>
-      <td data-action="remove">
-        <md-icon (click)="removeRow(i)">remove_circle_outline</md-icon>
-      </td>
-    </tr>
+  <tr vform-tr *ngFor="let r of controls; let i = index; trackBy:trackByIndex;" [form]="r"
+            [columns]="metadata.properties.columns" (deleted)="removeRow(i)" (changed)="automaticallyAddRow(i)"></tr>
   </tbody>
 </table>

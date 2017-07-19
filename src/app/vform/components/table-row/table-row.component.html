@@ -1,0 +1,8 @@
+<td *ngFor="let c of columns">
+  <vform-dynamic [metadata]="c.metadata" [form]="form">
+  </vform-dynamic>
+</td>
+<td data-action="remove">
+  <md-icon (click)="removeRow(form)">remove_circle_outline</md-icon>
+</td>
+

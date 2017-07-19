@@ -126,6 +126,7 @@ export class MetadataService {
     new VFormMetadata('Table', 'Insert a table', 'TableComponent', {
       name: 'table', containerClass: '',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      showAddRowControl: true, automaticallyAddRow: true,
       columns: [{
         label: 'Column 1', class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
           {
@@ -145,7 +146,8 @@ export class MetadataService {
       heading: 'e-sign form', dialogClass: '',
       dialogUsernameLabel: 'Username', dialogPasswordLabel: 'Password'
     }),
-    new VFormMetadata('Treatment Progress', '.', 'TreatmentProgressComponent', {})
+    new VFormMetadata('Treatment Progress', '.', 'TreatmentProgressComponent', {}),
+    new VFormMetadata('Label', '.', 'LabelComponent', {name: 'Change_Me'})
   ];
 
   constructor() {
