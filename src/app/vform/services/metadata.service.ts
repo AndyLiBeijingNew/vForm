@@ -126,6 +126,7 @@ export class MetadataService {
     new VFormMetadata('Table', 'Insert a table', 'TableComponent', {
       name: 'table', containerClass: '',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      tablePadding: '0 0 0 20px', tableName: 'TableName', showActions: true,
       showAddRowControl: true, automaticallyAddRow: true,
       columns: [{
         label: 'Column 1', class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
@@ -146,8 +147,34 @@ export class MetadataService {
       heading: 'e-sign form', dialogClass: '',
       dialogUsernameLabel: 'Username', dialogPasswordLabel: 'Password'
     }),
-    new VFormMetadata('Treatment Progress', '.', 'TreatmentProgressComponent', {}),
-    new VFormMetadata('Label', '.', 'LabelComponent', {name: 'Change_Me'})
+    new VFormMetadata('Treatment Progress', '', 'TreatmentProgressComponent', {}),
+    new VFormMetadata('Label', '', 'LabelComponent', {name: 'LabelChangeMe'}),
+    new VFormMetadata('Repeater', '', 'RepeaterComponent', {
+      name: 'RepeaterChangeMe', containerClass: '',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      tablePadding: '0 0 0 20px', tableName: 'TableName', showActions: true,
+      showAddRowControl: true, automaticallyAddRow: true, showRepeatButton: true,
+      flexFlow: 'row wrap',
+      metadataTemplate: new VFormMetadata('Table', 'Insert a table', 'TableComponent', {
+        name: 'table', containerClass: '', dynamicWidth: '100%', dynamicHeight: '100%',
+        padding: '0 5px 0 5px', height: 'auto', width: '100%',
+        tablePadding: '0 0 0 20px', tableName: 'TableName', showActions: true,
+        showAddRowControl: true, automaticallyAddRow: true,
+        columns: [{
+          label: 'Column 1', class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
+            {
+              type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+              containerClass: '', placeholder: 'Placeholder text.',
+              containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column1'
+            })
+        }, {label: 'Column 2',  class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Placeholder text.',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column2'
+          })}]
+      })
+    })
   ];
 
   constructor() {

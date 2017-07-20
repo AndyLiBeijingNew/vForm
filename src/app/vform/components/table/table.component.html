@@ -1,15 +1,18 @@
 <div *ngIf="stateService.editorHandleIsVisible" style="display: block; clear: both"><div class="editor-handle" (click)="stateService.edit(this)"></div></div>
-<table style="width: 100%">
-  <thead>
+<div class="table-name"><a>{{metadata.properties.tableName}}</a></div>
+<div class="table-container" [style.padding]="metadata.properties.tablePadding">
+  <table>
+    <thead>
     <tr>
       <th [style.width]="c.width" *ngFor="let c of metadata.properties.columns">{{c.label}}</th>
-      <th>
+      <th *ngIf="metadata.properties.showActions">
         <div *ngIf="metadata.properties.showAddRowControl" data-action="insert" (click)="insertRow()"><md-icon>add_circle_outline</md-icon></div>
       </th>
     </tr>
-  </thead>
-  <tbody>
-  <tr vform-tr *ngFor="let r of controls; let i = index; trackBy:trackByIndex;" [form]="r"
-            [columns]="metadata.properties.columns" (deleted)="removeRow(i)" (changed)="automaticallyAddRow(i)"></tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <tr vform-tr *ngFor="let r of controls; let i = index; trackBy:trackByIndex;" [form]="r" [showActions]="metadata.properties.showActions"
+        [columns]="metadata.properties.columns" (deleted)="removeRow(i)" (changed)="automaticallyAddRow(i)"></tr>
+    </tbody>
+  </table>
+</div>

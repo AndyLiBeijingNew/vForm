@@ -1,5 +1,7 @@
 $aria360-grayed: #cfd9de;
 $aria360-green-progress-bar: #72c17a;
+$aria360-selected: #3380c4;
+$aria360-line: #e7e8e9;
 
 [hidden] { display: none !important;}
 
@@ -296,14 +298,6 @@ vform-radio {
 }
 
 vform-table {
-  th {
-    font-size: 14px;
-    font-style: italic;
-  }
-
-  th:last-child {
-    background-color: transparent;
-  }
 
   th[data-action=insert], td[data-action=remove] {
     cursor: pointer;
@@ -315,6 +309,34 @@ vform-table {
   td[data-action=remove] {
     color: lightcoral;
   }
+  div.table-name {
+    border-top: solid 2px $aria360-selected;
+    border-bottom: solid 1px $aria360-line;
+    font-size: 18px;
+    padding: 10px 0 10px 10px;
+    cursor: pointer;
+  }
+
+  div.table-container {
+    table {
+      width: 100%;
+      th, td {
+        padding:  5px 5px 5px 5px;
+        text-align: left;
+        font-size: 14px;
+        font-style: italic;
+      }
+      th:last-child {
+        background-color: transparent;
+      }
+      tbody {
+        tr {
+          border-top: solid 1px $aria360-line;
+        }
+      }
+    }
+  }
+
 }
 
 vform-treatment-progress {

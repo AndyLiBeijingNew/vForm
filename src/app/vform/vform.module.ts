@@ -32,6 +32,7 @@ import { TreatmentProgressComponent } from './components/treatment-progress-head
 import {RtDataService} from './services/rtdata.service';
 import { LabelComponent } from './components/label/label.component';
 import { TableRowComponent } from './components/table-row/table-row.component';
+import { RepeaterComponent } from './components/repeater/repeater.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,7 @@ import { TableRowComponent } from './components/table-row/table-row.component';
     LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent,
     FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent,
     RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent,
-    ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent
+    ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent, RepeaterComponent
   ],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, HelperService, TranslateService],
@@ -61,7 +62,7 @@ import { TableRowComponent } from './components/table-row/table-row.component';
     FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent,
     SubmitBtnComponent, CheckboxComponent, TableComponent, ESignComponent, ESignModalComponent,
-    TreatmentProgressComponent, LabelComponent
+    TreatmentProgressComponent, LabelComponent, RepeaterComponent
   ]
 })
 export class VformModule {

@@ -13,6 +13,9 @@ export class TableRowComponent implements OnInit {
   @Input()
   form: FormGroup;
 
+  @Input()
+  showActions: boolean;
+
   @Output()
   deleted: EventEmitter<FormGroup> = new EventEmitter();
 

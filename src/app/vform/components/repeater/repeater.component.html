@@ -1,0 +1,7 @@
+<div *ngIf="helperService.editorHandleIsVisible" style="display: block; clear: both"><div class="editor-handle" (click)="helperService.edit(this)"></div></div>
+<div *ngIf="metadata.properties.showRepeatButton" class="reperater-repeat-button" (click)="repeatRow()"><md-icon>add_circle_outline</md-icon></div>
+<div [style.flexFirection]="metadata.properties.flexDirection" [style.display]="'flex'" [style.flexFlow]="metadata.properties.flexFlow">
+  <vform-dynamic *ngFor="let c of controls" [metadata]="metadata.properties.metadataTemplate" [form]="c"></vform-dynamic>
+</div>
+
+

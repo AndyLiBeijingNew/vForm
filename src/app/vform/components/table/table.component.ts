@@ -15,7 +15,7 @@ import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {VFormMetadata} from '../../services/VFormMetadata';
 import * as _ from 'lodash';
 import {IVFormComponent} from '../../services/IVFormComponent';
-import {FormComponent} from "../form/form.component";
+import {FormComponent} from '../form/form.component';
 
 @Component({
   selector: 'vform-table',
@@ -44,12 +44,6 @@ export class TableComponent extends FormArray implements IVFormComponent, OnInit
     this.form.addControl(this.metadata.properties.name, this);
     this.oldName = this.metadata.properties.name;
     this.ensureRows(1);
-  }
-
-  private getEmptyRowData() {
-    const r: any = {};
-    _.forEach(this.metadata.properties.columns, c => r[c.name] = null);
-    return r;
   }
 
   setValue(value: any, options?: any): void {

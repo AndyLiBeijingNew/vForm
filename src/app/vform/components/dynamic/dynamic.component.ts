@@ -7,7 +7,7 @@ import {IVFormContainerComponent} from '../../services/IVFormContainerComponent'
 @Component({
   selector: 'vform-dynamic',
   templateUrl: './dynamic.component.html',
-  host: { '[style.width]': '"100%"', '[style.height]': '"100%"', '[style.display]': '"flex"' }
+  host: { '[style.width]': 'metadata.properties.dynamicWidth || "100%"', '[style.height]': 'metadata.properties.dynamicHeight || "100%"', '[style.display]': '"flex"' }
 })
 export class DynamicComponent extends VFormComponentBase implements OnInit, IVFormContainerComponent {
 
