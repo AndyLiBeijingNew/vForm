@@ -1,8 +1,8 @@
-<div *ngIf="stateService.editorHandleIsVisible" style="display: block; clear: both"><div class="editor-handle" (click)="stateService.edit(this)"></div></div>
+<div *ngIf="helperService.editorHandleIsVisible" style="display: block; clear: both"><div class="editor-handle" (click)="helperService.edit(this)"></div></div>
 <div class="table-name"><a>{{metadata.properties.tableName}}</a></div>
 <div class="table-container" [style.padding]="metadata.properties.tablePadding">
   <table>
-    <thead>
+    <thead *ngIf="metadata.properties.showHeaderRow">
     <tr>
       <th [style.width]="c.width" *ngFor="let c of metadata.properties.columns">{{c.label}}</th>
       <th *ngIf="metadata.properties.showActions">

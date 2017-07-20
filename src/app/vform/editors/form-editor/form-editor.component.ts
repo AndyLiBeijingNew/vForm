@@ -43,15 +43,15 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   private previewFormInstanceStatus: any = {};
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
-              public stateService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
+              public helperService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
               private dialog: MdDialog) {
     this.components = metadataService.components();
-    this.form = new FormComponent(stateService, fb, resolver);
-    stateService.editorLaunched.subscribe(instance => {
+    this.form = new FormComponent(helperService, fb, resolver);
+    helperService.editorLaunched.subscribe(instance => {
       this.editedComponent = instance;
       this.showPropertyEditor(instance);
     });
-    stateService.componentDeleted.subscribe(instance => this.deleteMatching(<IVFormComponent> this, instance));
+    helperService.componentDeleted.subscribe(instance => this.deleteMatching(<IVFormComponent> this, instance));
   }
 
   private showPropertyEditor(instance: IVFormComponent) {
@@ -79,7 +79,7 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   }
 
   showEditorHandle(value: any) {
-    this.stateService.setEditorHandleVisibility(value);
+    this.helperService.setEditorHandleVisibility(value);
   }
 
   getJson() {

@@ -24,7 +24,7 @@ export class CtRegionComponent extends VFormComponentBase implements OnInit, IVF
 
   constructor(stateService: HelperService) {
     super(stateService);
-    this.stateService.propertyChanged.subscribe(p => {
+    this.helperService.propertyChanged.subscribe(p => {
       stateService.propertyChanged.subscribe(tuple => {
         if (tuple[0] === this && _.includes(['frontHeight, frontWidth', 'sideHeight', 'sideWidth'], tuple[1])) {
           this.setCanvasSize();

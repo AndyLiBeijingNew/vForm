@@ -127,7 +127,7 @@ export class MetadataService {
       name: 'table', containerClass: '',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
       tablePadding: '0 0 0 20px', tableName: 'TableName', showActions: true,
-      showAddRowControl: true, automaticallyAddRow: true,
+      showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: true,
       columns: [{
         label: 'Column 1', class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
           {
@@ -147,19 +147,17 @@ export class MetadataService {
       heading: 'e-sign form', dialogClass: '',
       dialogUsernameLabel: 'Username', dialogPasswordLabel: 'Password'
     }),
-    new VFormMetadata('Treatment Progress', '', 'TreatmentProgressComponent', {}),
+    new VFormMetadata('Treatment Progress', '', 'TreatmentProgressComponent', {containerClass: '', width: '100%'}),
     new VFormMetadata('Label', '', 'LabelComponent', {name: 'LabelChangeMe'}),
     new VFormMetadata('Repeater', '', 'RepeaterComponent', {
       name: 'RepeaterChangeMe', containerClass: '',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
-      tablePadding: '0 0 0 20px', tableName: 'TableName', showActions: true,
-      showAddRowControl: true, automaticallyAddRow: true, showRepeatButton: true,
-      flexFlow: 'row wrap',
+      showRepeatButton: true, flexFlow: 'row wrap',
       metadataTemplate: new VFormMetadata('Table', 'Insert a table', 'TableComponent', {
         name: 'table', containerClass: '', dynamicWidth: '100%', dynamicHeight: '100%',
         padding: '0 5px 0 5px', height: 'auto', width: '100%',
         tablePadding: '0 0 0 20px', tableName: 'TableName', showActions: true,
-        showAddRowControl: true, automaticallyAddRow: true,
+        showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: true,
         columns: [{
           label: 'Column 1', class: '', width: '45%', metadata: new VFormMetadata('', '', 'InputComponent',
             {

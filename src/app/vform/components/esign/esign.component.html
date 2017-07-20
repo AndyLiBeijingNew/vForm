@@ -1,3 +1,4 @@
+<div *ngIf="helperService.editorHandleIsVisible" class="editor-handle" (click)="helperService.edit(this)"></div>
 <div *ngIf="isSigned()">
   <p>{{'esign-message-signed-by' | translate:{username: value.user.username, signedOn: value.signedOn | date:'y-MM-dd' } }}</p>
 </div>

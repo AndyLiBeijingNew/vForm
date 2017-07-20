@@ -20,9 +20,9 @@ export class ESignComponent extends FormControl implements IVFormComponent, OnIn
   metadata: VFormMetadata;
   oldName: string;
 
-  constructor(private stateService: HelperService, private dialog: MdDialog) {
+  constructor(private helperService: HelperService, private dialog: MdDialog) {
     super();
-    stateService.propertyChanged.subscribe(tuple => {
+    helperService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[1] === 'name') {
         this.nameChanged(tuple[2]);
       }

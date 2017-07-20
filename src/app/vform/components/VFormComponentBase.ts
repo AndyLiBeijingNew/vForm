@@ -15,7 +15,7 @@ export abstract class VFormComponentBase implements IVFormComponent {
   @Input()
   metadata: VFormMetadata;
 
-  constructor(protected stateService: HelperService) {
+  constructor(protected helperService: HelperService) {
   }
 
   isHidden(): boolean {

@@ -9,7 +9,10 @@ import {IRtDataService} from '../../services/IRtDataService';
 
 @Component({
   selector: 'vform-treatment-progress',
-  templateUrl: './treatment-progress.component.html'
+  templateUrl: './treatment-progress.component.html',
+  host: {
+    '[style.width]': 'metadata.properties.width', '[class]': 'metadata.properties.containerClass'
+  }
 })
 export class TreatmentProgressComponent extends VFormComponentBase implements  AfterViewInit {
 

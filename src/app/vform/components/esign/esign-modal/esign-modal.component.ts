@@ -12,7 +12,7 @@ import {TranslateService} from 'ng2-translate';
 })
 export class ESignModalComponent {
 
-  header: string;
+  heading: string;
   dialogClass: string;
   username: string;
   password: string;
@@ -21,7 +21,7 @@ export class ESignModalComponent {
   private error: string;
 
   constructor(private dialog: MdDialogRef<ESignModalComponent>, private translateService: TranslateService, @Inject(AuthenticationServiceInjectionToken) private authenticationService: IAuthenticationService, @Optional() @Inject(MD_DIALOG_DATA) data: any) {
-    this.header = data.header || this.translateService.instant('esign-modal-title');
+    this.heading = data.heading || this.translateService.instant('esign-modal-title');
     this.dialogClass = data.dialogClass;
     this.dialogUsernameLabel = data.dialogUsernameLabel;
     this.dialogPasswordLabel = data.dialogPasswordLabel;

@@ -19,9 +19,9 @@ import * as _ from 'lodash';
 export class SelectComponent extends InputFieldBase implements IVFormComponent, OnInit {
   options: any[];
 
-  constructor(stateService: HelperService) {
-    super(stateService);
-    stateService.propertyChanged.subscribe(tuple => {
+  constructor(helperService: HelperService) {
+    super(helperService);
+    helperService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[2] === 'options') {
         this.options =  <any[]> _.attempt(JSON.parse.bind(null, tuple[3]));
       }
@@ -30,6 +30,7 @@ export class SelectComponent extends InputFieldBase implements IVFormComponent, 
 
   ngOnInit() {
     this.options = <any[]> _.attempt(JSON.parse.bind(null, this.metadata.properties.options));
+    super.ngOnInit();
   }
 
 }

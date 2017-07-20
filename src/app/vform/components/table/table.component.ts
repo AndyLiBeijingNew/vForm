@@ -31,9 +31,9 @@ export class TableComponent extends FormArray implements IVFormComponent, OnInit
   metadata: VFormMetadata;
   oldName: string;
 
-  constructor(private stateService: HelperService) {
+  constructor(private helperService: HelperService) {
     super([]);
-    stateService.propertyChanged.subscribe(tuple => {
+    helperService.propertyChanged.subscribe(tuple => {
       if (tuple[0] === this && tuple[1] === 'name') {
         this.nameChanged(tuple[2]);
       }
