@@ -78,6 +78,13 @@ export class MetadataService {
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
       }),
+      new VFormMetadata('Text Area', 'Text Area.', 'TextAreaComponent',
+      {
+        maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+        containerClass: '', placeholder: 'Placeholder text.',
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
+        vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
+      }),
     new VFormMetadata('Password Field', 'Password input.', 'InputComponent',
       {
         type: 'password', maxlength: 20, autocomplete: false, size: '25', required: false,
@@ -148,7 +155,7 @@ export class MetadataService {
       dialogUsernameLabel: 'Username', dialogPasswordLabel: 'Password'
     }),
     new VFormMetadata('Treatment Progress', '', 'TreatmentProgressComponent', {containerClass: '', width: '100%'}),
-    new VFormMetadata('Label', '', 'LabelComponent', {name: 'LabelChangeMe'}),
+    new VFormMetadata('Label', '', 'LabelComponent', {content: '请输入内容', class: ''}),
     new VFormMetadata('Repeater', '', 'RepeaterComponent', {
       name: 'RepeaterChangeMe', containerClass: '',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
