@@ -43,7 +43,12 @@ export class TableComponent extends FormArray implements IVFormComponent, OnInit
   ngOnInit(): void {
     this.form.addControl(this.metadata.properties.name, this);
     this.oldName = this.metadata.properties.name;
-    this.ensureRows(1);
+    var iniRowNum = 1;
+    if(this.metadata.properties.initialRows)
+      {
+        iniRowNum = this.metadata.properties.initialRows;
+      }
+    this.ensureRows(iniRowNum);
   }
 
   setValue(value: any, options?: any): void {
