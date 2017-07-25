@@ -6,18 +6,18 @@ import {
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {Helper} from '../../helpers/Helper';
-import {VFormMetadata} from '../../services/VFormMetadata';
-import {MetadataService} from '../../services/metadata.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {HelperService} from '../property-editor/helper.service';
+import { Helper } from '../../helpers/Helper';
+import { VFormMetadata } from '../../services/VFormMetadata';
+import { MetadataService } from '../../services/metadata.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { HelperService } from '../property-editor/helper.service';
 import * as _ from 'lodash';
-import {IVFormComponent} from '../../services/IVFormComponent';
-import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
-import {PropertyEditorComponent} from '../property-editor/property-editor.component';
-import {FormComponent} from '../../components/form/form.component';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MdDialog} from '@angular/material';
+import { IVFormComponent } from '../../services/IVFormComponent';
+import { IVFormContainerComponent } from '../../services/IVFormContainerComponent';
+import { PropertyEditorComponent } from '../property-editor/property-editor.component';
+import { FormComponent } from '../../components/form/form.component';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MdDialog } from '@angular/material';
 
 @Component({
   selector: 'form-editor',
@@ -35,7 +35,7 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   });
   children: IVFormComponent[] = [];
 
-  @ViewChild('container', {read: ViewContainerRef}) container: any;
+  @ViewChild('container', { read: ViewContainerRef }) container: any;
   @ViewChild('preview') preview: FormComponent;
   private isViewInitialized = false;
   form: FormComponent;
@@ -43,19 +43,19 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   private previewFormInstanceStatus: any = {};
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
-              public helperService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
-              private dialog: MdDialog) {
+    public helperService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
+    private dialog: MdDialog) {
     this.components = metadataService.components();
     this.form = new FormComponent(helperService, fb, resolver);
     helperService.editorLaunched.subscribe(instance => {
       this.editedComponent = instance;
       this.showPropertyEditor(instance);
     });
-    helperService.componentDeleted.subscribe(instance => this.deleteMatching(<IVFormComponent> this, instance));
+    helperService.componentDeleted.subscribe(instance => this.deleteMatching(<IVFormComponent>this, instance));
   }
 
   private showPropertyEditor(instance: IVFormComponent) {
-    this.dialog.open(PropertyEditorComponent, {data: instance});
+    this.dialog.open(PropertyEditorComponent, { data: instance });
   }
 
   ngAfterViewInit() {
@@ -130,7 +130,7 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   }
 
   loadFormFileInputChanged(event: Event) {
-    const files: FileList = (<any> event.target).files;
+    const files: FileList = (<any>event.target).files;
     if (files && files.length > 0) {
       const f = files[0];
       const fr = new FileReader();
@@ -156,8 +156,11 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   }
 
   downloadFormFile() {
-      const blob = new Blob([JSON.stringify(this.getJson())], { type: 'text/json' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
+    var templateStr = JSON.stringify(this.getJson());
+    console.log(templateStr);
+    // Add UTF-8 BOM to resolve the messy-code issue.git 
+    const blob = new Blob(["\ufeff", templateStr], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
   }
 }
