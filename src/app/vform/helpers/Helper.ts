@@ -7,7 +7,7 @@ import {IVFormContainerComponent} from '../services/IVFormContainerComponent';
 import {FormGroup} from '@angular/forms';
 import { InputFieldBase } from "../components/input-field/InputFieldBase";
 import {FormComponent} from '../components/form/form.component';
-
+import { IListItem } from "../components/IListItem";
 export class Helper {
   private static DataComponent = 'data-component';
 
@@ -30,7 +30,7 @@ export class Helper {
     }
   }
 
-  public static createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {
+  public static createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver, index: number = 0) {
     const factories = Array.from(resolver['_factories'].keys());
     const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
     const factory = resolver.resolveComponentFactory(factoryClass);
@@ -45,6 +45,11 @@ export class Helper {
         this.createComponent(<IVFormContainerComponent>componentRef.instance, c, resolver);
       });
     }
+
+    if('itemIndex' in componentRef.instance)
+      {
+        (<IListItem>componentRef.instance).itemIndex = index;
+      }
   }
 
   public static createComponentInViewContainerRef(fg: FormComponent, vcr: ViewContainerRef, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {

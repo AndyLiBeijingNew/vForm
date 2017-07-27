@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr vform-tr *ngFor="let r of controls; let i = index; trackBy:trackByIndex;" [form]="r" [showActions]="metadata.properties.showActions"
+    <tr vform-tr *ngFor="let r of controls; let i = index; trackBy:trackByIndex;" [form]="r" [rowNum]="i" [showActions]="metadata.properties.showActions"
         [columns]="metadata.properties.columns" (deleted)="removeRow(i)" (changed)="automaticallyAddRow(i)"></tr>
     </tbody>
   </table>

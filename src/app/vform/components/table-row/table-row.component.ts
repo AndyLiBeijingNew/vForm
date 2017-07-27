@@ -16,6 +16,9 @@ export class TableRowComponent implements OnInit {
   @Input()
   showActions: boolean;
 
+  @Input()
+  rowNum: number;
+
   @Output()
   deleted: EventEmitter<FormGroup> = new EventEmitter();
 

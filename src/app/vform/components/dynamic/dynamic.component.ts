@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, Input} from '@angular/core';
 import {VFormComponentBase} from '../VFormComponentBase';
 import {HelperService} from '../../editors/property-editor/helper.service';
 import {Helper} from '../../helpers/Helper';
@@ -11,6 +11,9 @@ import {IVFormContainerComponent} from '../../services/IVFormContainerComponent'
 })
 export class DynamicComponent extends VFormComponentBase implements OnInit, IVFormContainerComponent {
 
+  @Input()
+  itemIndex: number;
+
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
 
   constructor(stateService: HelperService, private resolver: ComponentFactoryResolver) {
@@ -18,7 +21,7 @@ export class DynamicComponent extends VFormComponentBase implements OnInit, IVFo
   }
 
   ngOnInit() {
-    Helper.createComponent(this, this.metadata, this.resolver);
+    Helper.createComponent(this, this.metadata, this.resolver, ++ this.itemIndex);
   }
 
 }

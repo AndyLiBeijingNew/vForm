@@ -1,5 +1,5 @@
-<td *ngFor="let c of columns">
-  <vform-dynamic [metadata]="c.metadata" [form]="form">
+<td *ngFor="let c of columns;">
+  <vform-dynamic [metadata]="c.metadata" [itemIndex]="rowNum" [form]="form">
   </vform-dynamic>
 </td>
 <td data-action="remove" *ngIf="showActions">

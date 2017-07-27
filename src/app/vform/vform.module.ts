@@ -34,6 +34,7 @@ import { LabelComponent } from './components/label/label.component';
 import { TableRowComponent } from './components/table-row/table-row.component';
 import { RepeaterComponent } from './components/repeater/repeater.component';
 import { TextAreaComponent } from "./components/input/text-area.component";
+import { IncrementalLabelComponent } from "./components/label/incremental-label.component";
 
 @NgModule({
   imports: [
@@ -55,7 +56,7 @@ import { TextAreaComponent } from "./components/input/text-area.component";
     LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent,
     FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent,
     RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent,
-    ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent, RepeaterComponent,TextAreaComponent
+    ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent, RepeaterComponent,TextAreaComponent, IncrementalLabelComponent
   ],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, HelperService, TranslateService],
@@ -63,7 +64,7 @@ import { TextAreaComponent } from "./components/input/text-area.component";
     FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent,
     SubmitBtnComponent, CheckboxComponent, TableComponent, ESignComponent, ESignModalComponent,
-    TreatmentProgressComponent, LabelComponent, RepeaterComponent, TextAreaComponent
+    TreatmentProgressComponent, LabelComponent, RepeaterComponent, TextAreaComponent, IncrementalLabelComponent
   ]
 })
 export class VformModule {

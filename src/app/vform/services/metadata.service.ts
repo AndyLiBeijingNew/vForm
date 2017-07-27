@@ -150,11 +150,11 @@ export class MetadataService {
         })}]
     }),
       new VFormMetadata('TargetVolumePrescription', '', 'RepeaterComponent', {
-      name: 'RepeaterChangeMe', containerClass: '', repeatRowText: '靶区',
+      name: '请输入唯一标识', containerClass: '', repeatRowText: '靶区',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
       showRepeatButton: true, flexFlow: 'row wrap',
       metadataTemplate: new VFormMetadata('TargetVolPres', 'Insert a target volume prescription column', 'TableComponent', {
-      name: 'TVP1', containerClass: '', dynamicWidth: '35%',
+      name: 'TVP1', containerClass: '', dynamicWidth: '33%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
       tablePadding: '0 0 0 20px', tableName: '靶区剂量及分次', showActions: true,
       showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 3, isTableNameHidden: true,
@@ -180,7 +180,7 @@ export class MetadataService {
       ]
     }), // only applied to the first column of the repeater.
     firstMetadataTemplate: new VFormMetadata('TargetVolPres', 'Insert a target volume prescription column', 'TableComponent', {
-      name: 'TVP1', containerClass: '', dynamicWidth: '35%',
+      name: 'TVP1', containerClass: '', dynamicWidth: '33%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
       tablePadding: '0 0 0 20px', tableName: '靶区剂量及分次', showActions: true,
       showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 3,
@@ -202,6 +202,71 @@ export class MetadataService {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: '分次',
           containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Fractions'
+        })}
+      ]
+    })
+    }),
+  new VFormMetadata('ISOCentreControl', '', 'RepeaterComponent', {
+      name: '请输入唯一标识', containerClass: '', repeatRowText: '',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      showRepeatButton: false, flexFlow: 'column wrap', initialTables: 2,
+      metadataTemplate: new VFormMetadata('ISOPlanControl', 'Insert a ISO Centre', 'TableComponent', {
+      name: 'Plan2', containerClass: '', dynamicWidth: '50%',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      tablePadding: '0 0 0 20px', tableName: 'Node RA', showActions: true,
+      showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1, isTableNameHidden: false,
+      columns: [{
+        label: 'ISO', class: '', width: '30%', metadata: new VFormMetadata('', '', 'IncrementalLabelComponent',
+          {
+            content: "ISO"
+          })
+      }, {label: 'Vrt',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Vrt',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Vrt'
+        })}
+        , {label: 'Lng',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Lng',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lng'
+        })}
+        , {label: 'Lat',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Lat',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lat'
+        })}
+      ]
+    }), // only applied to the first column of the repeater.
+    firstMetadataTemplate: new VFormMetadata('ISOPlanControl', 'Insert a ISO Centre', 'TableComponent', {
+      name: 'Plan2', containerClass: '', dynamicWidth: '50%',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: true,
+      showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1, isTableNameHidden: false,
+      columns: [{
+        label: 'ISO', class: '', width: '30%', metadata: new VFormMetadata('', '', 'IncrementalLabelComponent',
+          {
+            content: "ISO"
+          })
+      }, {label: 'Vrt',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Vrt',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Vrt'
+        })}
+        , {label: 'Lng',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Lng',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lng'
+        })}
+        , {label: 'Lat',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Lat',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lat'
         })}
       ]
     })
