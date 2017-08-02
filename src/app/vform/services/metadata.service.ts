@@ -4,13 +4,13 @@ import {LayoutComponent} from '../components/layout/layout.component';
 import * as _ from 'lodash';
 
 @Injectable()
-export class MetadataService {
+export class MetadatfaService {
 
   _components: VFormMetadata[] = [
      new VFormMetadata('2 Column layout', 'Divides the form into 2 columns.', 'LayoutComponent',
       {
         width: '100%', height: '100%', class: 'vform-default', padding: '0 0 0 0',
-        alignItems: '', justifyContent: '', flexFlow: 'rows', flexGrow: 1, hidden: false, display: 'flex'
+        alignItems: '', justifyContent: '', flexFlow: 'row', flexGrow: 1, hidden: false, display: 'flex'
       }, [
         new VFormMetadata('Layout', '', 'LayoutComponent',
           {
@@ -18,7 +18,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '0px solid lightgray',
             borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', flexFlow: 'rows wrap', flexGrow: 1, display: 'flex'
+            alignItems: '', justifyContent: '', flexFlow: 'row wrap', flexGrow: 1, display: 'flex'
           }),
         new VFormMetadata('Layout', '', 'LayoutComponent',
           {
@@ -26,7 +26,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
             borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', flexFlow: 'rows wrap', flexGrow: 1, display: 'flex'
+            alignItems: '', justifyContent: '', flexFlow: 'row wrap', flexGrow: 1, display: 'flex'
           })
       ]),
     new VFormMetadata('2 Row layout', 'Divides the form into 2 rows.', 'LayoutComponent',
@@ -49,7 +49,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
             borderBottom: '0px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'rows wrap', flexGrow: 1, hidden: false,
+            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'row wrap', flexGrow: 1, hidden: false,
             display: 'flex'
           }),
         new VFormMetadata('Layout', '', 'LayoutComponent',
@@ -58,7 +58,7 @@ export class MetadataService {
             borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
             borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
             class: '', padding: '0 0 0 0',
-            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'rows wrap', flexGrow: 1, hidden: false,
+            alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'row wrap', flexGrow: 1, hidden: false,
             display: 'flex'
           })
       ]),
@@ -68,7 +68,7 @@ export class MetadataService {
         borderTop: '1px solid lightgray', borderRight: '1px solid lightgray',
         borderBottom: '1px solid lightgray', borderLeft: '1px solid lightgray',
         class: 'vform-default', padding: '0 0 0 0',
-        alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'rows wrap', flexGrow: 1, hidden: false,
+        alignItems: '', justifyContent: '', alignSelf: '', flexFlow: 'row wrap', flexGrow: 1, hidden: false,
         display: 'flex'
       }),
     new VFormMetadata('Text Field', 'Text input.', 'InputComponent',

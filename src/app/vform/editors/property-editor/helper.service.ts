@@ -22,6 +22,7 @@ export class HelperService {
   componentDeleted: EventEmitter<IVFormComponent> = new EventEmitter<IVFormComponent>();
   renderer: Renderer;
   factories: any = {};
+  copied: VFormMetadata;
 
   constructor (private resolver: ComponentFactoryResolver, private metadataService: MetadataService) {
     const factories: List<any>  = Array.from(resolver['_factories'].keys());
@@ -76,17 +77,25 @@ export class HelperService {
 
     if (this.isInEditMode) {
       const nativeElement = componentRef.location.nativeElement;
-      this.renderer.setElementAttribute(nativeElement, 'tabindex', '-1');
-      this.renderer.listen(nativeElement, 'contextmenu', (e: MouseEvent) => {
-        if (e.ctrlKey || e.shiftKey) {
-          if (e.shiftKey && e.ctrlKey) {
+      this.renderer.setElementAttribute(nativeElement, 'tabindex', '1');
+      this.renderer.listen(nativeElement, 'keydown', (e: KeyboardEvent) => {
+        if (e.altKey && (e.key === 'p' || e.key === 'v' || e.key === 'C' || e.key === 'V')) {
+          if (e.key === 'C') {
+            this.copied = Helper.getMetadata(componentRef.instance);
+          } else if (e.key === 'V') {
+            if (this.copied && componentRef.instance.container) {
+              this.createComponent(componentRef.instance, this.copied);
+            }
+          }
+          if (e.altKey && e.key === 'v') {
             const clonedMetadata: VFormMetadata = Helper.getMetadata(componentRef.instance);
             this.createComponent(target, clonedMetadata);
-          } else if (e.ctrlKey) {
+          } else if (e.altKey && e.key === 'p') {
            this.edit(componentRef.instance);
           }
-          e.stopImmediatePropagation();
           e.preventDefault();
+          e.stopImmediatePropagation();
+          e.stopPropagation();
           return false;
         }
       });
