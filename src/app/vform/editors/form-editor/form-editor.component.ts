@@ -16,6 +16,7 @@ import { PropertyEditorComponent } from '../property-editor/property-editor.comp
 import { FormComponent } from '../../components/form/form.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MdDialog } from '@angular/material';
+import {Helper} from '../../helpers/Helper';
 
 @Component({
   selector: 'form-editor',
@@ -79,15 +80,7 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   }
 
   getJson() {
-    const getMetadata = (c: IVFormComponent) => {
-      const m = _.cloneDeep(c.metadata);
-      m.children = [];
-      _.forEach(c.children, child => {
-        m.children.push(getMetadata(child));
-      });
-      return m;
-    };
-    const formRepresentation = getMetadata(this);
+    const formRepresentation = Helper.getMetadata(this);
     return formRepresentation;
   }
 

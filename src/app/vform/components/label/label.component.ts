@@ -4,7 +4,10 @@ import {HelperService} from '../../editors/property-editor/helper.service';
 
 @Component({
   selector: 'vform-label',
-  templateUrl: './label.component.html'
+  templateUrl: './label.component.html',
+  host: {
+    '[class]': 'metadata.properties.containerClass'
+  }
 })
 export class LabelComponent extends VFormComponentBase {
 

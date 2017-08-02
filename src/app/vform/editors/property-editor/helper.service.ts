@@ -11,6 +11,7 @@ import {IVFormContainerComponent} from '../../services/IVFormContainerComponent'
 import {MetadataService} from '../../services/metadata.service';
 import * as _ from 'lodash';
 import {List} from 'lodash';
+import {Helper} from '../../helpers/Helper';
 
 @Injectable()
 export class HelperService {
@@ -76,11 +77,18 @@ export class HelperService {
     if (this.isInEditMode) {
       const nativeElement = componentRef.location.nativeElement;
       this.renderer.setElementAttribute(nativeElement, 'tabindex', '-1');
-      this.renderer.listen(nativeElement, 'dblclick', (e: MouseEvent) => {
-        this.edit(componentRef.instance);
-        e.stopImmediatePropagation();
-        e.preventDefault();
-        return false;
+      this.renderer.listen(nativeElement, 'contextmenu', (e: MouseEvent) => {
+        if (e.ctrlKey || e.shiftKey) {
+          if (e.shiftKey && e.ctrlKey) {
+            const clonedMetadata: VFormMetadata = Helper.getMetadata(componentRef.instance);
+            this.createComponent(target, clonedMetadata);
+          } else if (e.ctrlKey) {
+           this.edit(componentRef.instance);
+          }
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          return false;
+        }
       });
     }
 
