@@ -1,4 +1,7 @@
-import {ComponentFactoryResolver, ComponentRef, EventEmitter, Injectable, Type, ViewContainerRef} from '@angular/core';
+import {
+  ComponentFactoryResolver, ComponentRef, ElementRef, EventEmitter, Injectable, Renderer, Type,
+  ViewContainerRef
+} from '@angular/core';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {FormGroup} from '@angular/forms';
 import {FormComponent} from '../../components/form/form.component';
@@ -7,6 +10,7 @@ import {IListItemIndex} from '../../components/IListItemIndex';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 import {MetadataService} from '../../services/metadata.service';
 import * as _ from 'lodash';
+import {List} from 'lodash';
 
 @Injectable()
 export class HelperService {
@@ -14,8 +18,14 @@ export class HelperService {
   editorLaunched: EventEmitter<IVFormComponent> = new EventEmitter<IVFormComponent>();
   propertyChanged: EventEmitter<[IVFormComponent, string, any]> = new EventEmitter<[IVFormComponent, string, any]>();
   DataComponent = 'data-component';
-
   componentDeleted: EventEmitter<IVFormComponent> = new EventEmitter<IVFormComponent>();
+  renderer: Renderer;
+  factories: any = {};
+
+  constructor (private resolver: ComponentFactoryResolver) {
+    const factories: List<any>  = Array.from(resolver['_factories'].keys());
+    _.forEach(factories, (f) => this.factories[f.name] = resolver.resolveComponentFactory(f));
+  }
 
   setEditMode(value: boolean) {
     this.isInEditMode = value;
@@ -33,8 +43,11 @@ export class HelperService {
     this.propertyChanged.emit([instance, key, value]);
   }
 
-  public dragStart($event: any, component: VFormMetadata) {
+  public dragStart($event: DragEvent, component: VFormMetadata) {
     $event.dataTransfer.setData(this.DataComponent, component.name);
+    $event.stopImmediatePropagation();
+    $event.stopPropagation();
+    return false;
   }
 
   public drop(target: IVFormContainerComponent, $event: any, componentMetadata: VFormMetadata, metadata: MetadataService,
@@ -44,24 +57,33 @@ export class HelperService {
 
       if ($event) {
         (<any>$event.target).classList.remove('drag-over');
-        $event.preventDefault();
+        $event.stopImmediatePropagation();
         $event.stopPropagation();
       }
 
       this.createComponent(target, component, resolver);
+      return false;
     }
   }
 
   public createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata,
                          resolver: ComponentFactoryResolver, index: IListItemIndex = null) {
-    const factories = Array.from(resolver['_factories'].keys());
-    const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
-    const factory = resolver.resolveComponentFactory(factoryClass);
-    const componentRef: ComponentRef<any> = target.container.createComponent(factory);
+    const componentRef: ComponentRef<any> = target.container.createComponent(this.factories[componentMetadata.type]);
     (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
     (<IVFormComponent>componentRef.instance).form = target.form;
     (<IVFormComponent>componentRef.instance).componentRef = componentRef;
     target.children.push(<IVFormComponent>componentRef.instance);
+
+    if (this.isInEditMode) {
+      const nativeElement = componentRef.location.nativeElement;
+      this.renderer.setElementAttribute(nativeElement, 'tabindex', '-1');
+      this.renderer.listen(nativeElement, 'dblclick', (e: MouseEvent) => {
+        this.edit(componentRef.instance);
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        return false;
+      });
+    }
 
     if (componentMetadata.children && componentMetadata.children.length) {
       _.forEach(componentMetadata.children, c => {
@@ -74,25 +96,20 @@ export class HelperService {
     }
   }
 
-  public createComponentInViewContainerRef(fg: FormComponent, vcr: ViewContainerRef, componentMetadata: VFormMetadata,
-                                           resolver: ComponentFactoryResolver) {
-    const factories = Array.from(resolver['_factories'].keys());
-    const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
-    const factory = resolver.resolveComponentFactory(factoryClass);
-    const componentRef: ComponentRef<any> = vcr.createComponent(factory);
-    (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
-    (<IVFormComponent>componentRef.instance).form = fg;
-    (<IVFormComponent>componentRef.instance).componentRef = componentRef;
-  }
-
   public dragOver($event: DragEvent) {
     $event.preventDefault();
     (<any>$event.target).classList.add('drag-over');
+    $event.stopImmediatePropagation();
+    $event.stopPropagation();
+    return false;
   }
 
   public dragLeave($event: DragEvent) {
     $event.preventDefault();
     (<any>$event.target).classList.remove('drag-over');
+    $event.stopImmediatePropagation();
+    $event.stopPropagation();
+    return false;
   }
 
   public formExpression(form: FormGroup, expression: string): boolean {
@@ -104,5 +121,9 @@ export class HelperService {
       }
       return false;
     }
+  }
+
+  public setRenderer(renderer: Renderer) {
+    this.renderer = renderer;
   }
 }

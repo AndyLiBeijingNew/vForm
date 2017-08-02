@@ -1,9 +1,8 @@
-<div *ngIf="helperService.isInEditMode" class="editor-handle" (click)="helperService.edit(this)"></div>
 <div [formGroup]="form">
   <md-radio-group [formControl]="form.controls[metadata.properties.name]"
              [class]="metadata.properties.inputClass"
              [required]="metadata.properties.required">
-    <label>{{metadata.properties?.labelText}}</label>
+    <label>{{metadata.properties?.label}}</label>
     <md-radio-button *ngFor="let o of options" [value]="o.value">
       {{o.name}}
     </md-radio-button>

@@ -1,9 +1,9 @@
 import {
   Component,
   ComponentFactoryResolver,
-  ComponentRef,
+  ComponentRef, ElementRef,
   HostListener,
-  Input,
+  Input, Renderer,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -54,7 +54,8 @@ export class LayoutComponent extends VFormComponentBase implements IVFormContain
     this.helperService.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
-  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, stateService: HelperService) {
+  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver,
+              stateService: HelperService) {
     super(stateService);
   }
 }

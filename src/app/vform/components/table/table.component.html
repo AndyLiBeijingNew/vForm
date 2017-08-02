@@ -1,4 +1,3 @@
-<div *ngIf="helperService.isInEditMode" style="display: block; clear: both"><div class="editor-handle" (click)="helperService.edit(this)"></div></div>
 <div class="table-name" [style.opacity]="metadata.properties.isTableNameHidden ? 0 : 1"><a>{{metadata.properties.tableName}}</a></div>
 <div class="table-container" [style.padding]="metadata.properties.tablePadding">
   <table>

@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver, OnInit,
+  ComponentFactoryResolver, OnInit, Renderer,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -43,7 +43,7 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
     public helperService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
-    private dialog: MdDialog) {
+    private dialog: MdDialog, renderer: Renderer) {
     this.components = metadataService.components();
     this.form = new FormComponent(helperService, fb, resolver);
     helperService.editorLaunched.subscribe(instance => {
@@ -51,6 +51,9 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
       this.showPropertyEditor(instance);
     });
     helperService.componentDeleted.subscribe(instance => this.deleteMatching(<IVFormComponent>this, instance));
+
+    // Save renederer in HelperService
+    this.helperService.setRenderer(renderer);
   }
 
   private showPropertyEditor(instance: IVFormComponent) {

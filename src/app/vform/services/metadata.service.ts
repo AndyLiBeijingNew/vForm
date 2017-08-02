@@ -118,13 +118,13 @@ export class MetadataService {
       eventArgs: ''// This will be propagated as the argument of the selectChanged event.
     }),
     new VFormMetadata('Radio', 'Select one option from a list of options', 'RadioComponent', {
-      name: '请输入唯一标识', labelText: 'Select an option', required: false, containerClass: '',
+      name: '请输入唯一标识', label: 'Select an option', required: false, containerClass: '',
       containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
       options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
     }),
     new VFormMetadata('Checkbox', 'Check box', 'CheckboxComponent',
       {
-        name: '请输入唯一标识', labelText: 'Checkbox', required: false, containerClass: '',
+        name: '请输入唯一标识', label: 'Checkbox', required: false, containerClass: '',
         containerPadding: '0 5px 0 5px', containerHeight: '60px', containerWidth: '100%'
       })
     ,
@@ -244,7 +244,7 @@ export class MetadataService {
       class: '', container: '5px 5px 5px 5px', alignItems: '', alignSelf: 'center', 'justifyContent': 'center',
       flexFlow: 'row wrap', separator: '&emsp;', prefix: '[&emsp;', suffix: '&emsp;]', prefixClass: '', suffixClass: '',
       hidden: false,
-      checkboxes: '[{"properties": {"height": "60px", "labelText": "复选框 1", "name": "请输入唯一标识 1", "hideEditor": true }}, {"properties": {"height": "60px", "labelText": "复选框 2", "name": "请输入唯一标识 2", "hideEditor": true}}]'
+      checkboxes: '[{"properties": {"height": "60px", "label": "复选框 1", "name": "请输入唯一标识 1", "hideEditor": true }}, {"properties": {"height": "60px", "label": "复选框 2", "name": "请输入唯一标识 2", "hideEditor": true}}]'
     })
   ];
 

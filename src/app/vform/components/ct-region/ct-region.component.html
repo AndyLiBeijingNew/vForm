@@ -1,4 +1,3 @@
-<div *ngIf="helperService.isInEditMode" class="editor-handle" (click)="helperService.edit(this)"></div>
 <canvas #front [style.height]="metadata.properties.frontHeight" [style.width]="metadata.properties.frontWidth"
         class="front" (click)="clickCanvas($event, front, regions.front)"
         (mouseleave)="mouseLeaveCanvas($event, front, regions.front)"
