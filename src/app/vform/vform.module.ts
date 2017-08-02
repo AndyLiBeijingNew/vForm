@@ -35,6 +35,7 @@ import { TableRowComponent } from './components/table-row/table-row.component';
 import { RepeaterComponent } from './components/repeater/repeater.component';
 import { TextAreaComponent } from "./components/input/text-area.component";
 import { IncrementalLabelComponent } from "./components/label/incremental-label.component";
+import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 
 @NgModule({
   imports: [
@@ -56,7 +57,8 @@ import { IncrementalLabelComponent } from "./components/label/incremental-label.
     LayoutComponent, FormEditorComponent, PropertyEditorComponent, InputComponent, HtmlComponent,
     FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent,
     RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent,
-    ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent, RepeaterComponent,TextAreaComponent, IncrementalLabelComponent
+    ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent, RepeaterComponent, TextAreaComponent, IncrementalLabelComponent, CheckboxListComponent,
+    CheckboxListComponent
   ],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, HelperService, TranslateService],
@@ -64,7 +66,8 @@ import { IncrementalLabelComponent } from "./components/label/incremental-label.
     FormEditorComponent, LayoutComponent, InputComponent, HtmlComponent, FormComponent, ImagePreviewComponent,
     BreastBoardComponent, InputFieldComponent, PropertyEditorComponent, CtRegionComponent, SelectComponent, RadioComponent,
     SubmitBtnComponent, CheckboxComponent, TableComponent, ESignComponent, ESignModalComponent,
-    TreatmentProgressComponent, LabelComponent, RepeaterComponent, TextAreaComponent, IncrementalLabelComponent
+    TreatmentProgressComponent, LabelComponent, RepeaterComponent, TextAreaComponent, IncrementalLabelComponent,
+    CheckboxListComponent
   ]
 })
 export class VformModule {

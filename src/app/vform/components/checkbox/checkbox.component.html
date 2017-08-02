@@ -1,3 +1,3 @@
-<div *ngIf="helperService.editorHandleIsVisible" class="editor-handle" (click)="helperService.edit(this)"></div>
-<input [formControl]="form.controls[metadata.properties.name]" [required]="metadata.properties.required"  type="checkbox"><label>{{metadata.properties.text}}</label>
+<div *ngIf="helperService.editorHandleIsVisible && !metadata.properties.hideEditor" class="editor-handle" (click)="helperService.edit(this)"></div>
+<input [formControl]="form.controls[metadata.properties.name]" [required]="metadata.properties.required"  type="checkbox"><label>{{metadata.properties.labelText}}</label>
 

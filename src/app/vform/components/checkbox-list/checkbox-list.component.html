@@ -1,0 +1,6 @@
+<div *ngIf="helperService.editorHandleIsVisible" class="editor-handle" (click)="helperService.edit(this)"></div>
+<div *ngIf="metadata.properties.prefix" [class]="metadata.properties.prefixClass" [innerHtml]="sanitizer.bypassSecurityTrustHtml(metadata.properties.prefix)"></div>
+<ng-container *ngFor="let c of checkboxes">
+  <vform-checkbox [form]="form" [metadata]="c"></vform-checkbox><div *ngIf="metadata.properties.separator" [innerHtml]="sanitizer.bypassSecurityTrustHtml(metadata.properties.separator)"></div>
+</ng-container>
+<div *ngIf="metadata.properties.suffix" [class]="metadata.properties.suffixClass" [innerHtml]="sanitizer.bypassSecurityTrustHtml(metadata.properties.suffix)"></div>

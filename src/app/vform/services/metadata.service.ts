@@ -113,8 +113,8 @@ export class MetadataService {
     new VFormMetadata('Select', 'Select from a list of options', 'SelectComponent', {tag: '',
       name: '请输入唯一标识', placeholder: 'Select an option', required: false, containerClass: '',
       containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
-      options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]', 
-      dataSourceToken: '',// This toke will be used to obtain the actual service of inquiring data source for the select.
+      options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]',
+      dataSourceToken: '', // This token will be used to obtain the actual service of inquiring data source for the select.
       eventArgs: ''// This will be propagated as the argument of the selectChanged event.
     }),
     new VFormMetadata('Radio', 'Select one option from a list of options', 'RadioComponent', {
@@ -123,9 +123,10 @@ export class MetadataService {
       options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
     }),
     new VFormMetadata('Checkbox', 'Check box', 'CheckboxComponent',
-    {
-      height: '60px', 'text': '复选框', name: '请输入唯一标识'
-    })
+      {
+        name: '请输入唯一标识', labelText: 'Checkbox', required: false, containerClass: '',
+        containerPadding: '0 5px 0 5px', containerHeight: '60px', containerWidth: '100%'
+      })
     ,
     new VFormMetadata('Submit Button', 'Submit the form', 'SubmitBtnComponent',
     {
@@ -238,6 +239,12 @@ export class MetadataService {
             containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column2'
           })}]
       })
+    }),
+    new VFormMetadata('Checkbox-list', 'List of checkboxes', 'CheckboxListComponent', {
+      class: '', container: '5px 5px 5px 5px', alignItems: '', alignSelf: 'center', 'justifyContent': 'center',
+      flexFlow: 'row wrap', separator: '&emsp;', prefix: '[&emsp;', suffix: '&emsp;]', prefixClass: '', suffixClass: '',
+      hidden: false,
+      checkboxes: '[{"properties": {"height": "60px", "labelText": "复选框 1", "name": "请输入唯一标识 1", "hideEditor": true }}, {"properties": {"height": "60px", "labelText": "复选框 2", "name": "请输入唯一标识 2", "hideEditor": true}}]'
     })
   ];
 
