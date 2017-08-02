@@ -22,7 +22,7 @@ export class DynamicComponent extends VFormComponentBase implements OnInit, IVFo
   }
 
   ngOnInit() {
-    this.helperService.createComponent(this, this.metadata, this.resolver, this.itemIndex);
+    this.helperService.createComponent(this, this.metadata, this.itemIndex);
   }
 
 }

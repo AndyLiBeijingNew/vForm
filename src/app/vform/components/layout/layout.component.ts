@@ -1,17 +1,9 @@
 import {
   Component,
-  ComponentFactoryResolver,
-  ComponentRef, ElementRef,
   HostListener,
-  Input, Renderer,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import {Helper} from '../../helpers/Helper';
-import {MetadataService} from '../../services/metadata.service';
-import {VFormMetadata} from '../../services/VFormMetadata';
-import {IVFormComponent} from '../../services/IVFormComponent';
-import {FormGroup} from '@angular/forms';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
 import {HelperService} from '../../editors/property-editor/helper.service';
 import {VFormComponentBase} from '../VFormComponentBase';
@@ -51,11 +43,10 @@ export class LayoutComponent extends VFormComponentBase implements IVFormContain
 
   @HostListener('drop', ['$event'])
   drop($event): void {
-    this.helperService.drop(this, $event, null, this.metadataService, this.resolver);
+    this.helperService.drop(this, $event, null);
   }
 
-  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver,
-              stateService: HelperService) {
+  constructor(stateService: HelperService) {
     super(stateService);
   }
 }

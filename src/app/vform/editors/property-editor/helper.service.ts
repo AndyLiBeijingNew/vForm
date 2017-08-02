@@ -22,7 +22,7 @@ export class HelperService {
   renderer: Renderer;
   factories: any = {};
 
-  constructor (private resolver: ComponentFactoryResolver) {
+  constructor (private resolver: ComponentFactoryResolver, private metadataService: MetadataService) {
     const factories: List<any>  = Array.from(resolver['_factories'].keys());
     _.forEach(factories, (f) => this.factories[f.name] = resolver.resolveComponentFactory(f));
   }
@@ -50,9 +50,8 @@ export class HelperService {
     return false;
   }
 
-  public drop(target: IVFormContainerComponent, $event: any, componentMetadata: VFormMetadata, metadata: MetadataService,
-                     resolver: ComponentFactoryResolver) {
-    const component = componentMetadata || metadata.getComponent($event.dataTransfer.getData(this.DataComponent));
+  public drop(target: IVFormContainerComponent, $event: any, componentMetadata: VFormMetadata) {
+    const component = componentMetadata || this.metadataService.getComponent($event.dataTransfer.getData(this.DataComponent));
     if (component) {
 
       if ($event) {
@@ -61,13 +60,13 @@ export class HelperService {
         $event.stopPropagation();
       }
 
-      this.createComponent(target, component, resolver);
+      this.createComponent(target, component);
       return false;
     }
   }
 
   public createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata,
-                         resolver: ComponentFactoryResolver, index: IListItemIndex = null) {
+                         index: IListItemIndex = null) {
     const componentRef: ComponentRef<any> = target.container.createComponent(this.factories[componentMetadata.type]);
     (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
     (<IVFormComponent>componentRef.instance).form = target.form;
@@ -87,7 +86,7 @@ export class HelperService {
 
     if (componentMetadata.children && componentMetadata.children.length) {
       _.forEach(componentMetadata.children, c => {
-        this.createComponent(<IVFormContainerComponent>componentRef.instance, c, resolver);
+        this.createComponent(<IVFormContainerComponent>componentRef.instance, c);
       });
     }
 

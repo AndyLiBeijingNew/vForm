@@ -1,15 +1,13 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver, OnInit, Renderer,
+  OnInit, Renderer,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
-import { Helper } from '../../helpers/Helper';
 import { VFormMetadata } from '../../services/VFormMetadata';
 import { MetadataService } from '../../services/metadata.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 import { HelperService } from '../property-editor/helper.service';
 import * as _ from 'lodash';
 import { IVFormComponent } from '../../services/IVFormComponent';
@@ -41,11 +39,11 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   private previewFormInstanceValue: any = {};
   private previewFormInstanceStatus: any = {};
 
-  constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, private fb: FormBuilder,
+  constructor(private metadataService: MetadataService, private fb: FormBuilder,
     public helperService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
     private dialog: MdDialog, renderer: Renderer) {
     this.components = metadataService.components();
-    this.form = new FormComponent(helperService, fb, resolver);
+    this.form = new FormComponent(helperService, fb);
     helperService.editorLaunched.subscribe(instance => {
       this.editedComponent = instance;
       this.showPropertyEditor(instance);
@@ -77,7 +75,7 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   }
 
   drop($event): void {
-    this.helperService.drop(this, $event, null, this.metadataService, this.resolver);
+    this.helperService.drop(this, $event, null);
   }
 
   getJson() {
@@ -152,7 +150,7 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   loadFormEditor(value: VFormMetadata) {
     this.container.clear();
     this.metadata = value;
-    _.forEach(this.metadata.children, c => this.helperService.createComponent(this, c, this.resolver));
+    _.forEach(this.metadata.children, c => this.helperService.createComponent(this, c));
   }
 
   downloadFormFile() {
