@@ -34,24 +34,24 @@ import {VFormComponentBase} from '../VFormComponentBase';
     '[style.flexGrow]': 'metadata.properties.flexGrow',
     '[style.display]': 'metadata.properties.display',
     '[hidden]': 'isHidden()'
-  },
+  }
 })
 export class LayoutComponent extends VFormComponentBase implements IVFormContainerComponent {
   @ViewChild('container', {read: ViewContainerRef}) container: any;
 
   @HostListener('dragover', ['$event'])
   dragOver($event): void {
-    Helper.dragOver($event);
+    this.helperService.dragOver($event);
   }
 
   @HostListener('dragleave', ['$event'])
   dragLeave($event): void {
-    Helper.dragLeave($event);
+    this.helperService.dragLeave($event);
   }
 
   @HostListener('drop', ['$event'])
   drop($event): void {
-    Helper.drop(this, $event, null, this.metadataService, this.resolver);
+    this.helperService.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
   constructor(private metadataService: MetadataService, private resolver: ComponentFactoryResolver, stateService: HelperService) {

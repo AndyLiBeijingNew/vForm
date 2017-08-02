@@ -1,4 +1,4 @@
-<div *ngIf="helperService.editorHandleIsVisible" class="editor-handle" (click)="helperService.edit(this)"></div>
+<div *ngIf="helperService.isInEditMode" class="editor-handle" (click)="helperService.edit(this)"></div>
 <md-input-container [formGroup]="form" [class]="metadata.properties.inputClass">
   <input mdInput [formControl]="form.controls[metadata.properties.name]" [type]="metadata.properties.type"
          [maxLength]="metadata.properties.maxlength || 100" [size]="metadata.properties.size || 100"

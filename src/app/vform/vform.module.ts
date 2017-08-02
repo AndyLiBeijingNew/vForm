@@ -13,7 +13,7 @@ import {ImagePreviewComponent} from './components/image-preview/image-preview.co
 import {BreastBoardComponent} from './components/breast-board/breast-board.component';
 import {InputFieldComponent} from './components/input-field/input-field.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import { SubmitBtnComponent } from "./components/button/button.component";
+import { SubmitBtnComponent } from './components/button/button.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {
   MdButtonModule, MdDialogModule, MdIconModule, MdInputModule, MdRadioModule, MdSelectModule,
@@ -33,8 +33,8 @@ import {RtDataService} from './services/rtdata.service';
 import { LabelComponent } from './components/label/label.component';
 import { TableRowComponent } from './components/table-row/table-row.component';
 import { RepeaterComponent } from './components/repeater/repeater.component';
-import { TextAreaComponent } from "./components/input/text-area.component";
-import { IncrementalLabelComponent } from "./components/label/incremental-label.component";
+import { TextAreaComponent } from './components/input/text-area.component';
+import { IncrementalLabelComponent } from './components/label/incremental-label.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
 
 @NgModule({

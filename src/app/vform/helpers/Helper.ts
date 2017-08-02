@@ -7,71 +7,8 @@ import {IVFormContainerComponent} from '../services/IVFormContainerComponent';
 import {FormGroup} from '@angular/forms';
 import { InputFieldBase } from "../components/input-field/InputFieldBase";
 import {FormComponent} from '../components/form/form.component';
-import { IListItem } from "../components/IListItem";
+import { IListItemIndex } from "../components/IListItemIndex";
 export class Helper {
-  private static DataComponent = 'data-component';
-
-  public static dragStart($event: any, component: VFormMetadata) {
-    $event.dataTransfer.setData(this.DataComponent, component.name);
-  }
-
-  public static drop(target: IVFormContainerComponent, $event: any, componentMetadata: VFormMetadata, metadata: MetadataService,
-                     resolver: ComponentFactoryResolver) {
-    const component = componentMetadata || metadata.getComponent($event.dataTransfer.getData(this.DataComponent));
-    if (component) {
-
-      if ($event) {
-        (<any>$event.target).classList.remove('drag-over');
-        $event.preventDefault();
-        $event.stopPropagation();
-      }
-
-      Helper.createComponent(target, component, resolver);
-    }
-  }
-
-  public static createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver, index: number = 0) {
-    const factories = Array.from(resolver['_factories'].keys());
-    const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
-    const factory = resolver.resolveComponentFactory(factoryClass);
-    const componentRef: ComponentRef<any> = target.container.createComponent(factory);
-    (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
-    (<IVFormComponent>componentRef.instance).form = target.form;
-    (<IVFormComponent>componentRef.instance).componentRef = componentRef;
-    target.children.push(<IVFormComponent>componentRef.instance);
-
-    if (componentMetadata.children && componentMetadata.children.length) {
-      _.forEach(componentMetadata.children, c => {
-        this.createComponent(<IVFormContainerComponent>componentRef.instance, c, resolver);
-      });
-    }
-
-    if('itemIndex' in componentRef.instance)
-      {
-        (<IListItem>componentRef.instance).itemIndex = index;
-      }
-  }
-
-  public static createComponentInViewContainerRef(fg: FormComponent, vcr: ViewContainerRef, componentMetadata: VFormMetadata, resolver: ComponentFactoryResolver) {
-    const factories = Array.from(resolver['_factories'].keys());
-    const factoryClass = <Type<any>>factories.find((x: any) => x.name === componentMetadata.type);
-    const factory = resolver.resolveComponentFactory(factoryClass);
-    const componentRef: ComponentRef<any> = vcr.createComponent(factory);
-    (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
-    (<IVFormComponent>componentRef.instance).form = fg;
-    (<IVFormComponent>componentRef.instance).componentRef = componentRef;
-  }
-
-  public static dragOver($event: DragEvent) {
-    $event.preventDefault();
-    (<any>$event.target).classList.add('drag-over');
-  }
-
-  public static dragLeave($event: DragEvent) {
-    $event.preventDefault();
-    (<any>$event.target).classList.remove('drag-over');
-  }
-
   public static formExpression(form: FormGroup, expression: string): boolean {
     if (expression) {
       try {

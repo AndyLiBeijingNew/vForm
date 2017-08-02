@@ -19,10 +19,7 @@
   </div>
 </div>
 <div [hidden]="view !== 'editor'" id="formEditor">
-  <div class="editor-handle"
-       [ngClass]="{'on': helperService.editorHandleIsVisible, 'off': !helperService.editorHandleIsVisible}"
-       (click)="helperService.setEditorHandleVisibility(!helperService.editorHandleIsVisible)"></div>
-  <div *ngIf="helperService.editorHandleIsVisible" class="editor-handle" (click)="helperService.edit(this)"></div>
+  <div *ngIf="helperService.isInEditMode" class="editor-handle" (click)="helperService.edit(this)"></div>
   <form (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)" id="formArea"
         [formGroup]="form" [style.width]="metadata.properties.width" [style.height]="metadata.properties.height">
     <ng-container #container></ng-container>

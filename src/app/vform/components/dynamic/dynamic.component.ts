@@ -3,6 +3,7 @@ import {VFormComponentBase} from '../VFormComponentBase';
 import {HelperService} from '../../editors/property-editor/helper.service';
 import {Helper} from '../../helpers/Helper';
 import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
+import {IListItemIndex} from '../IListItemIndex';
 
 @Component({
   selector: 'vform-dynamic',
@@ -12,16 +13,16 @@ import {IVFormContainerComponent} from '../../services/IVFormContainerComponent'
 export class DynamicComponent extends VFormComponentBase implements OnInit, IVFormContainerComponent {
 
   @Input()
-  itemIndex: number;
+  itemIndex: IListItemIndex;
 
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
 
-  constructor(stateService: HelperService, private resolver: ComponentFactoryResolver) {
-    super(stateService);
+  constructor(helperService: HelperService, private resolver: ComponentFactoryResolver) {
+    super(helperService);
   }
 
   ngOnInit() {
-    Helper.createComponent(this, this.metadata, this.resolver, ++ this.itemIndex);
+    this.helperService.createComponent(this, this.metadata, this.resolver, this.itemIndex);
   }
 
 }

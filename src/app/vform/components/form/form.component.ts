@@ -44,7 +44,7 @@ export class FormComponent extends FormGroup implements IVFormContainerComponent
   set metadata(value: VFormMetadata) {
     this.container.clear();
     this._metadata = value;
-    _.forEach(this.metadata.children, c => Helper.createComponent(this, c, this.resolver));
+    _.forEach(this.metadata.children, c => this.stateService.createComponent(this, c, this.resolver));
   }
 
   @Input()
@@ -58,7 +58,7 @@ export class FormComponent extends FormGroup implements IVFormContainerComponent
 
   constructor(private stateService: HelperService, private fb: FormBuilder, private resolver: ComponentFactoryResolver) {
     super({});
-    stateService.setEditorHandleVisibility(false);
+    stateService.setEditMode(false);
     this.form = this;
     this.form.valueChanges.subscribe(v => this.valueChanged.emit(v));
     this.form.statusChanges.subscribe(v => this.statusChanged.emit(v));

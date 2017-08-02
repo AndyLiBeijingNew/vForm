@@ -1,4 +1,4 @@
-<div *ngIf="helperService.editorHandleIsVisible" style="display: block; clear: both"><div class="editor-handle" (click)="helperService.edit(this)"></div></div>
+<div *ngIf="helperService.isInEditMode" style="display: block; clear: both"><div class="editor-handle" (click)="helperService.edit(this)"></div></div>
 <div *ngIf="treatmentProgressSummary" class="treatment-progress">
   <div class="left">
     <div class="planRow" *ngFor="let p of treatmentProgressSummary.plans">

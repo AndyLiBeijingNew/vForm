@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
+  ComponentFactoryResolver, OnInit,
   ViewChild,
   ViewContainerRef
 } from '@angular/core';
@@ -23,7 +23,7 @@ import { MdDialog } from '@angular/material';
   selector: 'form-editor',
   templateUrl: './form-editor.component.html'
 })
-export class FormEditorComponent implements AfterViewInit, IVFormContainerComponent {
+export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   editedComponent: IVFormComponent;
   view = 'editor';
 
@@ -37,7 +37,6 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
 
   @ViewChild('container', { read: ViewContainerRef }) container: any;
   @ViewChild('preview') preview: FormComponent;
-  private isViewInitialized = false;
   form: FormComponent;
   private previewFormInstanceValue: any = {};
   private previewFormInstanceStatus: any = {};
@@ -58,28 +57,24 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
     this.dialog.open(PropertyEditorComponent, { data: instance });
   }
 
-  ngAfterViewInit() {
-    this.isViewInitialized = true;
+  ngOnInit() {
+    this.helperService.setEditMode(true);
   }
 
   dragStart($event, component: VFormMetadata): void {
-    Helper.dragStart($event, component);
+    this.helperService.dragStart($event, component);
   }
 
   dragOver($event): void {
-    Helper.dragOver($event);
+    this.helperService.dragOver($event);
   }
 
   dragLeave($event): void {
-    Helper.dragLeave($event);
+    this.helperService.dragLeave($event);
   }
 
   drop($event): void {
-    Helper.drop(this, $event, null, this.metadataService, this.resolver);
-  }
-
-  showEditorHandle(value: any) {
-    this.helperService.setEditorHandleVisibility(value);
+    this.helperService.drop(this, $event, null, this.metadataService, this.resolver);
   }
 
   getJson() {
@@ -109,9 +104,11 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
 
   showEditor() {
     this.view = 'editor';
+    this.helperService.setEditMode(true);
   }
 
   showPreview() {
+    this.helperService.setEditMode(false);
     this.preview.form.reset();
     this.preview.metadata = this.getJson();
     this.view = 'preview';
@@ -152,13 +149,13 @@ export class FormEditorComponent implements AfterViewInit, IVFormContainerCompon
   loadFormEditor(value: VFormMetadata) {
     this.container.clear();
     this.metadata = value;
-    _.forEach(this.metadata.children, c => Helper.createComponent(this, c, this.resolver));
+    _.forEach(this.metadata.children, c => this.helperService.createComponent(this, c, this.resolver));
   }
 
   downloadFormFile() {
     var templateStr = JSON.stringify(this.getJson());
     console.log(templateStr);
-    // Add UTF-8 BOM to resolve the messy-code issue.git 
+    // Add UTF-8 BOM to resolve the messy-code issue.git
     const blob = new Blob(["\ufeff", templateStr], { type: 'application/json' });
     const url = window.URL.createObjectURL(blob);
     window.open(url);

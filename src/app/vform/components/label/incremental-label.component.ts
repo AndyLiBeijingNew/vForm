@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import {VFormComponentBase} from '../VFormComponentBase';
 import {HelperService} from '../../editors/property-editor/helper.service';
-import { LabelComponent } from "./label.component";
-import { IListItem } from "../IListItem";
+import { LabelComponent } from './label.component';
+import { IListItemIndex } from '../IListItemIndex';
 @Component({
   selector: 'vform-incremental-label',
   templateUrl: './incremental-label.component.html'
 })
-export class IncrementalLabelComponent extends LabelComponent implements OnInit, IListItem {
+export class IncrementalLabelComponent extends LabelComponent implements OnInit {
 
-  itemIndex: number = 1;
+  itemIndex: IListItemIndex;
 
-  constructor(helperService: HelperService) 
-  {
+  constructor(helperService: HelperService) {
     super(helperService);
   }
-  
+
   ngOnInit() {
-      
+
   }
-  
 }

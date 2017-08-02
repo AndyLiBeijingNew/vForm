@@ -1,2 +1,2 @@
-<div *ngIf="helperService.editorHandleIsVisible" class="editor-handle" (click)="helperService.edit(this)"></div>
-<label [class]="metadata.properties.class">{{metadata.properties.content}}{{itemIndex}}</label>
+<div *ngIf="helperService.isInEditMode" class="editor-handle" (click)="helperService.edit(this)"></div>
+<label [class]="metadata.properties.class">{{metadata.properties.content}}{{itemIndex.rowNum}}</label>
