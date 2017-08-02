@@ -4,7 +4,7 @@ import {LayoutComponent} from '../components/layout/layout.component';
 import * as _ from 'lodash';
 
 @Injectable()
-export class MetadatfaService {
+export class MetadataService {
 
   _components: VFormMetadata[] = [
      new VFormMetadata('2 Column layout', 'Divides the form into 2 columns.', 'LayoutComponent',
