@@ -67,8 +67,7 @@ export class HelperService {
     }
   }
 
-  public createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata,
-                         index: IListItemIndex = null) {
+  public createComponent(target: IVFormContainerComponent, componentMetadata: VFormMetadata): IVFormComponent {
     const componentRef: ComponentRef<any> = target.container.createComponent(this.factories[componentMetadata.type]);
     (<IVFormComponent>componentRef.instance).metadata = componentMetadata;
     (<IVFormComponent>componentRef.instance).form = target.form;
@@ -83,9 +82,7 @@ export class HelperService {
       });
     }
 
-    if ('itemIndex' in componentRef.instance) {
-      (<IListItemIndex>componentRef.instance).itemIndex = index;
-    }
+    return componentRef.instance;
   }
 
   public registerShortcuts(componentRef: ComponentRef<any>, containerForComponentRef: IVFormContainerComponent) {

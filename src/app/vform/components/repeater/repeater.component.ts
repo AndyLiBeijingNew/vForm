@@ -36,14 +36,16 @@ export class RepeaterComponent  extends FormArray implements IVFormComponent, On
     this.form.addControl(newName, this);
   }
 
-  ngOnInit() {
+ngOnInit() {
     this.form.addControl(this.metadata.properties.name, this);
     this.oldName = this.metadata.properties.name;
     var initialTables = 1;
-    if(this.metadata.properties.initialTables)
-      {
-        initialTables = this.metadata.properties.initialTables;
-      }
+    if (this.metadata.properties.initialTables) {
+      initialTables = this.metadata.properties.initialTables;
+    }
+    if (this.metadata.properties.templates && this.metadata.properties.templates.length > initialTables) {
+      initialTables = this.metadata.properties.templates.length;
+    }
     this.ensureData(initialTables);
   }
 

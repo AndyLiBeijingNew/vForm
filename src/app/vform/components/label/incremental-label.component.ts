@@ -18,4 +18,9 @@ export class IncrementalLabelComponent extends LabelComponent implements OnInit 
   ngOnInit() {
 
   }
+
+  setItemIndex(value : IListItemIndex)
+  {
+    this.itemIndex = value;
+  }
 }
