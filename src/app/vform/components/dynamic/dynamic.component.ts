@@ -1,9 +1,10 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, Input} from '@angular/core';
-import {VFormComponentBase} from '../VFormComponentBase';
-import {HelperService} from '../../editors/property-editor/helper.service';
-import {Helper} from '../../helpers/Helper';
-import {IVFormContainerComponent} from '../../services/IVFormContainerComponent';
-import {IListItemIndex} from '../IListItemIndex';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, Input } from '@angular/core';
+import { VFormComponentBase } from '../VFormComponentBase';
+import { HelperService } from '../../editors/property-editor/helper.service';
+import { Helper } from '../../helpers/Helper';
+import { IVFormContainerComponent } from '../../services/IVFormContainerComponent';
+import { IVFormComponent } from '../../services/IVFormComponent';
+import { IListItemIndex } from '../IListItemIndex';
 
 @Component({
   selector: 'vform-dynamic',
@@ -15,14 +16,28 @@ export class DynamicComponent extends VFormComponentBase implements OnInit, IVFo
   @Input()
   itemIndex: IListItemIndex;
 
-  @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
+  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
 
   constructor(helperService: HelperService, private resolver: ComponentFactoryResolver) {
     super(helperService);
   }
 
+  private childComponent: IVFormComponent;
+
   ngOnInit() {
-    this.helperService.createComponent(this, this.metadata, this.itemIndex);
+    this.childComponent = this.helperService.createComponent(this, this.metadata);
+  }
+
+  ngAfterContentInit() {
+    if (this.itemIndex && this.itemIndex != null) {
+      this.passItemIndex(this.itemIndex);
+    }
+  }
+
+  private passItemIndex(value: IListItemIndex) {
+    if (this.childComponent && 'setItemIndex' in this.childComponent.componentRef.instance) {
+      this.childComponent.componentRef.instance.setItemIndex(value);
+    }
   }
 
 }
