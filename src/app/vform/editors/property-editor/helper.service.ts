@@ -23,6 +23,7 @@ export class HelperService {
   renderer: Renderer;
   factories: any = {};
   copied: VFormMetadata;
+  selected: VFormMetadata;
 
   constructor (private resolver: ComponentFactoryResolver, private metadataService: MetadataService) {
     const factories: List<any>  = Array.from(resolver['_factories'].keys());
@@ -94,6 +95,16 @@ export class HelperService {
       this.renderer.setElementAttribute(nativeElement, 'tabindex', '1');
       this.renderer.listen(nativeElement, 'keydown', (e: KeyboardEvent) => {
         return this.handleShortcuts(e, componentRef, containerForComponentRef);
+      });
+      this.renderer.listen(nativeElement, 'focus', (e: Event) => {
+        this.selected = componentRef.instance.metadata;
+        e.stopImmediatePropagation();
+        return false;
+      });
+      this.renderer.listen(nativeElement, 'focusout', (e: Event) => {
+        this.selected = null;
+        e.stopImmediatePropagation();
+        return false;
       });
     }
   }

@@ -36,6 +36,7 @@ import { RepeaterComponent } from './components/repeater/repeater.component';
 import { TextAreaComponent } from './components/input/text-area.component';
 import { IncrementalLabelComponent } from './components/label/incremental-label.component';
 import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.component';
+import { SelectedComponentComponent } from './editors/selected-component/selected-component.component';
 
 @NgModule({
   imports: [
@@ -58,7 +59,8 @@ import { CheckboxListComponent } from './components/checkbox-list/checkbox-list.
     FormComponent, ImagePreviewComponent, BreastBoardComponent, InputFieldComponent, CtRegionComponent, SelectComponent,
     RadioComponent, SubmitBtnComponent, CheckboxComponent, TableComponent, DynamicComponent, ESignComponent,
     ESignModalComponent, TreatmentProgressComponent, LabelComponent, TableRowComponent, RepeaterComponent, TextAreaComponent, IncrementalLabelComponent, CheckboxListComponent,
-    CheckboxListComponent
+    CheckboxListComponent,
+    SelectedComponentComponent
   ],
   exports: [FormEditorComponent, FormComponent],
   providers: [MetadataService, HelperService, TranslateService],
