@@ -75,31 +75,7 @@ export class HelperService {
     (<IVFormComponent>componentRef.instance).componentRef = componentRef;
     target.children.push(<IVFormComponent>componentRef.instance);
 
-    if (this.isInEditMode) {
-      const nativeElement = componentRef.location.nativeElement;
-      this.renderer.setElementAttribute(nativeElement, 'tabindex', '1');
-      this.renderer.listen(nativeElement, 'keydown', (e: KeyboardEvent) => {
-        if (e.altKey && (e.key === 'p' || e.key === 'v' || e.key === 'C' || e.key === 'V')) {
-          if (e.key === 'C') {
-            this.copied = Helper.getMetadata(componentRef.instance);
-          } else if (e.key === 'V') {
-            if (this.copied && componentRef.instance.container) {
-              this.createComponent(componentRef.instance, this.copied);
-            }
-          }
-          if (e.altKey && e.key === 'v') {
-            const clonedMetadata: VFormMetadata = Helper.getMetadata(componentRef.instance);
-            this.createComponent(target, clonedMetadata);
-          } else if (e.altKey && e.key === 'p') {
-           this.edit(componentRef.instance);
-          }
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          e.stopPropagation();
-          return false;
-        }
-      });
-    }
+    this.registerShortcuts(componentRef, target);
 
     if (componentMetadata.children && componentMetadata.children.length) {
       _.forEach(componentMetadata.children, c => {
@@ -109,6 +85,50 @@ export class HelperService {
 
     if ('itemIndex' in componentRef.instance) {
       (<IListItemIndex>componentRef.instance).itemIndex = index;
+    }
+  }
+
+  public registerShortcuts(componentRef: ComponentRef<any>, containerForComponentRef: IVFormContainerComponent) {
+    if (this.isInEditMode) {
+      const nativeElement = componentRef.location.nativeElement;
+      this.renderer.setElementAttribute(nativeElement, 'tabindex', '1');
+      this.renderer.listen(nativeElement, 'keydown', (e: KeyboardEvent) => {
+        return this.handleShortcuts(e, componentRef, containerForComponentRef);
+      });
+    }
+  }
+
+  private handleShortcuts(event: KeyboardEvent, componentRef: ComponentRef<any>,
+                          containerForComponentRef: IVFormContainerComponent): boolean {
+    if (event.altKey && (event.key === 'p' || event.key === 'v' || event.key === 'C'
+        || event.key === 'V' || event.key === 'D' || event.key === 'X')) {
+      if (event.key === 'C') {
+        this.copied = Helper.getMetadata(componentRef.instance);
+      } else if (event.key === 'V' && componentRef.instance.container) {
+        this.pasteCopiedComponent(componentRef);
+      }
+      if (event.key === 'v') {
+        const clonedMetadata: VFormMetadata = Helper.getMetadata(componentRef.instance);
+        this.createComponent(containerForComponentRef, clonedMetadata);
+      } else if (event.key === 'p') {
+        this.edit(componentRef.instance);
+      } else if (event.key === 'D') {
+        this.deleteComponent(componentRef.instance);
+      } else if (event.key === 'X') {
+        this.copied = Helper.getMetadata(componentRef.instance);
+        this.deleteComponent(componentRef.instance);
+      }
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      event.stopPropagation();
+      return false;
+    }
+    return true;
+  }
+
+  private pasteCopiedComponent(componentRefOfContainer: ComponentRef<any>) {
+    if (this.copied && componentRefOfContainer.instance.container) {
+      this.createComponent(componentRefOfContainer.instance, this.copied);
     }
   }
 

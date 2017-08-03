@@ -1,9 +1,9 @@
 import {
   ChangeDetectorRef,
-  Component,
+  Component, ComponentRef, ElementRef,
   OnInit, Renderer,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef, ViewRef
 } from '@angular/core';
 import { VFormMetadata } from '../../services/VFormMetadata';
 import { MetadataService } from '../../services/metadata.service';
@@ -28,21 +28,22 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
 
   components: VFormMetadata[];
   metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent', {
-    width: '800px',
-    height: '600px',
+    width: '1200px',
+    height: '800px',
     flexWrap: 'wrap'
   });
   children: IVFormComponent[] = [];
 
-  @ViewChild('container', { read: ViewContainerRef }) container: any;
+  @ViewChild('container', { read: ViewContainerRef }) container: ViewContainerRef;
+  @ViewChild('formEditorForm') formEditorForm: ElementRef;
   @ViewChild('preview') preview: FormComponent;
   form: FormComponent;
   private previewFormInstanceValue: any = {};
   private previewFormInstanceStatus: any = {};
 
   constructor(private metadataService: MetadataService, private fb: FormBuilder,
-    public helperService: HelperService, private self: ChangeDetectorRef, private sanitizer: DomSanitizer,
-    private dialog: MdDialog, renderer: Renderer) {
+    public helperService: HelperService, private self: ChangeDetectorRef,
+    private dialog: MdDialog, private renderer: Renderer) {
     this.components = metadataService.components();
     this.form = new FormComponent(helperService, fb);
     helperService.editorLaunched.subscribe(instance => {
@@ -61,6 +62,7 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
 
   ngOnInit() {
     this.helperService.setEditMode(true);
+    this.helperService.registerShortcuts(<any>{instance: this, location: this.formEditorForm}, null);
   }
 
   dragStart($event, component: VFormMetadata): void {
@@ -147,10 +149,10 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   }
 
   downloadFormFile() {
-    var templateStr = JSON.stringify(this.getJson());
-    console.log(templateStr);
+    const templateStr = JSON.stringify(this.getJson());
+
     // Add UTF-8 BOM to resolve the messy-code issue.git
-    const blob = new Blob(["\ufeff", templateStr], { type: 'application/json' });
+    const blob = new Blob(['\ufeff', templateStr], { type: 'application/json' });
     const url = window.URL.createObjectURL(blob);
     window.open(url);
   }

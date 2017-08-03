@@ -1,2 +1,5 @@
-<input [formControl]="form.controls[metadata.properties.name]" [required]="metadata.properties.required"  type="checkbox"><label>{{metadata.properties.label}}</label>
+<div *ngIf="metadata.properties.prefix" [class]="metadata.properties.prefixClass" [innerHtml]="sanitizer.bypassSecurityTrustHtml(metadata.properties.prefix)"></div>
+<input [formControl]="form.controls[metadata.properties.name]" [required]="metadata.properties.required"  type="checkbox">
+<label>{{metadata.properties.label}}</label>
+<div *ngIf="metadata.properties.suffix" [class]="metadata.properties.suffixClass" [innerHtml]="sanitizer.bypassSecurityTrustHtml(metadata.properties.suffix)"></div>
 

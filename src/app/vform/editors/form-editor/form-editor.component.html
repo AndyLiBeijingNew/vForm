@@ -19,11 +19,9 @@
   </div>
 </div>
 <div [hidden]="view !== 'editor'" id="formEditor">
-  <div *ngIf="helperService.isInEditMode">
-    <div class="editor-handle" (click)="helperService.edit(this)"></div>
-  </div>
   <form (dragover)="dragOver($event)" (dragleave)="dragLeave($event)" (drop)="drop($event)" id="formArea"
-        [formGroup]="form" [style.width]="metadata.properties.width" [style.height]="metadata.properties.height">
+        [formGroup]="form" [style.width]="metadata.properties.width" [style.height]="metadata.properties.height"
+        tabindex="1" #formEditorForm>
     <ng-container #container></ng-container>
   </form>
 </div>

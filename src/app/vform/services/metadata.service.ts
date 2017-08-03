@@ -125,7 +125,9 @@ export class MetadataService {
     new VFormMetadata('Checkbox', 'Check box', 'CheckboxComponent',
       {
         name: '请输入唯一标识', label: 'Checkbox', required: false, containerClass: '',
-        containerPadding: '0 5px 0 5px', containerHeight: '60px', containerWidth: '100%'
+        containerPadding: '0 5px 0 5px', containerHeight: '30px', containerWidth: '100%',
+        prefix: '(&nbsp;', suffix: '&nbsp;)', prefixClass: '', suffixClass: '', flexFlow: 'row nowrap',
+        alignItems: 'center', justifyContent: 'flex-start'
       })
     ,
     new VFormMetadata('Submit Button', 'Submit the form', 'SubmitBtnComponent',
