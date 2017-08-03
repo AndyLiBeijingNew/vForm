@@ -13,4 +13,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 `ALT+SHIFT+v` Paste component into currently selected component. If selected component is not a container, do nothing. <br />
 `ALT+SHIFT+x` Cut component and put it on clipboard. <br />
 `ALT+SHIFT+d` Deletes the selected component
+`ALT+b` Set default border as specified in MetadataService <br />
+`ALT+SHIFT+b` Clear borders <br />
 

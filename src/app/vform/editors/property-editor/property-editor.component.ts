@@ -4,6 +4,9 @@ import {HelperService} from './helper.service';
 import {IVFormComponent} from '../../services/IVFormComponent';
 import {MD_DIALOG_DATA, MdDialog, MdInputDirective} from '@angular/material';
 import * as _ from 'lodash';
+import {MetadataService} from '../../services/metadata.service';
+import {Helper} from '../../helpers/Helper';
+import {isUndefined} from 'util';
 
 @Component({
   selector: 'vform-property-editor',
@@ -16,10 +19,10 @@ export class PropertyEditorComponent {
   @ViewChild('newPropertyName') newPropertyName: MdInputDirective;
   @ViewChild('newPropertyValue') newPropertyValue: MdInputDirective;
 
-  model: Kv[] = [];
+  keys = (o: object) => Object.keys(o).sort();
 
   setProperty(key, value) {
-    this.componentInstance.metadata.properties[key] = value;
+    Helper.setProperty(this.componentInstance.metadata.properties, key, value, true);
     this.stateService.changeProperty(this.componentInstance, key, value);
   }
 
@@ -35,13 +38,47 @@ export class PropertyEditorComponent {
     const value = (valueNe.value || '').trim();
     nameNe.value = null;
     valueNe.value = null;
-    this.model.push(new Kv(name, value));
     this.componentInstance.metadata.properties[name] = value;
     this.stateService.changeProperty(this.componentInstance, name, value);
   }
 
-  constructor(private stateService: HelperService, private dialog: MdDialog, @Optional() @Inject(MD_DIALOG_DATA) data) {
+  constructor(private metadataService: MetadataService, private stateService: HelperService,
+              private dialog: MdDialog, @Optional() @Inject(MD_DIALOG_DATA) data) {
     this.componentInstance = data;
-    this.model = _.sortBy(Kv.from(this.componentInstance.metadata.properties), i => i.k);
+  }
+
+  clearBorders(e: Event) {
+    Helper.setBordersValues(e, this.componentInstance.metadata.properties,
+      {borderTop: '', borderRight: '', borderBottom: '', borderLeft: ''});
+  }
+
+  setBorders(e: Event) {
+    const bs = this.metadataService.defaultBorderSpecFor(this.componentInstance.metadata.type);
+    Helper.setBordersValues(e, this.componentInstance.metadata.properties,
+      {borderTop: bs, borderRight: bs, borderBottom: bs, borderLeft: bs});
+  }
+
+  setTopBorder(e: Event) {
+    const bs = this.metadataService.defaultBorderSpecFor(this.componentInstance.metadata.type);
+    Helper.setBordersValues(e, this.componentInstance.metadata.properties,
+      {borderTop: bs, borderRight: '', borderBottom: '', borderLeft: ''});
+  }
+
+  setLeftBorder(e: Event) {
+    const bs = this.metadataService.defaultBorderSpecFor(this.componentInstance.metadata.type);
+    Helper.setBordersValues(e, this.componentInstance.metadata.properties,
+      {borderTop: '', borderRight: '', borderBottom: '', borderLeft: bs});
+  }
+
+  setRightBorder(e: Event) {
+    const bs = this.metadataService.defaultBorderSpecFor(this.componentInstance.metadata.type);
+    Helper.setBordersValues(e, this.componentInstance.metadata.properties,
+      {borderTop: '', borderRight: bs, borderBottom: '', borderLeft: ''});
+  }
+
+  setBottomBorder(e: Event) {
+    const bs = this.metadataService.defaultBorderSpecFor(this.componentInstance.metadata.type);
+    Helper.setBordersValues(e, this.componentInstance.metadata.properties,
+      {borderTop: '', borderRight: '', borderBottom: bs, borderLeft: ''});
   }
 }

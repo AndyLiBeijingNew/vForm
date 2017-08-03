@@ -1,8 +1,8 @@
 <h2>{{componentInstance.metadata.name}} Properties</h2>
 <form #form="ngForm">
-  <md-input-container *ngFor="let kv of model">
-    <label>{{kv.k}}</label>
-    <input mdInput name="{{kv.k}}" type="text" [ngModel]="kv.v" (ngModelChange)="setProperty(kv.k, $event)">
+  <md-input-container *ngFor="let k of keys(componentInstance.metadata.properties)">
+    <label>{{k}}</label>
+    <input mdInput name="{{k}}" type="text" [ngModel]="componentInstance.metadata.properties[k]" (ngModelChange)="setProperty(k, $event)">
   </md-input-container>
 </form>
 <hr/>
@@ -19,7 +19,25 @@
   </a>
 </div>
 
-<button md-raised-button (click)="$event.preventDefault(); $event.stopPropagation(); delete();"
-        style="background-color: lightcoral">Delete control from Form
-</button>
+<a (click)="$event.preventDefault(); $event.stopPropagation(); delete();" class="property-editor-action red">
+  <md-icon>delete_forever</md-icon>
+</a>
+<a (click)="clearBorders($event)" class="property-editor-action">
+  <md-icon>border_clear</md-icon>
+</a>
+<a (click)="setBorders($event)" class="property-editor-action">
+  <md-icon>border_outer</md-icon>
+</a>
+<a (click)="setTopBorder($event)" class="property-editor-action">
+  <md-icon>border_top</md-icon>
+</a>
+<a (click)="setRightBorder($event)" class="property-editor-action">
+  <md-icon>border_right</md-icon>
+</a>
+<a (click)="setBottomBorder($event)" class="property-editor-action">
+  <md-icon>border_bottom</md-icon>
+</a>
+<a (click)="setLeftBorder($event)" class="property-editor-action">
+  <md-icon>border_left</md-icon>
+</a>
 

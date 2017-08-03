@@ -261,4 +261,8 @@ export class MetadataService {
     const filtered = _.filter(this._components, i => i.name === name);
     return filtered.length ? _.cloneDeep(filtered[0]) : null;
   }
+
+  public defaultBorderSpecFor(type?: string) {
+    return '1px solid lightgray';
+  }
 }

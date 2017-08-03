@@ -101,7 +101,8 @@ export class HelperService {
   private handleShortcuts(event: KeyboardEvent, componentRef: ComponentRef<any>,
                           containerForComponentRef: IVFormContainerComponent): boolean {
     if (event.altKey && (event.key === 'p' || event.key === 'v' || event.key === 'C'
-        || event.key === 'V' || event.key === 'D' || event.key === 'X')) {
+        || event.key === 'V' || event.key === 'D' || event.key === 'X' || event.key === 'b'
+        || event.key === 'B')) {
       if (event.key === 'C') {
         this.copied = Helper.getMetadata(componentRef.instance);
       } else if (event.key === 'V' && componentRef.instance.container) {
@@ -117,6 +118,13 @@ export class HelperService {
       } else if (event.key === 'X') {
         this.copied = Helper.getMetadata(componentRef.instance);
         this.deleteComponent(componentRef.instance);
+      } else if (event.key === 'b') {
+        const bs = this.metadataService.defaultBorderSpecFor(componentRef.instance.metadata.properties.type);
+        Helper.setBordersValues(event, componentRef.instance.metadata.properties,
+          {borderTop: bs, borderRight: bs, borderBottom: bs, borderLeft: bs});
+      } else if (event.key === 'B') {
+        Helper.setBordersValues(event, componentRef.instance.metadata.properties,
+          {borderTop: '', borderRight: '', borderBottom: '', borderLeft: ''});
       }
       event.preventDefault();
       event.stopImmediatePropagation();
