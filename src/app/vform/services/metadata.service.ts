@@ -213,8 +213,39 @@ export class MetadataService {
     }),
   new VFormMetadata('ISOCenters', 'ISOCenters', 'RepeaterComponent', {
       name: '请输入唯一标识', containerClass: '', repeatRowText: '',
-      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: '',
       showRepeatButton: false, flexFlow: 'row wrap',
+      templateSeed: new VFormMetadata('plan1', 'plan1', 'TableComponent', {
+      name: 'plan1', containerClass: '', dynamicWidth: '60%',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: false,
+      showAddRowControl: false, automaticallyAddRow: false, showHeaderRow: false, initialRows: 2,
+      columns: [{
+        label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
+          {
+            containerClass: '', placeholder: '',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', content: "ISO"
+          })
+      }, {label: 'Vrt',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Vrt',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Vrt'
+        })}
+        , {label: 'Lng',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Lng',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lng'
+        })}
+        , {label: 'Lat',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          containerClass: '', placeholder: 'Lat',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lat'
+        })}
+      ]
+    }), 
       templates: [new VFormMetadata('plan1', 'plan1', 'TableComponent', {
       name: 'plan1', containerClass: '', dynamicWidth: '60%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
