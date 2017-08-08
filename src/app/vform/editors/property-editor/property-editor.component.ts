@@ -81,12 +81,4 @@ export class PropertyEditorComponent {
     Helper.setBordersValues(e, this.componentInstance.metadata.properties,
       {borderTop: '', borderRight: '', borderBottom: bs, borderLeft: ''});
   }
-
-  moveUp(e: Event) {
-
-  }
-
-  moveDown(e: Event) {
-
-  }
 }
