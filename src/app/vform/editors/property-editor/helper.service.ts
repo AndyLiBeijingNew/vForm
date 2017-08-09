@@ -110,7 +110,7 @@ export class HelperService {
                           containerForComponentRef: IVFormContainerComponent): boolean {
     if (event.altKey && (event.key === 'p' || event.key === 'v' || event.key === 'C'
         || event.key === 'V' || event.key === 'D' || event.key === 'X' || event.key === 'b'
-        || event.key === 'B')) {
+        || event.key === 'B' || event.key === 'u' || event.key === 'U')) {
       if (event.key === 'C') {
         this.copied = Helper.getMetadata(componentRef.instance);
       } else if (event.key === 'V' && componentRef.instance.container) {
@@ -133,6 +133,8 @@ export class HelperService {
       } else if (event.key === 'B') {
         Helper.setBordersValues(event, componentRef.instance.metadata.properties,
           {borderTop: '', borderRight: '', borderBottom: '', borderLeft: ''});
+      } else if (event.key === 'u' || event.key === 'U') {
+        this.moveComponent(componentRef, containerForComponentRef, event.key === 'U');
       }
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -145,6 +147,24 @@ export class HelperService {
   private pasteCopiedComponent(componentRefOfContainer: ComponentRef<any>) {
     if (this.copied && componentRefOfContainer.instance.container) {
       this.createComponent(componentRefOfContainer.instance, this.copied);
+    }
+  }
+
+  private moveComponent(componentRef: ComponentRef<any>,
+                        containerForComponentRef: IVFormContainerComponent,
+                        down: boolean) {
+    const containerViewRef = containerForComponentRef.container;
+    if (!componentRef.instance || !containerViewRef || !containerForComponentRef.children) {
+      return;
+    }
+    const indexOfToMove: number = <any> containerViewRef.indexOf(<any>componentRef);
+    const elementsInContainer = containerViewRef.length;
+    if (indexOfToMove > -1 && elementsInContainer > 1) {
+      if (down && indexOfToMove < elementsInContainer - 1) {
+        containerViewRef.move(containerViewRef.get(indexOfToMove), indexOfToMove + 1);
+      } else if (!down && indexOfToMove > 0) {
+        containerViewRef.move(containerViewRef.get(indexOfToMove), indexOfToMove - 1);
+      }
     }
   }
 

@@ -15,4 +15,6 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 `ALT+SHIFT+d` Deletes the selected component <br />
 `ALT+b` Set default border as specified in MetadataService <br />
 `ALT+SHIFT+b` Clear borders <br />
+`ALT+u` Move current component 1 position up in container <br />
+`ALT+SHIFT+u` Move current component 1 position down in container <br />
 
