@@ -94,7 +94,7 @@ export class MetadataService {
     new VFormMetadata('Number Field', 'Number input.', 'InputComponent',
       {
         type: 'number', size: '20', required: false,
-        containerClass: ' ', placeholder: 'Number',
+        containerClass: ' ', placeholder: 'Number', numericType: 'integer',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识'
       }),
     new VFormMetadata('Date Field', 'Date input.', 'InputComponent',
@@ -230,19 +230,19 @@ export class MetadataService {
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Vrt',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Vrt'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'vrt'
         })}
         , {label: 'Lng',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Lng',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lng'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lng'
         })}
         , {label: 'Lat',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Lat',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lat'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
         })}
       ]
     }), 
@@ -261,19 +261,19 @@ export class MetadataService {
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Vrt',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Vrt'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lrt'
         })}
         , {label: 'Lng',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Lng',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lng'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lng'
         })}
         , {label: 'Lat',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Lat',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lat'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
         })}
       ]
     }), new VFormMetadata('plan2', 'plan2', 'TableComponent', {
@@ -291,19 +291,19 @@ export class MetadataService {
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Vrt',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Vrt'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'vrt'
         })}
         , {label: 'Lng',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Lng',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lng'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lng'
         })}
         , {label: 'Lat',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
         {
           type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
           containerClass: '', placeholder: 'Lat',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Lat'
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
         })}
       ]
     })]
