@@ -76,6 +76,7 @@ export class MetadataService {
         type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
         containerClass: '', placeholder: 'Placeholder text.',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
+        requiredErrorMsg: 'required_error',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
       }),
       new VFormMetadata('Text Area', 'Text Area.', 'TextAreaComponent',
@@ -83,27 +84,41 @@ export class MetadataService {
         maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
         containerClass: '', placeholder: 'Placeholder text.',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
+        requiredErrorMsg: 'required_error',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
       }),
     new VFormMetadata('Password Field', 'Password input.', 'InputComponent',
       {
         type: 'password', maxlength: 20, autocomplete: false, size: '25', required: false,
         containerClass: '', placeholder: 'Password',
+        requiredErrorMsg: 'required_error',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识'
       }),
-    new VFormMetadata('Number Field', 'Number input.', 'InputComponent',
+    new VFormMetadata('Integer Input', 'Integer number input.', 'InputComponent',
       {
-        type: 'number', size: '20', required: false,
-        containerClass: ' ', placeholder: 'Number', numericType: 'integer',
-        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识'
+        type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+        containerClass: '', placeholder: 'Placeholder text.',
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
+        requiredErrorMsg: 'required_error', numericType: 'integer', maxNumber: 1000, minNumber: 0, 
+        minNumberErrorMsg: 'minNumberErrorMsg', maxNumberErrorMsg: 'maxNumberErrorMsg',
+        vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
+      }),
+    new VFormMetadata('float Input', 'Float number input.', 'InputComponent',
+      {
+        type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+        containerClass: '', placeholder: 'Placeholder text.',
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
+        requiredErrorMsg: 'required_error', numericType: 'float', maxNumber: 1000.00, minNumber: 0.00, 
+        minNumberErrorMsg: 'minNumberErrorMsg', maxNumberErrorMsg: 'maxNumberErrorMsg',
+        vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
       }),
     new VFormMetadata('Date Field', 'Date input.', 'InputComponent',
       {
         type: 'date', size: '20', required: false,
         containerClass: ' ', placeholder: 'Number',
-        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识'
+        containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识', requiredErrorMsg: 'required_error'
       }),
-    new VFormMetadata('HTML', 'Custom HTML.', 'HtmlComponent', {html: ''}),
+    new VFormMetadata('HTML', 'Custom HTML.', 'HtmlComponent', {html: '', isFormHeader: false}),
     new VFormMetadata('Image', 'Image.', 'ImagePreviewComponent', {
       width: '206px',
       height: '265px',
@@ -114,12 +129,14 @@ export class MetadataService {
       name: '请输入唯一标识', placeholder: 'Select an option', required: false, containerClass: '',
       containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
       options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]',
+      requiredErrorMsg: 'required_error',
       dataSourceToken: '', // This token will be used to obtain the actual service of inquiring data source for the select.
       eventArgs: ''// This will be propagated as the argument of the selectChanged event.
     }),
     new VFormMetadata('Radio', 'Select one option from a list of options', 'RadioComponent', {
       name: '请输入唯一标识', label: 'Select an option', required: false, containerClass: '',
       containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%',
+      requiredErrorMsg: 'required_error',
       options: '[{"name":"Option 1 Display","value":1},{"name":"Option 2 Display","value":2}]'
     }),
     new VFormMetadata('Checkbox', 'Check box', 'CheckboxComponent',
@@ -127,6 +144,7 @@ export class MetadataService {
         name: '请输入唯一标识', label: 'Checkbox', required: false, containerClass: '',
         containerPadding: '0 5px 0 5px', containerHeight: '30px', containerWidth: '100%',
         prefix: '(&nbsp;', suffix: '&nbsp;)', prefixClass: '', suffixClass: '', flexFlow: 'row nowrap',
+        requiredErrorMsg: 'required_error',
         alignItems: 'center', justifyContent: 'flex-start'
       })
     ,
@@ -219,7 +237,7 @@ export class MetadataService {
       name: 'plan1', containerClass: '', dynamicWidth: '60%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
       tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: false,
-      showAddRowControl: false, automaticallyAddRow: false, showHeaderRow: false, initialRows: 2,
+      showAddRowControl: false, automaticallyAddRow: true, showHeaderRow: false, initialRows: 2,
       columns: [{
         label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
           {

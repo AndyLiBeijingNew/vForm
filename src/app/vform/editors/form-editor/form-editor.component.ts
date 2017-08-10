@@ -30,7 +30,8 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   metadata: VFormMetadata = new VFormMetadata('Form', '', 'FormComponent', {
     width: '1200px',
     height: '800px',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    groupSettings: '[{"name": "group1", "suffix": "_g:group1", "errorMsg":"groupErrorMsg"}]'
   });
   children: IVFormComponent[] = [];
 
