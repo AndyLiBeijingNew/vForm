@@ -236,8 +236,8 @@ export class MetadataService {
       templateSeed: new VFormMetadata('plan1', 'plan1', 'TableComponent', {
       name: 'plan1', containerClass: '', dynamicWidth: '60%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
-      tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: false,
-      showAddRowControl: false, automaticallyAddRow: true, showHeaderRow: false, initialRows: 2,
+      tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: true,
+      showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1,
       columns: [{
         label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
           {
@@ -267,8 +267,8 @@ export class MetadataService {
       templates: [new VFormMetadata('plan1', 'plan1', 'TableComponent', {
       name: 'plan1', containerClass: '', dynamicWidth: '60%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
-      tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: false,
-      showAddRowControl: false, automaticallyAddRow: false, showHeaderRow: false, initialRows: 2,
+      tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: true,
+      showAddRowControl: false, automaticallyAddRow: true, showHeaderRow: false, initialRows: 2,
       columns: [{
         label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
           {
@@ -297,8 +297,8 @@ export class MetadataService {
     }), new VFormMetadata('plan2', 'plan2', 'TableComponent', {
       name: 'plan2', containerClass: '', dynamicWidth: '60%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
-      tablePadding: '0 0 0 20px', tableName: 'Node RA', showActions: false,
-      showAddRowControl: false, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1,
+      tablePadding: '0 0 0 20px', tableName: 'Node RA', showActions: true,
+      showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1,
       columns: [{
         label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
           {
