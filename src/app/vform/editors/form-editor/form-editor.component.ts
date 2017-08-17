@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { VFormMetadata } from '../../services/VFormMetadata';
 import { MetadataService } from '../../services/metadata.service';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { HelperService } from '../property-editor/helper.service';
 import * as _ from 'lodash';
 import { IVFormComponent } from '../../services/IVFormComponent';
@@ -16,7 +16,7 @@ import { PropertyEditorComponent } from '../property-editor/property-editor.comp
 import { FormComponent } from '../../components/form/form.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MdDialog } from '@angular/material';
-import {Helper} from '../../helpers/Helper';
+import { Helper } from '../../helpers/Helper';
 
 @Component({
   selector: 'form-editor',
@@ -63,7 +63,7 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
 
   ngOnInit() {
     this.helperService.setEditMode(true);
-    this.helperService.registerShortcuts(<any>{instance: this, location: this.formEditorForm}, null);
+    this.helperService.registerShortcuts(<any>{ instance: this, location: this.formEditorForm }, null);
   }
 
   dragStart($event, component: VFormMetadata): void {
@@ -150,6 +150,15 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
   }
 
   downloadFormFile() {
+    const jsonObj = this.getJson();
+    this.names = [];
+    if (this.isNameDuplicate(jsonObj)) {
+      const showJSONDialog = window.confirm('Do you want to proceed to see the JSON with duplicated names?');
+      if (!showJSONDialog) {
+        return;
+      }
+    }
+
     const templateStr = JSON.stringify(this.getJson());
 
     // Add UTF-8 BOM to resolve the messy-code issue.git
@@ -157,4 +166,26 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
     const url = window.URL.createObjectURL(blob);
     window.open(url);
   }
+
+  private names: string[];
+  
+  private excludedTypeList = ['LayoutComponent', 'LabelComponent'];
+
+  isNameDuplicate(jsonObj: any): boolean {
+    if (this.excludedTypeList.indexOf(jsonObj.type) < 0) {
+      if (this.names.indexOf(jsonObj.properties.name) >= 0) {
+        alert(jsonObj.properties.name + ' is duplicated\n and its type is ' + jsonObj.type);
+        return true;
+      }
+      this.names.push(jsonObj.properties.name);
+    }
+
+    for (let i = 0; i < jsonObj.children.length; i++) {
+      if (this.isNameDuplicate(jsonObj.children[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
