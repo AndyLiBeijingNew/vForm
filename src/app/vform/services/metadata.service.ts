@@ -330,7 +330,7 @@ export class MetadataService {
         name: '请输入唯一标识', containerClass: '', repeatRowText: '',
         padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: '',
         showRepeatButton: false, flexFlow: 'row wrap', showRepeaterHeader: true, repeaterHeaderText: '计划',
-        columnConfig: '[{"text":"能量","fieldId":"Energy"},{"text":"床转角","fieldId":"MU"}]',
+        columnConfig: '[{"text":"野","id":"fieldName"},{"text":"能量","id":"Energy"},{"text":"床转角","id":"MU"}]',
         templateSeed: new VFormMetadata('plan1', 'plan1', 'TableComponent', {
         name: 'plan1', containerClass: '', dynamicWidth: '60%',
         padding: '0 5px 0 5px', height: 'auto', width: '100%',
