@@ -172,66 +172,66 @@ export class MetadataService {
           containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column2'
         })}]
     }),
-      new VFormMetadata('TargetVolumePrescription', '', 'RepeaterComponent', {
-      name: '请输入唯一标识', containerClass: '', repeatRowText: '靶区',
+    new VFormMetadata('TargetVolumePrescription', '', 'RepeaterComponent', {
+      name: '请输入唯一标识', class: 'x-scroll', repeatRowText: '靶区',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
-      showRepeatButton: true, flexFlow: 'row wrap',
+      showRepeatButton: true, flexFlow: 'row',
       metadataTemplate: new VFormMetadata('TargetVolPres', 'Insert a target volume prescription column', 'TableComponent', {
-      name: 'TVP1', containerClass: '', dynamicWidth: '33%',
-      padding: '0 5px 0 5px', height: 'auto', width: '100%',
-      tablePadding: '0 0 0 20px', tableName: '靶区剂量及分次', showActions: true,
+      name: 'TVP1', containerClass: '', dynamicWidth: '246px',
+      padding: '0 20px 0 0', height: 'auto', width: '',
+      tablePadding: '', tableName: '靶区剂量及分次', showActions: true,
       showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 3, isTableNameHidden: true,
       columns: [{
-        label: 'Target Volume', class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        label: 'Target Volume', class: '', width: '60px', metadata: new VFormMetadata('', '', 'InputComponent',
           {
-            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '18', required: false,
             containerClass: '', placeholder: '靶区',
-            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Target Volume'
+            containerPadding: '', containerHeight: 'auto', containerWidth: '60px', name: 'Target Volume'
           })
-      }, {label: 'Dose',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+      }, {label: 'Dose',  class: '', width: '66px', metadata: new VFormMetadata('', '', 'InputComponent',
         {
-          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '18', required: false,
           containerClass: '', placeholder: '剂量(Gy)',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Dose'
+          containerPadding: '', containerHeight: 'auto', containerWidth: '66px', name: 'Dose'
         })}
-        , {label: 'Fractions',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        , {label: 'Fractions',  class: '', width: '40px', metadata: new VFormMetadata('', '', 'InputComponent',
         {
-          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '18', required: false,
           containerClass: '', placeholder: '分次',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Fractions'
+          containerPadding: '', containerHeight: 'auto', containerWidth: '40px', name: 'Fractions'
         })}
       ]
     }), // only applied to the first column of the repeater.
     firstMetadataTemplate: new VFormMetadata('TargetVolPres', 'Insert a target volume prescription column', 'TableComponent', {
-      name: 'TVP1', containerClass: '', dynamicWidth: '33%',
-      padding: '0 5px 0 5px', height: 'auto', width: '100%',
-      tablePadding: '0 0 0 20px', tableName: '靶区剂量及分次', showActions: true,
+      name: 'TVP1', containerClass: '', dynamicWidth: '246px',
+      padding: '0 20px 0 0', height: 'auto', width: '100%',
+      tablePadding: '', tableName: '靶区剂量及分次', showActions: true,
       showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 3,
       columns: [{
-        label: 'Target Volume', class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        label: 'Target Volume', class: '', width: '60px', metadata: new VFormMetadata('', '', 'InputComponent',
           {
-            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '18', required: false,
             containerClass: '', placeholder: '靶区',
-            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Target Volume'
+            containerPadding: '', containerHeight: 'auto', containerWidth: '60px', name: 'Target Volume'
           })
-      }, {label: 'Dose',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+      }, {label: 'Dose',  class: '', width: '66px', metadata: new VFormMetadata('', '', 'InputComponent',
         {
-          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '18', required: false,
           containerClass: '', placeholder: '剂量(Gy)',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Dose'
+          containerPadding: '', containerHeight: 'auto', containerWidth: '66px', name: 'Dose'
         })}
-        , {label: 'Fractions',  class: '', width: '30%', metadata: new VFormMetadata('', '', 'InputComponent',
+        , {label: 'Fractions',  class: '', width: '60px', metadata: new VFormMetadata('', '', 'InputComponent',
         {
-          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '18', required: false,
           containerClass: '', placeholder: '分次',
-          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Fractions'
+          containerPadding: '', containerHeight: 'auto', containerWidth: '40px', name: 'Fractions'
         })}
       ]
     })
     }),
   new VFormMetadata('ISOCenters', 'ISOCenters', 'RepeaterComponent', {
       name: '请输入唯一标识', containerClass: '', repeatRowText: '',
-      padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: '',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: 'ISOCenterDataService',
       showRepeatButton: false, flexFlow: 'row wrap',
       templateSeed: new VFormMetadata('plan1', 'plan1', 'TableComponent', {
       name: 'plan1', containerClass: '', dynamicWidth: '60%',
@@ -328,21 +328,21 @@ export class MetadataService {
     }),
     new VFormMetadata('Plan Summary', 'Plan Summary', 'RepeaterComponent', {
         name: '请输入唯一标识', containerClass: '', repeatRowText: '',
-        padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: '',
+        padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: 'PlanSummaryDataService',
         showRepeatButton: false, flexFlow: 'row wrap', showRepeaterHeader: true, repeaterHeaderText: '计划',
-        columnConfig: '[{"text":"野","id":"fieldName"},{"text":"能量","id":"Energy"},{"text":"床转角","id":"MU"}]',
-        templateSeed: new VFormMetadata('plan1', 'plan1', 'TableComponent', {
-        name: 'plan1', containerClass: '', dynamicWidth: '60%',
-        padding: '0 5px 0 5px', height: 'auto', width: '100%',
-        tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: true,
-        showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1,
+        columnConfig: '[{"text":"野","id":"fieldName"},{"text":"能量","id":"energy"},{"text":"床转角","id":"mu"}]',
         columnSeed: {
           label: 'field text', class: '', width: '20%', metadata: new VFormMetadata('field id', '', 'InputComponent',
             {
               containerClass: '', placeholder: '', isReadonly: true,
               containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%'
             })}
-        ,columns: [{
+        , templateSeed: new VFormMetadata('plan1', 'plan1', 'TableComponent', {
+        name: 'plan1', containerClass: '', dynamicWidth: '60%',
+        padding: '0 5px 0 5px', height: 'auto', width: '100%',
+        tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: false,
+        showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: true, initialRows: 1,
+        columns: [{
           label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
             {
               containerClass: '', placeholder: '',
