@@ -74,7 +74,7 @@ export class MetadataService {
     new VFormMetadata('Text Field', 'Text input.', 'InputComponent',
       {
         type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
-        containerClass: '', placeholder: 'Placeholder text.',
+        containerClass: '', placeholder: 'Placeholder text.', isReadonly: false,
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
         requiredErrorMsg: 'required_error',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
@@ -326,6 +326,111 @@ export class MetadataService {
       ]
     })]
     }),
+    new VFormMetadata('Plan Summary', 'Plan Summary', 'RepeaterComponent', {
+        name: '请输入唯一标识', containerClass: '', repeatRowText: '',
+        padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: '',
+        showRepeatButton: false, flexFlow: 'row wrap', showRepeaterHeader: true, repeaterHeaderText: '计划',
+        columnConfig: '[{"text":"能量","fieldId":"Energy"},{"text":"床转角","fieldId":"MU"}]',
+        templateSeed: new VFormMetadata('plan1', 'plan1', 'TableComponent', {
+        name: 'plan1', containerClass: '', dynamicWidth: '60%',
+        padding: '0 5px 0 5px', height: 'auto', width: '100%',
+        tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: true,
+        showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1,
+        columnSeed: {
+          label: 'field text', class: '', width: '20%', metadata: new VFormMetadata('field id', '', 'InputComponent',
+            {
+              containerClass: '', placeholder: '', isReadonly: true,
+              containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%'
+            })}
+        ,columns: [{
+          label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
+            {
+              containerClass: '', placeholder: '',
+              containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', content: "ISO"
+            })
+        }, {label: 'Vrt',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Vrt',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'vrt'
+          })}
+          , {label: 'Lng',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Lng',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lng'
+          })}
+          , {label: 'Lat',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Lat',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
+          })}
+        ]
+      }), 
+        templates: [new VFormMetadata('plan1', 'plan1', 'TableComponent', {
+        name: 'plan1', containerClass: '', dynamicWidth: '60%',
+        padding: '0 5px 0 5px', height: 'auto', width: '100%',
+        tablePadding: '0 0 0 20px', tableName: 'Lung RA', showActions: true,
+        showAddRowControl: false, automaticallyAddRow: true, showHeaderRow: false, initialRows: 2,
+        columns: [{
+          label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
+            {
+              containerClass: '', placeholder: '',
+              containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', content: "ISO"
+            })
+        }, {label: 'Vrt',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Vrt',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lrt'
+          })}
+          , {label: 'Lng',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Lng',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lng'
+          })}
+          , {label: 'Lat',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Lat',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
+          })}
+        ]
+      }), new VFormMetadata('plan2', 'plan2', 'TableComponent', {
+        name: 'plan2', containerClass: '', dynamicWidth: '60%',
+        padding: '0 5px 0 5px', height: 'auto', width: '100%',
+        tablePadding: '0 0 0 20px', tableName: 'Node RA', showActions: true,
+        showAddRowControl: true, automaticallyAddRow: true, showHeaderRow: false, initialRows: 1,
+        columns: [{
+          label: 'ISO Name', class: '', width: '25%', metadata: new VFormMetadata('isoNameLabel', '', 'IncrementalLabelComponent',
+            {
+              containerClass: '', placeholder: '',
+              containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', content: "ISO"
+            })
+        }, {label: 'Vrt',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Vrt',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'vrt'
+          })}
+          , {label: 'Lng',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Lng',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lng'
+          })}
+          , {label: 'Lat',  class: '', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '20', required: false,
+            containerClass: '', placeholder: 'Lat',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
+          })}
+        ]
+      })]
+      })
+    ,
     new VFormMetadata('E-signature', '.', 'ESignComponent', {
       border: '1px dashed lightgray', name: 'esignature',
       heading: 'e-sign form', dialogClass: '',

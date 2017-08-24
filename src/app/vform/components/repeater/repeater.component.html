@@ -1,4 +1,5 @@
 <div *ngIf="metadata.properties.showRepeatButton" class="reperater-repeat-button" (click)="repeatRow()"><md-icon>add_circle_outline</md-icon>{{metadata.properties.repeatRowText}}</div>
+<div *ngIf="metadata.properties.showRepeaterHeader" class="repeater-header">{{metadata.properties.repeaterHeaderText}}</div>
 <div [style.flexFirection]="metadata.properties.flexDirection" [style.display]="'flex'" [style.flexFlow]="metadata.properties.flexFlow" *ngIf="!metadata.properties.templates">
   <vform-dynamic *ngFor="let c of controls; let i = index" [metadata]="i > 0 ? metadata.properties.metadataTemplate : metadata.properties.firstMetadataTemplate" [form]="c"></vform-dynamic>
 </div>

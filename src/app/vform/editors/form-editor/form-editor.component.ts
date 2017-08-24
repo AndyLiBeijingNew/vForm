@@ -169,7 +169,7 @@ export class FormEditorComponent implements OnInit, IVFormContainerComponent {
 
   private names: string[];
   
-  private excludedTypeList = ['LayoutComponent', 'LabelComponent'];
+  private excludedTypeList = ['LayoutComponent', 'LabelComponent', 'SubmitBtnComponent', ''];
 
   isNameDuplicate(jsonObj: any): boolean {
     if (this.excludedTypeList.indexOf(jsonObj.type) < 0) {
