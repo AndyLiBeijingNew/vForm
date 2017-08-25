@@ -21,7 +21,7 @@ import {FormComponent} from '../form/form.component';
   selector: 'vform-table',
   templateUrl: './table.component.html',
   host: { '[style.width]': 'metadata.properties.width', '[style.height]': 'metadata.properties.height',
-    '[style.padding]': 'metadata.properties.padding'
+    '[style.padding]': 'metadata.properties.padding', '[class]': 'metadata.properties.containerClass'
   }
 })
 export class TableComponent extends FormArray implements IVFormComponent, OnInit {
@@ -44,7 +44,7 @@ export class TableComponent extends FormArray implements IVFormComponent, OnInit
     this.form.addControl(this.metadata.properties.name, this);
     this.oldName = this.metadata.properties.name;
     var iniRowNum = 1;
-    if(this.metadata.properties.initialRows)
+    if (this.metadata.properties.initialRows)
       {
         iniRowNum = this.metadata.properties.initialRows;
       }

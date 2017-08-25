@@ -99,7 +99,7 @@ export class MetadataService {
         type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
         containerClass: '', placeholder: 'Placeholder text.',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
-        requiredErrorMsg: 'required_error', numericType: 'integer', maxNumber: 1000, minNumber: 0, 
+        requiredErrorMsg: 'required_error', numericType: 'integer', maxNumber: 1000, minNumber: 0,
         minNumberErrorMsg: 'minNumberErrorMsg', maxNumberErrorMsg: 'maxNumberErrorMsg',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
       }),
@@ -108,7 +108,7 @@ export class MetadataService {
         type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
         containerClass: '', placeholder: 'Placeholder text.',
         containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: '请输入唯一标识',
-        requiredErrorMsg: 'required_error', numericType: 'float', maxNumber: 1000.00, minNumber: 0.00, 
+        requiredErrorMsg: 'required_error', numericType: 'float', maxNumber: 1000.00, minNumber: 0.00,
         minNumberErrorMsg: 'minNumberErrorMsg', maxNumberErrorMsg: 'maxNumberErrorMsg',
         vformValidatorMessage: 'Validation error.', vformValidatorExpression: ''
       }),
@@ -171,6 +171,43 @@ export class MetadataService {
           containerClass: '', placeholder: 'Placeholder text.',
           containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'Column2'
         })}]
+    }),
+    new VFormMetadata('Treatment Comments Table', 'Insert a Treatment Comments Table', 'TableComponent', {
+      name: 'table', containerClass: 'treatmentTable',
+      padding: '0 5px 0 5px', height: 'auto', width: '100%',
+      tablePadding: '0 0 0 20px', tableName: '治疗记录', showActions: false,
+      showAddRowControl: false, automaticallyAddRow: false, showHeaderRow: true,
+      initialRows: 0, dataSource: 'TreatmentDataService',
+      columns: [{
+        label: '次数', width: '10%', metadata: new VFormMetadata('', '', 'InputComponent',
+          {
+            type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+            containerClass: '', placeholder: 'Placeholder text.',
+            containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'treatmentTimes',
+            isReadonly: true
+          })
+      }, {label: '日期', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+          containerClass: '', placeholder: 'Placeholder text.',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'treatmentDate',
+          isReadonly: true
+        })
+      }, {label: '操作者', width: '25%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+          containerClass: '', placeholder: 'Placeholder text.',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'operatorName',
+          isReadonly: true
+        })
+      }, {label: '治疗备注', width: '40%', metadata: new VFormMetadata('', '', 'InputComponent',
+        {
+          type: 'text', maxlength: 20, autocomplete: true, lineHeight: '1.2em', size: '25', required: false,
+          containerClass: '', placeholder: 'Placeholder text.',
+          containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'comments',
+          isReadonly: true
+        })
+      }]
     }),
     new VFormMetadata('TargetVolumePrescription', '', 'RepeaterComponent', {
       name: '请输入唯一标识', class: 'x-scroll', repeatRowText: '靶区',
@@ -263,7 +300,7 @@ export class MetadataService {
           containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
         })}
       ]
-    }), 
+    }),
       templates: [new VFormMetadata('plan1', 'plan1', 'TableComponent', {
       name: 'plan1', containerClass: '', dynamicWidth: '60%',
       padding: '0 5px 0 5px', height: 'auto', width: '100%',
@@ -367,7 +404,7 @@ export class MetadataService {
             containerPadding: '0 5px 0 5px', containerHeight: 'auto', containerWidth: '100%', name: 'lat'
           })}
         ]
-      }), 
+      }),
         templates: [new VFormMetadata('plan1', 'plan1', 'TableComponent', {
         name: 'plan1', containerClass: '', dynamicWidth: '60%',
         padding: '0 5px 0 5px', height: 'auto', width: '100%',
