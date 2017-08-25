@@ -330,7 +330,7 @@ export class MetadataService {
         name: '请输入唯一标识', containerClass: '', repeatRowText: '',
         padding: '0 5px 0 5px', height: 'auto', width: '100%', dataSourceToken: 'PlanSummaryDataService',
         showRepeatButton: false, flexFlow: 'row wrap', showRepeaterHeader: true, repeaterHeaderText: '计划',
-        columnConfig: '[{"text":"野","id":"fieldName"},{"text":"能量","id":"energy"},{"text":"床转角","id":"mu"}]',
+        columnConfig: '[{"text":"野","id":"fieldId"},{"text":"能量","id":"energy"},{"text":"床转角","id":"mu"}]',
         columnSeed: {
           label: 'field text', class: '', width: '20%', metadata: new VFormMetadata('field id', '', 'InputComponent',
             {
